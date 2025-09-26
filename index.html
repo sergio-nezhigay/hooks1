@@ -26,11 +26,18 @@
         background-color: #f8f9fa;
         color: #333;
       }
+      button {
+        font-family: 'Zain', sans-serif;
+        font-weight: 900;
+      }
+
+      h1 {
+        margin: 0;
+      }
 
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 20px;
         width: 100%;
       }
 
@@ -38,16 +45,10 @@
          FREE SHIPPING BANNER
          ==================== */
       .shipping-banner {
-        background: #e75a47;
+        background: #ed8177;
         color: white;
         text-align: center;
-        padding: 12px 20px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
         text-transform: uppercase;
-        position: relative;
-        z-index: 100;
       }
 
       .shipping-banner-text {
@@ -58,17 +59,6 @@
       /* ====================
          HERO SECTION
          ==================== */
-      .hero {
-        width: 100%;
-        height: 667px;
-        position: relative;
-        background-color: #5c96c5;
-        background-image: url('hero-mobile.png');
-        background-position: 50% 200px;
-        background-repeat: no-repeat;
-        overflow: hidden;
-        margin-bottom: -50px;
-      }
 
       .hero-overlay {
         position: absolute;
@@ -86,6 +76,7 @@
 
       .hero-content {
         color: white;
+        padding: 0 20px;
       }
 
       .hero h1 {
@@ -93,34 +84,34 @@
         font-size: 32px;
         font-weight: 400;
         line-height: 1.2;
-        margin-bottom: 16px;
+        margin-bottom: 30px;
         text-transform: uppercase;
         text-align: center;
-        letter-spacing: -1px;
       }
 
       .hero p {
-        font-size: 14px;
-        line-height: 1.4;
-
-        opacity: 0.95;
-        font-weight: 400;
+        font-size: 17px;
+        line-height: 1.2;
         margin: 0 auto;
         text-align: center;
+        margin-bottom: 30px;
       }
 
       .hero-cta {
-        background: #ff5a36;
+        background: #ed8177;
         color: white;
         border: none;
-        padding: 12px 24px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-weight: 700;
+        padding: 22px 56px;
+        border-radius: 8px;
+        font-size: 22px;
+        font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
+        line-height: 1.18;
         cursor: pointer;
         transition: all 0.3s ease;
+        margin: 0 auto;
+        display: block;
       }
 
       .hero-cta:hover {
@@ -394,10 +385,10 @@
       .product-card__description-text p {
         margin: 0;
       }
+      .hero-brand {
+        margin-bottom: 46px;
+      }
 
-      /* ====================
-         SHOPIFY COMPONENTS
-         ==================== */
       shopify-variant-selector::part(radio) {
         padding: 0.5rem 0.875rem;
         font-size: 0.875rem;
@@ -409,6 +400,9 @@
       @media (min-width: 768px) {
         .product-card__container {
           flex-direction: row;
+        }
+        .hero-overlay {
+          padding-top: 100px;
         }
       }
 
@@ -423,6 +417,10 @@
           width: 50%;
         }
       }
+      .hero-brand {
+        padding-left: 16px;
+        padding-top: 20px;
+      }
 
       /* ====================
          DESKTOP BREAKPOINTS
@@ -434,7 +432,7 @@
           background-color: transparent;
           background-size: cover;
           background-image: url('hero-desktop.png');
-          background-position: center;
+          background-position: bottom;
         }
 
         .hero-content {
@@ -495,11 +493,6 @@
           font-size: 12px;
         }
 
-        /* Products Section Desktop */
-        .container {
-          padding: 20px;
-        }
-
         .products-grid {
           grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         }
@@ -515,7 +508,7 @@
 
         /* Shipping Banner Desktop */
         .shipping-banner {
-          padding: 14px 20px;
+          padding: 15px 20px;
           font-size: 14px;
         }
       }
@@ -523,15 +516,13 @@
       /* ====================
          MOBILE RESPONSIVE
          ==================== */
-      @media (max-width: 480px) {
+      @media (max-width: 768px) {
         .shipping-banner {
-          padding: 10px 15px;
-          font-size: 11px;
-          line-height: 1.3;
-        }
-
-        .container {
-          padding: 10px;
+          padding: 15px 15px;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: 0.01em;
         }
 
         .product-card {
@@ -571,6 +562,31 @@
           width: 100% !important;
           max-width: 280px !important;
           height: auto !important;
+        }
+
+        .hero {
+          width: 100%;
+          height: 902px;
+          position: relative;
+          background-image: linear-gradient(
+            to bottom,
+            #5c96c5 0%,
+            #5c96c5 50%,
+            #fffcf1 50%,
+            #fffcf1 100%
+          );
+          margin-bottom: 140px;
+        }
+        .hero::before {
+          content: '';
+          position: absolute;
+          top: 200px;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url('hero-mobile.png');
+          background-size: cover;
+          background-position: bottom;
         }
 
         .product-card__image-small img {
