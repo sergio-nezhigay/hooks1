@@ -31,6 +31,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
+        width: 100%;
       }
 
       /* ====================
@@ -76,16 +77,6 @@
         width: 100%;
         height: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 80px 24px 0;
-      }
-
-      .hero-brand {
-        position: absolute;
-        top: 24px;
-        left: 24px;
       }
 
       .hero-logo {
@@ -94,7 +85,6 @@
       }
 
       .hero-content {
-        max-width: 327px;
         color: white;
       }
 
@@ -112,9 +102,11 @@
       .hero p {
         font-size: 14px;
         line-height: 1.4;
-        margin-bottom: 24px;
+
         opacity: 0.95;
         font-weight: 400;
+        margin: 0 auto;
+        text-align: center;
       }
 
       .hero-cta {
@@ -445,18 +437,6 @@
           background-position: center;
         }
 
-        .hero-overlay {
-          padding: 0 80px;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: center;
-        }
-
-        .hero-brand {
-          top: 32px;
-          left: 32px;
-        }
-
         .hero-content {
           max-width: 520px;
         }
@@ -465,6 +445,9 @@
           font-size: 48px;
           margin-bottom: 24px;
           line-height: 1.1;
+        }
+        .hero-brand {
+          margin-bottom: 158px;
         }
 
         .hero p {
@@ -617,16 +600,16 @@
         }
 
         /* Override skeleton placeholder widths for mobile */
-        .skeleton-box[style*="420px"] {
+        .skeleton-box[style*='420px'] {
           width: 100% !important;
           max-width: 280px !important;
         }
 
-        .skeleton-box[style*="287.4px"] {
+        .skeleton-box[style*='287.4px'] {
           width: 100% !important;
         }
 
-        .skeleton-box[style*="130px"] {
+        .skeleton-box[style*='130px'] {
           width: 80px !important;
           height: 80px !important;
         }
@@ -719,20 +702,22 @@
     </div>
 
     <div class="hero">
-      <div class="hero-brand">
-        <img src="hook-logo.png" alt="Toughook" class="hero-logo" />
-      </div>
       <div class="hero-overlay">
-        <div class="hero-content">
-          <h1>Hanging Hooks That Are Strong, Safe, And Stylish</h1>
-          <p>
-            Outfit your school, office or home with unbreakable, non-damaging
-            hooks – and customized multifunctional hanging aids – available in a
-            variety of styles and sizes.
-          </p>
-          <button class="hero-cta" onclick="scrollToProducts()">
-            Shop Now
-          </button>
+        <div class="container">
+          <div class="hero-brand">
+            <img src="hook-logo.png" alt="Toughook" class="hero-logo" />
+          </div>
+          <div class="hero-content">
+            <h1>Hanging Hooks That Are Strong, Safe, And Stylish</h1>
+            <p>
+              Outfit your school, office or home with unbreakable, non-damaging
+              hooks – and customized multifunctional hanging aids – available in
+              a variety of styles and sizes.
+            </p>
+            <button class="hero-cta" onclick="scrollToProducts()">
+              Shop Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
