@@ -9,10 +9,10 @@
       src="https://cdn.shopify.com/storefront/web-components.js"
     ></script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&family=McLaren&display=swap');
 
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Zain', sans-serif;
         font-weight: 400;
         font-style: normal;
         margin: 0;
@@ -29,7 +29,6 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        margin-bottom: 40px;
         overflow: hidden;
       }
 
@@ -48,10 +47,11 @@
         position: absolute;
         top: 32px;
         left: 32px;
-        color: white;
-        font-size: 24px;
-        font-weight: 400;
-        letter-spacing: -0.5px;
+      }
+
+      .hero-logo {
+        height: 32px;
+        width: auto;
       }
 
       .hero-content {
@@ -60,8 +60,9 @@
       }
 
       .hero h1 {
+        font-family: 'McLaren', cursive;
         font-size: 48px;
-        font-weight: 700;
+        font-weight: 400;
         line-height: 1.1;
         margin-bottom: 24px;
         text-transform: uppercase;
@@ -99,6 +100,65 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
+      }
+
+      .benefits-section {
+        background: #f5f2eb;
+        padding: 80px 0;
+        margin-bottom: 40px;
+      }
+
+      .benefits-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 60px;
+      }
+
+      .benefits-title {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #333;
+        margin-bottom: 60px;
+        font-family: 'McLaren', cursive;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+        align-items: start;
+      }
+
+      .benefit-card {
+        text-align: center;
+      }
+
+      .benefit-icon {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 30px;
+        display: block;
+      }
+
+      .benefit-title {
+        font-family: 'McLaren', cursive;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #333;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .benefit-description {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #666;
+        font-weight: 400;
       }
 
       .products-grid {
@@ -271,8 +331,9 @@
         margin: 0;
       }
       .product-card__title {
+        font-family: 'McLaren', cursive;
         font-size: 2.25rem;
-        font-weight: 700;
+        font-weight: 400;
         margin: 0;
       }
       .product-card__price {
@@ -353,6 +414,7 @@
         .hero {
           height: 667px;
           background-image: url('hero-mobile.png');
+          margin-bottom: -50px;
         }
 
         .hero-overlay {
@@ -366,7 +428,10 @@
         .hero-brand {
           top: 24px;
           left: 24px;
-          font-size: 20px;
+        }
+
+        .hero-logo {
+          height: 24px;
         }
 
         .hero-content {
@@ -388,6 +453,39 @@
         .hero-cta {
           padding: 12px 24px;
           font-size: 12px;
+        }
+
+        .benefits-section {
+          padding: 60px 0;
+        }
+
+        .benefits-container {
+          padding: 0 24px;
+        }
+
+        .benefits-title {
+          font-size: 12px;
+          margin-bottom: 40px;
+        }
+
+        .benefits-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .benefit-icon {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 20px;
+        }
+
+        .benefit-title {
+          font-size: 12px;
+          margin-bottom: 10px;
+        }
+
+        .benefit-description {
+          font-size: 11px;
         }
 
         .container {
@@ -493,7 +591,9 @@
   </head>
   <body>
     <div class="hero">
-      <div class="hero-brand">Toughook</div>
+      <div class="hero-brand">
+        <img src="hook-logo.png" alt="Toughook" class="hero-logo">
+      </div>
       <div class="hero-overlay">
         <div class="hero-content">
           <h1>Hanging Hooks That Are Strong, Safe, And Stylish</h1>
@@ -505,6 +605,67 @@
           <button class="hero-cta" onclick="scrollToProducts()">
             Shop Now
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Benefits Section -->
+    <div class="benefits-section">
+      <div class="benefits-container">
+        <h2 class="benefits-title">Product Benefits</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <img
+              src="benefit-1.png"
+              alt="Superior Design"
+              class="benefit-icon"
+            />
+            <h3 class="benefit-title">Superior<br />Design</h3>
+            <p class="benefit-description">
+              The Toughook's patented design and high quality materials are
+              durable, dependable, and attractive. Nothing works as effectively
+              and looks as appealing.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <img
+              src="benefit-2.png"
+              alt="Lifelong Durability"
+              class="benefit-icon"
+            />
+            <h3 class="benefit-title">Lifelong<br />Durability</h3>
+            <p class="benefit-description">
+              The original built to last construction quality. With commercial
+              grade construction, our hooks are made from high-grade injection
+              molded plastic.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <img
+              src="benefit-3.png"
+              alt="5-in-1 Functionality"
+              class="benefit-icon"
+            />
+            <h3 class="benefit-title">5-in-1<br />Functionality</h3>
+            <p class="benefit-description">
+              The distinctive Toughook design allows for hung material to drop
+              and be removed easily. Easy hanging, easy removal and secure
+              hanging no worries.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <img
+              src="benefit-4.png"
+              alt="Deluxe Hangers Included"
+              class="benefit-icon"
+            />
+            <h3 class="benefit-title">Deluxe Hangers<br />Included</h3>
+            <p class="benefit-description">
+              Our new cutting-edge hangers offer easy installation of clothing
+              hangers on your Toughook making it simpler than ever to hang
+              clothing items up!
+            </p>
+          </div>
         </div>
       </div>
     </div>
