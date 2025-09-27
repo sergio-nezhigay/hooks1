@@ -128,7 +128,7 @@
          BENEFITS SECTION
          ==================== */
       .benefits-section {
-        background: #f5f2eb;
+        background: #fffcf1;
         padding: 60px 0;
         margin-bottom: 40px;
       }
@@ -158,7 +158,16 @@
       }
 
       .benefit-card {
+        position: relative;
+        min-height: 310px;
         text-align: center;
+        outline: 1px solid red;
+        background-color: #f9f3dc;
+        border-radius: 20px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
       }
 
       .benefit-icon {
@@ -166,6 +175,10 @@
         height: 80px;
         margin: 0 auto 20px;
         display: block;
+      }
+
+      .zoomed {
+        transform: scale(1.5) translateX(-10px);
       }
 
       .benefit-title {
@@ -201,6 +214,7 @@
         /* Hero Section Desktop */
         .hero {
           height: 820px;
+          background-color: #fffcf1 !important;
           background: url('hero-desktop.png');
           background-size: cover;
           background-repeat: no-repeat;
@@ -217,7 +231,7 @@
           height: calc(100% - 57px);
           background: linear-gradient(
             135deg,
-            rgba(61, 105, 143, 0.4) 0%,
+            rgba(61, 105, 143, 0.5) 0%,
             rgba(61, 105, 143, 0) 100%
           );
           pointer-events: none;
@@ -270,7 +284,8 @@
         }
 
         .benefits-title {
-          font-size: 14px;
+          font-size: 32px;
+          font-weight: 400;
           margin-bottom: 60px;
         }
 
@@ -280,9 +295,11 @@
         }
 
         .benefit-icon {
-          width: 120px;
-          height: 120px;
-          margin-bottom: 30px;
+          width: 100%;
+          height: auto;
+          position: absolute;
+          left: 0;
+          top: -50px;
         }
 
         .benefit-title {
@@ -305,9 +322,6 @@
         }
       }
 
-      /* ====================
-         MOBILE RESPONSIVE
-         ==================== */
       @media (max-width: 768px) {
         .hero {
           width: 100%;
@@ -510,7 +524,7 @@
             <img
               src="benefit-4.png"
               alt="Deluxe Hangers Included"
-              class="benefit-icon"
+              class="benefit-icon zoomed"
             />
             <h3 class="benefit-title">Deluxe Hangers<br />Included</h3>
             <p class="benefit-description">
