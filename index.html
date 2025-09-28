@@ -141,7 +141,7 @@
       }
 
       .benefits-container {
-        max-width: 1200px;
+        max-width: 1440px;
         margin: 0 auto;
         padding: 0 24px;
       }
@@ -172,7 +172,7 @@
         outline: 1px solid red;
         background-color: #f9f3dc;
         border-radius: 20px;
-        padding: 24px;
+        padding: 24px 24px 32px;
         display: flex;
         flex-direction: column;
         justify-content: end;
@@ -287,12 +287,12 @@
 
         /* Benefits Section Desktop */
         .benefits-section {
-          padding: 80px 0;
-          margin-bottom: 40px;
+          padding: 10px 0;
+          margin-bottom: 100px;
         }
 
         .benefits-container {
-          padding: 0 60px;
+          padding: 0 64px;
         }
 
         .benefits-title {
@@ -303,24 +303,19 @@
 
         .benefits-grid {
           grid-template-columns: repeat(4, 1fr);
-          gap: 60px;
+          gap: 24px;
         }
 
         .benefit-icon {
-          width: 50%;
+          width: 95%;
           height: auto;
           position: absolute;
           left: 0;
           top: -50px;
         }
 
-        .benefit-title {
-          font-size: 14px;
-          margin-bottom: 15px;
-        }
-
-        .benefit-description {
-          font-size: 12px;
+        .zoomed {
+          transform: scale(1.6) translateX(-10px);
         }
 
         /* Shipping Banner Desktop */
@@ -332,16 +327,17 @@
           font-weight: 700;
           letter-spacing: 0.01em;
         }
+        .benefit-card {
+          height: 460px !important;
+        }
       }
 
       @media (max-width: 768px) {
         .benefit-card {
           height: 482px !important;
         }
-
         .hero {
           width: 100%;
-          height: 940px;
           position: relative;
           background: linear-gradient(
             to bottom,
@@ -350,7 +346,10 @@
             #fffcf1 60%,
             #fffcf1 100%
           );
+          aspect-ratio: 375 / 940; /* Current mobile ratio */
+          height: auto; /* Let aspect-ratio control height */
         }
+
         .hero::before {
           content: '';
           position: absolute;
