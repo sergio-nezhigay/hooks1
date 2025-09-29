@@ -45,6 +45,7 @@
       h1,
       h2,
       h3,
+      h4,
       p {
         margin: 0;
       }
@@ -495,7 +496,7 @@
         padding: 0 100px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 80px;
+        gap: 0px;
         align-items: start;
       }
 
@@ -533,7 +534,7 @@
 
       .footer-reviews-image {
         height: auto;
-        max-width: 298px;
+        width: 298px;
       }
 
       .footer-affiliate {
@@ -542,20 +543,24 @@
         margin: 0;
         line-height: 1.4;
         letter-spacing: 0.6px;
+        max-width: 267px;
       }
 
       .footer-right {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        gap: 26px;
       }
 
       .footer-section-title {
-        font-size: 22px;
+        font-family: 'McLaren';
+        font-size: 24px;
         font-weight: 400;
         color: white;
         letter-spacing: 0.6px;
+        line-height: 1.29;
         text-transform: uppercase;
+        margin-bottom: 26px;
       }
 
       .footer-link-list {
@@ -564,7 +569,7 @@
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 3px;
       }
 
       .footer-link {
@@ -583,8 +588,8 @@
       .footer-contact-info {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-bottom: 24px;
+        gap: 0px;
+        margin-bottom: 32px;
       }
 
       .footer-company {
@@ -621,6 +626,7 @@
       .footer-social {
         display: flex;
         gap: 16px;
+        padding-left: 20px;
       }
 
       .footer-social-link {
@@ -706,13 +712,20 @@
         transform: translateY(-1px);
       }
 
+      .footer-phone {
+        margin-top: 18px;
+      }
+      .footer-email {
+        margin-top: 21px;
+      }
+
       .sample-image {
         position: relative;
         z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 80px;
+        gap: 68px;
       }
 
       .hooks-image {
