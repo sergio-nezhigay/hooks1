@@ -775,6 +775,23 @@
         object-fit: contain;
       }
 
+      /* Tablet adjustments for benefit section */
+      @media (min-width: 400px) and (max-width: 767px) {
+        .benefit-icon {
+          width: 60%;
+          left: 20%;
+          top: -45px;
+        }
+
+        .benefit-icon.first {
+          transform: scale(1.5) translateY(-5px);
+        }
+
+        .benefit-icon.zoomed {
+          transform: scale(1.5) translateX(-10px) translateY(-15px);
+        }
+      }
+
       @media (min-width: 768px) {
         /* Hero Section Desktop */
         .hero {
