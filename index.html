@@ -1245,24 +1245,9 @@
         }
       }
 
-      @media (min-width: 1700px) {
+      @media (min-width: 1440px) {
         .hero::after {
-          height: calc(100% - 63px);
-        }
-      }
-      @media (min-width: 1800px) {
-        .hero::after {
-          height: calc(100% - 67px);
-        }
-      }
-      @media (min-width: 1910px) {
-        .hero::after {
-          height: calc(100% - 72px);
-        }
-      }
-      @media (min-width: 1980px) {
-        .hero::after {
-          display: none;
+          height: calc(100% - clamp(57px, calc(57px + (100vw - 1440px) * 0.0278), 100%));
         }
       }
     </style>
