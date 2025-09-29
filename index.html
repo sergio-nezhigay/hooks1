@@ -525,31 +525,20 @@
       .footer-reviews {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin: 8px 0;
+        margin: -6px 0;
       }
 
-      .footer-stars {
-        display: flex;
-        gap: 2px;
-      }
-
-      .footer-stars .star {
-        color: #ffd700;
-        font-size: 20px;
-      }
-
-      .footer-google {
-        font-size: 18px;
-        font-weight: 600;
-        color: white;
+      .footer-reviews-image {
+        height: auto;
+        max-width: 200px;
       }
 
       .footer-affiliate {
-        font-size: 12px;
-        color: #9ca3af;
+        font-size: 14px;
+        color: #ffffff;
         margin: 0;
         line-height: 1.4;
+        letter-spacing: 0.6px;
       }
 
       .footer-right {
@@ -559,11 +548,10 @@
       }
 
       .footer-section-title {
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 22px;
+        font-weight: 400;
         color: white;
-        margin: 0 0 24px 0;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         text-transform: uppercase;
       }
 
@@ -577,10 +565,11 @@
       }
 
       .footer-link {
-        color: #e5e7eb;
+        color: #ffffff;
         text-decoration: none;
-        font-size: 16px;
-        line-height: 1.4;
+        font-size: 18px;
+        line-height: 1.8;
+        letter-spacing: 0.6px;
         transition: color 0.3s ease;
       }
 
@@ -596,19 +585,22 @@
       }
 
       .footer-company {
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 19px;
+        font-weight: 400;
         color: white;
         margin: 0;
+        line-height: 1.78;
+        letter-spacing: 0.6px;
       }
 
       .footer-address,
       .footer-phone,
       .footer-email {
-        font-size: 16px;
-        color: #e5e7eb;
+        font-size: 19px;
+        color: #ffffff;
         margin: 0;
-        line-height: 1.4;
+        line-height: 1.78;
+        letter-spacing: 0.6px;
       }
 
       .footer-phone-link,
@@ -1039,7 +1031,7 @@
         .footer-container {
           padding: 0 20px;
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 9px;
         }
 
         .footer-left {
@@ -1066,42 +1058,41 @@
           justify-content: flex-start;
         }
 
-        .footer-stars .star {
-          font-size: 18px;
-        }
-
-        .footer-google {
-          font-size: 16px;
-        }
-
         .footer-affiliate {
           text-align: left;
-          font-size: 11px;
+          font-size: 14px;
         }
 
         .footer-right {
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 13px;
+        }
+        .footer-phone {
+          margin-top: 18px;
+        }
+        .footer-email {
+          margin-top: 9px;
         }
 
         .footer-section-title {
-          font-size: 15px;
-          margin-bottom: 20px;
+          font-family: 'McLaren';
+          font-size: 22px;
+          margin-bottom: 15px;
           text-align: left;
         }
 
         .footer-link-list {
-          gap: 12px;
+          gap: 1px;
           text-align: left;
         }
 
         .footer-link {
-          font-size: 15px;
+          font-size: 19px;
         }
 
         .footer-contact-info {
           text-align: left;
-          gap: 6px;
+          gap: 0px;
           margin-bottom: 20px;
         }
 
@@ -1109,7 +1100,7 @@
         .footer-address,
         .footer-phone,
         .footer-email {
-          font-size: 15px;
+          font-size: 19px;
         }
 
         .footer-social {
@@ -1782,14 +1773,11 @@
             individuals, sets, bulk, or customized for your project.
           </p>
           <div class="footer-reviews">
-            <div class="footer-stars">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-            </div>
-            <span class="footer-google">Google</span>
+            <img
+              src="stars-and-google.svg"
+              alt="5 stars Google reviews"
+              class="footer-reviews-image"
+            />
           </div>
           <p class="footer-affiliate">
             Not affiliated with Tough Hook LLC - USA Hanger product
