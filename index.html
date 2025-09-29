@@ -121,22 +121,25 @@
         background: #ed8177;
         color: white;
         border: none;
-        padding: 15px 56px;
+
         border-radius: 8px;
         font-size: 22px;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 1px;
-        line-height: 1.18;
+        line-height: normal;
         cursor: pointer;
         transition: all 0.3s ease;
         margin: 0 auto;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 56px;
+        min-width: 210px;
       }
 
       .hero-cta:hover {
-        background: #e54a2e;
-        transform: translateY(-1px);
+        background: #e15d50;
       }
 
       /* ====================
@@ -708,8 +711,7 @@
       }
 
       .sample-cta:hover {
-        background: #e54a2e;
-        transform: translateY(-1px);
+        background: #e15d50;
       }
 
       .footer-phone {
@@ -794,7 +796,6 @@
         }
 
         .hero-cta {
-          padding: 14px 56px;
           font-size: 22px;
           margin-left: 0;
         }
@@ -802,7 +803,6 @@
         /* Benefits Section Desktop */
         .benefits-section {
           padding: 83px 0;
-          margin-bottom: 100px;
         }
 
         .benefits-container {
@@ -913,12 +913,6 @@
           font-size: 32px;
           margin-bottom: 45px;
         }
-
-        /*.review-card {
-          margin: 0 8px;
-          border-right: 1px solid #e7e9ed;
-          padding-right: 8px;
-        }*/
 
         .swiper-slide:last-child .review-card {
           border-right: none;
