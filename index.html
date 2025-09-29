@@ -98,7 +98,7 @@
       }
 
       .hero h1 {
-        font-family: 'McLaren', cursive;
+        font-family: 'McLaren';
         font-size: 32px;
         font-weight: 400;
         line-height: 1.2;
@@ -160,7 +160,7 @@
         text-transform: uppercase;
         color: #121212;
         margin-bottom: 100px;
-        font-family: 'McLaren', cursive;
+        font-family: 'McLaren';
       }
 
       .benefits-grid {
@@ -247,8 +247,9 @@
         line-height: 1;
         text-transform: uppercase;
         color: #121212;
-        margin-bottom: 60px;
-        font-family: 'McLaren', cursive;
+        margin-bottom: 55px;
+        font-family: 'McLaren';
+        line-height: 1.2;
       }
 
       .reviews-swiper {
@@ -257,11 +258,7 @@
       }
 
       .review-card {
-        background: white;
-        border-radius: 12px;
-        padding: 24px;
         margin: 0 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         height: auto;
       }
 
@@ -273,9 +270,7 @@
       }
 
       .review-avatar {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
+        border-radius: 8px;
         object-fit: cover;
         flex-shrink: 0;
       }
@@ -287,23 +282,17 @@
       .review-stars {
         display: flex;
         gap: 2px;
-        margin-bottom: 4px;
-      }
-
-      .star {
-        color: #ffd700;
-        font-size: 16px;
+        margin-bottom: 9px;
       }
 
       .review-meta {
         display: flex;
-        align-items: center;
-        gap: 8px;
+        flex-direction: column;
       }
 
       .review-name {
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 700;
         color: #121212;
       }
 
@@ -314,8 +303,8 @@
       }
 
       .verified-text {
-        font-size: 14px;
-        color: #666;
+        font-size: 16px;
+        color: #121212;
       }
 
       .verified-checkmark {
@@ -334,23 +323,25 @@
 
       .review-date {
         font-size: 14px;
-        color: #666;
+        color: #7d7d7d;
         flex-shrink: 0;
       }
 
       .review-title {
+        font-family: mclaren;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 400;
         color: #121212;
-        margin-bottom: 12px;
-        line-height: 1.3;
+        margin-bottom: 10px;
+        line-height: 1.6;
       }
 
       .review-content {
         font-size: 16px;
-        line-height: 1.5;
+        line-height: 1.6;
         color: #121212;
         margin: 0;
+        text-align: justify;
       }
 
       .swiper-button-prev,
@@ -402,7 +393,7 @@
       }
 
       .faq-title {
-        font-family: 'McLaren', cursive;
+        font-family: 'McLaren';
         font-size: 42px;
         font-weight: 400;
         line-height: 1.2;
@@ -414,13 +405,14 @@
       .faq-right {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 10px;
       }
 
       .faq-item {
-        border: 1px solid #e5e5e5;
-        border-radius: 8px;
+        border: 2px solid #e7e9ed;
+        border-radius: 5px;
         overflow: hidden;
+        min-height: 90px;
       }
 
       .faq-question {
@@ -430,6 +422,7 @@
         border: none;
         text-align: left;
         font-family: 'Zain', sans-serif;
+        letter-spacing: 0.03em;
         font-size: 18px;
         font-weight: 500;
         color: #121212;
@@ -437,7 +430,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        line-height: 1.4;
+        line-height: 1.15;
         transition: background-color 0.3s ease;
       }
 
@@ -675,7 +668,7 @@
       }
 
       .sample-title {
-        font-family: 'McLaren', cursive;
+        font-family: 'McLaren';
         font-size: 42px;
         font-weight: 400;
         line-height: 1.2;
@@ -889,7 +882,7 @@
 
         /* Customer Reviews Mobile */
         .reviews-section {
-          padding: 60px 0;
+          padding: 60px 0 40px;
         }
 
         .reviews-container {
@@ -898,33 +891,32 @@
 
         .reviews-title {
           font-size: 32px;
-          margin-bottom: 60px;
+          margin-bottom: 45px;
         }
 
         .review-card {
           margin: 0 8px;
-          padding: 20px;
         }
 
         .review-header {
-          gap: 10px;
+          gap: 15px;
         }
 
         .review-avatar {
-          width: 40px;
-          height: 40px;
+          width: 67px;
+          height: 67px;
         }
 
         .review-name {
-          font-size: 15px;
+          font-size: 18px;
         }
 
         .verified-text {
-          font-size: 13px;
+          font-size: 16px;
         }
 
         .review-date {
-          font-size: 13px;
+          font-size: 16px;
         }
 
         .review-title {
@@ -933,23 +925,23 @@
         }
 
         .review-content {
-          font-size: 15px;
-          line-height: 1.4;
+          font-size: 16px;
+          line-height: 1.6;
         }
 
         .swiper-button-prev,
         .swiper-button-next {
-          width: 36px;
-          height: 36px;
-          bottom: 15px;
+          width: 32px;
+          height: 32px;
+          bottom: 4px;
         }
 
         .swiper-button-prev {
-          left: calc(50% - 40px);
+          left: calc(50% - 47px);
         }
 
         .swiper-button-next {
-          right: calc(50% - 40px);
+          right: calc(50% - 47px);
         }
 
         .swiper-button-prev:after,
@@ -965,7 +957,7 @@
         .faq-container {
           padding: 0 20px;
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 47px;
         }
 
         .faq-left {
@@ -980,7 +972,10 @@
 
         .faq-question {
           padding: 20px;
-          font-size: 16px;
+          font-size: 22px;
+        }
+        .faq-question span {
+          max-width: 209px;
         }
 
         .faq-icon svg {
@@ -1318,11 +1313,66 @@
                   />
                   <div class="review-info">
                     <div class="review-stars">
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
                     </div>
                     <div class="review-meta">
                       <span class="review-name">Clayton G.</span>
@@ -1349,11 +1399,66 @@
                   <img src="review2.png" alt="Emma S." class="review-avatar" />
                   <div class="review-info">
                     <div class="review-stars">
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
                     </div>
                     <div class="review-meta">
                       <span class="review-name">Emma S.</span>
@@ -1382,11 +1487,66 @@
                   <img src="review3.png" alt="Jim C." class="review-avatar" />
                   <div class="review-info">
                     <div class="review-stars">
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
-                      <span class="star">★</span>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
+                          fill="#F8BE00"
+                        />
+                      </svg>
                     </div>
                     <div class="review-meta">
                       <span class="review-name">Jim C.</span>
