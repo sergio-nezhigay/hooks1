@@ -351,8 +351,18 @@
         margin-top: 0;
         top: auto;
         bottom: 20px;
-
         color: #121212;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+      }
+
+      .swiper-button-prev.swiper-button-disabled,
+      .swiper-button-next.swiper-button-disabled {
+        opacity: 1 !important;
+        color: #121212 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
       }
 
       .swiper-button-prev {
@@ -982,6 +992,17 @@
           width: 32px;
           height: 32px;
           bottom: 4px;
+          opacity: 1 !important;
+          pointer-events: auto !important;
+          cursor: pointer !important;
+        }
+
+        .swiper-button-prev.swiper-button-disabled,
+        .swiper-button-next.swiper-button-disabled {
+          opacity: 1 !important;
+          color: #121212 !important;
+          pointer-events: auto !important;
+          cursor: pointer !important;
         }
 
         .swiper-button-prev {
@@ -1923,6 +1944,8 @@
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
+            disabledClass: 'swiper-button-disabled-hidden',
+            hideOnClick: false,
           },
           breakpoints: {
             //768: {
@@ -1936,7 +1959,36 @@
           },
           loop: true,
           centeredSlides: false,
+          allowTouchMove: true,
+          watchOverflow: false,
         });
+
+        // Force navigation buttons to always be enabled and visible
+        const nextButton = document.querySelector('.swiper-button-next');
+        const prevButton = document.querySelector('.swiper-button-prev');
+
+        // Remove disabled classes and ensure visibility
+        const forceEnableButtons = () => {
+          if (nextButton) {
+            nextButton.classList.remove('swiper-button-disabled');
+            nextButton.style.opacity = '1';
+            nextButton.style.pointerEvents = 'auto';
+          }
+          if (prevButton) {
+            prevButton.classList.remove('swiper-button-disabled');
+            prevButton.style.opacity = '1';
+            prevButton.style.pointerEvents = 'auto';
+          }
+        };
+
+        // Initial force enable
+        forceEnableButtons();
+
+        // Force enable on all swiper events
+        swiper.on('slideChange', forceEnableButtons);
+        swiper.on('reachEnd', forceEnableButtons);
+        swiper.on('reachBeginning', forceEnableButtons);
+        swiper.on('transitionEnd', forceEnableButtons);
       });
 
       // FAQ Accordion functionality
