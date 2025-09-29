@@ -690,11 +690,10 @@
         background: #ed8177;
         color: white;
         border: none;
-        padding: 0 0;
         border-radius: 5px;
         font-size: 22px;
         font-weight: 900;
-        line-height: 1;
+        line-height: normal;
         text-transform: uppercase;
         letter-spacing: 1px;
         cursor: pointer;
@@ -704,7 +703,8 @@
         justify-content: center;
         align-items: center;
         min-width: 278px;
-        min-height: 56px;
+        padding: 0 32px;
+        height: 56px;
       }
 
       .sample-cta:hover {
@@ -1052,6 +1052,8 @@
 
         .hooks-image {
           max-width: 100%;
+          position: relative;
+          z-index: 3;
         }
 
         /* Footer Mobile */
@@ -1059,7 +1061,7 @@
           padding: 118px 0 30px;
           margin-top: -111px;
           position: relative;
-          z-index: 10;
+          z-index: 0;
         }
 
         .footer-container {
