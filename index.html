@@ -30,6 +30,7 @@
         padding: 0;
         background-color: #f8f9fa;
         color: #333;
+        overflow-x: hidden;
       }
 
       * {
@@ -193,7 +194,7 @@
         transform: scale(1.4) translateY(-00px);
       }
       .zoomed {
-        transform: scale(1.5) translateX(-10px);
+        transform: scale(1.5) translateX(-5px);
       }
 
       .benefit-title {
@@ -457,7 +458,7 @@
         height: 8px;
       }
 
-      .faq-question[aria-expanded="true"] .faq-icon {
+      .faq-question[aria-expanded='true'] .faq-icon {
         transform: rotate(180deg);
       }
 
@@ -651,7 +652,7 @@
         }
 
         .zoomed {
-          transform: scale(1.6) translateX(-10px);
+          transform: scale(1.6) translateX(-5px);
         }
 
         /* Shipping Banner Desktop */
@@ -1052,7 +1053,11 @@
             <div class="swiper-slide">
               <div class="review-card">
                 <div class="review-header">
-                  <img src="review1.png" alt="Clayton G." class="review-avatar" />
+                  <img
+                    src="review1.png"
+                    alt="Clayton G."
+                    class="review-avatar"
+                  />
                   <div class="review-info">
                     <div class="review-stars">
                       <span class="star">★</span>
@@ -1157,20 +1162,32 @@
     <div class="faq-section">
       <div class="faq-container">
         <div class="faq-left">
-          <h2 class="faq-title">Have Questions?<br>We Have Answers</h2>
+          <h2 class="faq-title">Have Questions?<br />We Have Answers</h2>
         </div>
         <div class="faq-right">
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
               <span>What is the maximum weight capacity?</span>
               <span class="faq-icon">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z" fill="#121212"/>
+                <svg
+                  width="13"
+                  height="8"
+                  viewBox="0 0 13 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                    fill="#121212"
+                  />
                 </svg>
               </span>
             </button>
             <div class="faq-answer">
-              <p>Our hooks can safely hold up to 88 pounds each, making them perfect for heavy coats, backpacks, and bags.</p>
+              <p>
+                Our hooks can safely hold up to 88 pounds each, making them
+                perfect for heavy coats, backpacks, and bags.
+              </p>
             </div>
           </div>
 
@@ -1178,13 +1195,25 @@
             <button class="faq-question" aria-expanded="false">
               <span>Can I choose the number of hooks?</span>
               <span class="faq-icon">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z" fill="#121212"/>
+                <svg
+                  width="13"
+                  height="8"
+                  viewBox="0 0 13 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                    fill="#121212"
+                  />
                 </svg>
               </span>
             </button>
             <div class="faq-answer">
-              <p>Yes! We offer various configurations from single hooks to multi-hook rails with up to 9 hooks per rail.</p>
+              <p>
+                Yes! We offer various configurations from single hooks to
+                multi-hook rails with up to 9 hooks per rail.
+              </p>
             </div>
           </div>
 
@@ -1192,13 +1221,25 @@
             <button class="faq-question" aria-expanded="false">
               <span>Are different colors and finishes available?</span>
               <span class="faq-icon">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z" fill="#121212"/>
+                <svg
+                  width="13"
+                  height="8"
+                  viewBox="0 0 13 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                    fill="#121212"
+                  />
                 </svg>
               </span>
             </button>
             <div class="faq-answer">
-              <p>We offer a variety of colors and finishes to match your space, including classic black, white, and colorful options.</p>
+              <p>
+                We offer a variety of colors and finishes to match your space,
+                including classic black, white, and colorful options.
+              </p>
             </div>
           </div>
 
@@ -1206,13 +1247,25 @@
             <button class="faq-question" aria-expanded="false">
               <span>How easy is it to install?</span>
               <span class="faq-icon">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z" fill="#121212"/>
+                <svg
+                  width="13"
+                  height="8"
+                  viewBox="0 0 13 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                    fill="#121212"
+                  />
                 </svg>
               </span>
             </button>
             <div class="faq-answer">
-              <p>Installation is simple and requires no special tools. Each hook comes with clear instructions and all necessary hardware.</p>
+              <p>
+                Installation is simple and requires no special tools. Each hook
+                comes with clear instructions and all necessary hardware.
+              </p>
             </div>
           </div>
 
@@ -1220,13 +1273,25 @@
             <button class="faq-question" aria-expanded="false">
               <span>What are the shipping and return policies?</span>
               <span class="faq-icon">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z" fill="#121212"/>
+                <svg
+                  width="13"
+                  height="8"
+                  viewBox="0 0 13 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                    fill="#121212"
+                  />
                 </svg>
               </span>
             </button>
             <div class="faq-answer">
-              <p>We offer free shipping on orders over $50. Returns are accepted within 30 days for a full refund.</p>
+              <p>
+                We offer free shipping on orders over $50. Returns are accepted
+                within 30 days for a full refund.
+              </p>
             </div>
           </div>
 
@@ -1234,13 +1299,25 @@
             <button class="faq-question" aria-expanded="false">
               <span>Where is this product made?</span>
               <span class="faq-icon">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z" fill="#121212"/>
+                <svg
+                  width="13"
+                  height="8"
+                  viewBox="0 0 13 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                    fill="#121212"
+                  />
                 </svg>
               </span>
             </button>
             <div class="faq-answer">
-              <p>Our hooks are proudly manufactured in the USA using high-quality, durable materials with strict quality control.</p>
+              <p>
+                Our hooks are proudly manufactured in the USA using
+                high-quality, durable materials with strict quality control.
+              </p>
             </div>
           </div>
         </div>
@@ -1251,12 +1328,21 @@
     <div class="sample-section">
       <div class="sample-container">
         <div class="sample-content">
-          <h2 class="sample-title">Make Sure It's The Perfect Match For Your Space</h2>
-          <p class="sample-description">Not sure yet? Order a sample to see the finish, color options, and quality up close before you buy.</p>
+          <h2 class="sample-title">
+            Make Sure It's The Perfect Match For Your Space
+          </h2>
+          <p class="sample-description">
+            Not sure yet? Order a sample to see the finish, color options, and
+            quality up close before you buy.
+          </p>
         </div>
         <div class="sample-image">
           <button class="sample-cta">Request A Sample</button>
-          <img src="hooks.png" alt="Colorful hooks display" class="hooks-image" />
+          <img
+            src="hooks.png"
+            alt="Colorful hooks display"
+            class="hooks-image"
+          />
         </div>
       </div>
     </div>
@@ -1293,16 +1379,16 @@
       });
 
       // FAQ Accordion functionality
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         const faqQuestions = document.querySelectorAll('.faq-question');
 
-        faqQuestions.forEach(question => {
-          question.addEventListener('click', function() {
+        faqQuestions.forEach((question) => {
+          question.addEventListener('click', function () {
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
             const answer = this.nextElementSibling;
 
             // Close all other FAQ items
-            faqQuestions.forEach(otherQuestion => {
+            faqQuestions.forEach((otherQuestion) => {
               if (otherQuestion !== this) {
                 otherQuestion.setAttribute('aria-expanded', 'false');
                 otherQuestion.nextElementSibling.classList.remove('active');
