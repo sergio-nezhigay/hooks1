@@ -642,7 +642,7 @@
          ==================== */
       .sample-section {
         background: #f3f4f6;
-        padding: 80px 0 129px;
+        padding: 80px 0 0;
         position: relative;
         overflow: hidden;
       }
@@ -652,7 +652,7 @@
         margin: 0 auto;
         padding: 0 80px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 55fr 45fr;
       }
 
       .sample-content {
@@ -672,23 +672,30 @@
 
       .sample-description {
         color: #121212;
-        max-width: 400px;
+        max-width: 656px;
         line-height: 1.2;
+        font-size: 22px;
       }
 
       .sample-cta {
         background: #ed8177;
         color: white;
         border: none;
-        padding: 22px 53px;
+        padding: 0 0;
         border-radius: 5px;
         font-size: 22px;
         font-weight: 900;
+        line-height: 1;
         text-transform: uppercase;
         letter-spacing: 1px;
         cursor: pointer;
         transition: all 0.3s ease;
         font-family: 'Zain', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 278px;
+        min-height: 56px;
       }
 
       .sample-cta:hover {
@@ -1833,8 +1840,6 @@
       </div>
     </div>
 
-    <shopify-cart id="cart"></shopify-cart>
-
     <!-- Footer Section -->
     <footer class="footer">
       <div class="footer-container">
@@ -1938,6 +1943,7 @@
       </div>
     </footer>
 
+    <shopify-cart id="cart"></shopify-cart>
     <script>
       function scrollToProducts() {
         console.log('Scroll to products functionality');
