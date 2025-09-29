@@ -15,13 +15,13 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
       /* ====================
-         FONTS & IMPORTS
-         ==================== */
+           FONTS & IMPORTS
+           ==================== */
       @import url('https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&family=McLaren&display=swap');
 
       /* ====================
-         BASE STYLES
-         ==================== */
+           BASE STYLES
+           ==================== */
       body {
         font-family: 'Zain', sans-serif;
         font-weight: 400;
@@ -57,8 +57,8 @@
       }
 
       /* ====================
-         FREE SHIPPING BANNER
-         ==================== */
+           FREE SHIPPING BANNER
+           ==================== */
       .shipping-banner {
         background: #ed8177;
         color: white;
@@ -143,8 +143,8 @@
       }
 
       /* ====================
-         BENEFITS SECTION
-         ==================== */
+           BENEFITS SECTION
+           ==================== */
       .benefits-section {
         background: #fffcf1;
         padding: 0 0;
@@ -231,8 +231,8 @@
       }
 
       /* ====================
-         CUSTOMER REVIEWS SECTION
-         ==================== */
+           CUSTOMER REVIEWS SECTION
+           ==================== */
       .reviews-section {
         background: #fffcf1;
         padding: 83px 0;
@@ -370,8 +370,8 @@
       }
 
       /* ====================
-         FAQ SECTION
-         ==================== */
+           FAQ SECTION
+           ==================== */
       .faq-section {
         background: white;
         padding: 83px 0 106px;
@@ -382,8 +382,36 @@
         margin: 0 auto;
         padding: 0 80px;
         display: grid;
-        grid-template-columns: 474px 742px;
+        grid-template-columns: 1fr 1.56fr;
         gap: 64px;
+      }
+
+      @media (max-width: 1400px) {
+        .faq-container {
+          padding: 0 60px;
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .faq-container {
+          padding: 0 40px;
+          gap: 30px;
+          grid-template-columns: 1fr 1.3fr;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .faq-container {
+          padding: 0 30px;
+          gap: 24px;
+          grid-template-columns: 1fr;
+        }
+
+        .faq-left {
+          position: static;
+          text-align: center;
+        }
       }
 
       .faq-left {
@@ -482,8 +510,8 @@
       }
 
       /* ====================
-         FOOTER SECTION
-         ==================== */
+           FOOTER SECTION
+           ==================== */
       .footer {
         background: #09213a;
         color: white;
@@ -650,8 +678,8 @@
       }
 
       /* ====================
-         SAMPLE REQUEST SECTION
-         ==================== */
+           SAMPLE REQUEST SECTION
+           ==================== */
       .sample-section {
         background: #f3f4f6;
         padding: 80px 0 20px;
@@ -906,7 +934,7 @@
         }
 
         .reviews-container {
-          padding: 0 20px;
+          padding: 0 30px;
         }
 
         .reviews-title {
@@ -991,7 +1019,7 @@
         }
 
         .faq-question {
-          padding: 20px;
+          padding: 0 20px;
           font-size: 22px;
         }
         .faq-question span {
@@ -1001,6 +1029,10 @@
         .faq-icon svg {
           width: 11px;
           height: 7px;
+        }
+
+        .footer-reviews-image {
+          width: 212px;
         }
 
         .faq-answer p {
@@ -1061,7 +1093,7 @@
         .footer-container {
           padding: 0 20px;
           grid-template-columns: 1fr;
-          gap: 9px;
+          gap: 37px;
         }
 
         .footer-left {
@@ -1147,94 +1179,10 @@
           height: 16px;
         }
       }
-    </style>
-
-    <style id="placeholder-css">
-      .skeleton-box {
-        box-sizing: border-box;
-        display: block;
-        position: relative;
-        background-color: #dddbdd;
-        border-radius: 3px;
-        overflow: hidden;
-      }
-
-      .skeleton-box::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transform: translateX(-100%);
-        background-image: linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0) 0,
-          rgba(255, 255, 255, 0.2) 20%,
-          rgba(255, 255, 255, 0.5) 60%,
-          rgba(255, 255, 255, 0)
-        );
-        animation: shimmer 5s infinite;
-        content: '';
-      }
-
-      @keyframes shimmer {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
-
-      shopify-context,
-      .contents {
-        display: contents;
-      }
-
-      shopify-context > .placeholder {
-        opacity: 1;
-        display: flex;
-      }
-
-      shopify-context > .placeholder.contents {
-        display: contents;
-      }
-
-      shopify-context[shopify-content-loaded] > .placeholder.placeholder {
-        opacity: 0;
-        display: none;
-      }
-
-      shopify-context:has(> .placeholder) > :not(.placeholder, template) {
-        opacity: 0;
-        display: none;
-        transition: opacity 0.5s ease, display 0.5s ease allow-discrete;
-        transition-delay: 0.1s;
-      }
-
-      shopify-context:has(> .placeholder)[shopify-content-loaded]
-        > :not(.placeholder, template) {
-        opacity: 1;
-        display: flex;
-      }
-
-      @starting-style {
-        shopify-context:has(> .placeholder)[shopify-content-loaded]
-          > :not(.placeholder, template) {
-          opacity: 0;
-        }
-      }
-      @media (min-width: 1550px) {
-        .hero {
-          height: 900px;
-        }
-        .hero::after {
-          height: calc(92%);
-        }
-      }
-      @media (min-width: 2080px) {
-        .hero::after {
-          height: calc(90%);
+      @media (max-width: 1024px) {
+        .faq-left {
+          position: static;
+          text-align: center;
         }
       }
     </style>
