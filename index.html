@@ -480,6 +480,85 @@
         color: #666;
       }
 
+      /* ====================
+         SAMPLE REQUEST SECTION
+         ==================== */
+      .sample-section {
+        background: white;
+        padding: 83px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sample-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 64px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .sample-content {
+        z-index: 2;
+        position: relative;
+      }
+
+      .sample-title {
+        font-family: 'McLaren', cursive;
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #121212;
+        margin-bottom: 24px;
+      }
+
+      .sample-description {
+        font-size: 18px;
+        line-height: 1.4;
+        color: #666;
+        margin-bottom: 32px;
+        max-width: 400px;
+      }
+
+      .sample-cta {
+        background: #ed8177;
+        color: white;
+        border: none;
+        padding: 16px 40px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Zain', sans-serif;
+      }
+
+      .sample-cta:hover {
+        background: #e54a2e;
+        transform: translateY(-1px);
+      }
+
+      .sample-image {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 24px;
+      }
+
+      .hooks-image {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        object-fit: contain;
+      }
+
       @media (min-width: 768px) {
         /* Hero Section Desktop */
         .hero {
@@ -743,6 +822,47 @@
         .faq-answer p {
           padding: 0 20px 20px;
           font-size: 15px;
+        }
+
+        /* Sample Request Mobile */
+        .sample-section {
+          padding: 60px 0;
+        }
+
+        .sample-container {
+          padding: 0 20px;
+          grid-template-columns: 1fr;
+          gap: 40px;
+          text-align: center;
+        }
+
+        .sample-content {
+          order: 1;
+        }
+
+        .sample-title {
+          font-size: 32px;
+          margin-bottom: 20px;
+        }
+
+        .sample-description {
+          font-size: 16px;
+          margin-bottom: 24px;
+          max-width: none;
+        }
+
+        .sample-cta {
+          padding: 14px 32px;
+          font-size: 16px;
+        }
+
+        .sample-image {
+          order: 2;
+          align-items: center;
+        }
+
+        .hooks-image {
+          max-width: 100%;
         }
       }
     </style>
@@ -1123,6 +1243,20 @@
               <p>Our hooks are proudly manufactured in the USA using high-quality, durable materials with strict quality control.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample Request Section -->
+    <div class="sample-section">
+      <div class="sample-container">
+        <div class="sample-content">
+          <h2 class="sample-title">Make Sure It's The Perfect Match For Your Space</h2>
+          <p class="sample-description">Not sure yet? Order a sample to see the finish, color options, and quality up close before you buy.</p>
+        </div>
+        <div class="sample-image">
+          <button class="sample-cta">Request A Sample</button>
+          <img src="hooks.png" alt="Colorful hooks display" class="hooks-image" />
         </div>
       </div>
     </div>
