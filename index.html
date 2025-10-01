@@ -3082,44 +3082,121 @@
       }
 
       // Update variant selection in Shopify variant selector
-      function updateVariantSelection() {
+      async function updateVariantSelection() {
         console.log('=== UPDATE VARIANT SELECTION ===');
 
-        // Build the variant options string based on current selections
-        // Product variant structure: Option1=HookCount, Option2=Color-Style combined
+        // Get the product context to access variants
+        const productContext = document.querySelector('shopify-context[type="product"]');
+        if (!productContext) {
+          console.warn('⚠ Product context not found');
+          return;
+        }
 
-        // Normalize rail style for variant matching
-        const normalizedRailStyle = hookState.railStyle === 'style1' ? 'Style 1' : 'Style 2';
+        console.log('Product context element found:', productContext);
 
-        // Build combined color-style string: "Candy Red - Style 1"
-        const colorStyleOption = `${hookState.hookColorName} - ${normalizedRailStyle}`;
+        try {
+          // Access shopifyData (not .product)
+          const shopifyData = productContext.shopifyData;
 
-        console.log('Variant options:', {
-          hookCount: hookState.hookCount,
-          colorStyle: colorStyleOption,
-          railStyle: normalizedRailStyle,
-          fullState: hookState
-        });
+          if (!shopifyData) {
+            console.warn('⚠ shopifyData not available yet');
+            return;
+          }
 
-        // The shopify-variant-selector will automatically update the product context
-        // when we programmatically select options via the Web Components API
+          console.log('✓ ShopifyData loaded:', shopifyData.title);
 
-        // Try to find and select the matching variant in the hidden selector
-        const variantSelector = document.querySelector('shopify-variant-selector');
-        if (variantSelector) {
-          console.log('✓ Variant selector found');
-
-          // Trigger a custom event that Shopify components can listen to
-          const variantEvent = new CustomEvent('variant-change', {
-            detail: {
-              hookCount: hookState.hookCount,
-              colorStyle: colorStyleOption
-            }
+          // Current variant is in selectedOrFirstAvailableVariant
+          const currentVariant = shopifyData.selectedOrFirstAvailableVariant;
+          console.log('Current variant:', {
+            id: currentVariant.id,
+            price: currentVariant.price.amount,
+            options: currentVariant.selectedOptions
           });
-          document.dispatchEvent(variantEvent);
-          console.log('✓ Dispatched variant-change event');
-        } else {
-          console.warn('⚠ Variant selector not found');
+
+          // Find matching variant in adjacentVariants based on selectedOptions
+          // Looking for: Number of Hooks = hookCount, Color = hookColorName
+          const targetHookCount = hookState.hookCount.toString();
+          const targetColor = hookState.hookColorName;
+
+          console.log('Looking for variant with:', {
+            hookCount: targetHookCount,
+            color: targetColor
+          });
+
+          // Check adjacentVariants array for match
+          const allVariants = [currentVariant, ...shopifyData.adjacentVariants];
+
+          const matchingVariant = allVariants.find(variant => {
+            const hooksOption = variant.selectedOptions.find(opt => opt.name === 'Number of Hooks');
+            const colorOption = variant.selectedOptions.find(opt => opt.name === 'Color');
+
+            const hooksMatch = hooksOption && hooksOption.value === targetHookCount;
+            const colorMatch = colorOption && colorOption.value === targetColor;
+
+            console.log('Checking variant:', {
+              id: variant.id,
+              hooks: hooksOption?.value,
+              color: colorOption?.value,
+              price: variant.price.amount,
+              hooksMatch,
+              colorMatch
+            });
+
+            return hooksMatch && colorMatch;
+          });
+
+          if (matchingVariant) {
+            console.log('✓ Found exact matching variant:', {
+              id: matchingVariant.id,
+              price: matchingVariant.price.amount,
+              hooks: matchingVariant.selectedOptions.find(o => o.name === 'Number of Hooks')?.value,
+              color: matchingVariant.selectedOptions.find(o => o.name === 'Color')?.value
+            });
+
+            // Update the product context with the selected variant ID
+            productContext.selectedVariantId = matchingVariant.id;
+            console.log('✓ Updated selectedVariantId to:', matchingVariant.id);
+
+            // Manually update ALL price displays as fallback
+            const priceElements = document.querySelectorAll('shopify-money[query="product.selectedOrFirstAvailableVariant.price"]');
+            console.log(`Found ${priceElements.length} price elements to update`);
+            priceElements.forEach((priceElement, index) => {
+              priceElement.textContent = `$${matchingVariant.price.amount}`;
+              console.log(`✓ Updated price element ${index + 1} to: $${matchingVariant.price.amount}`);
+            });
+          } else {
+            console.warn('⚠ No exact variant match found, looking for fallback by hook count only');
+
+            // Fallback: Find any variant with the same hook count
+            const fallbackVariant = allVariants.find(variant => {
+              const hooksOption = variant.selectedOptions.find(opt => opt.name === 'Number of Hooks');
+              return hooksOption && hooksOption.value === targetHookCount;
+            });
+
+            if (fallbackVariant) {
+              console.log('✓ Found fallback variant by hook count:', {
+                id: fallbackVariant.id,
+                price: fallbackVariant.price.amount,
+                hooks: fallbackVariant.selectedOptions.find(o => o.name === 'Number of Hooks')?.value,
+                color: fallbackVariant.selectedOptions.find(o => o.name === 'Color')?.value
+              });
+
+              // Update the product context with the fallback variant ID
+              productContext.selectedVariantId = fallbackVariant.id;
+
+              // Manually update ALL price displays
+              const priceElements = document.querySelectorAll('shopify-money[query="product.selectedOrFirstAvailableVariant.price"]');
+              console.log(`Found ${priceElements.length} price elements to update`);
+              priceElements.forEach((priceElement, index) => {
+                priceElement.textContent = `$${fallbackVariant.price.amount}`;
+                console.log(`✓ Updated price element ${index + 1} to: $${fallbackVariant.price.amount} (fallback)`);
+              });
+            } else {
+              console.error('⚠ No variant found even with fallback for hook count:', targetHookCount);
+            }
+          }
+        } catch (error) {
+          console.error('Error updating variant:', error);
         }
       }
     </script>
