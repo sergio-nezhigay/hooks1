@@ -705,26 +705,48 @@
 
         console.log('✓ Form found, updating variant selection...');
 
-        // Update Hook Count (radio buttons with name="option-Number of Hooks")
-        const hookCountInputs = form.querySelectorAll('[name="option-Number of Hooks"]');
-        console.log(`Looking for hook count: ${hookState.hookCount}`);
+        // Update Rail Style (radio buttons with name="option-Rail Style")
+        const railStyleInputs = form.querySelectorAll('[name="option-Rail Style"]');
+        const railStyleValue = hookState.railStyle === 'style1' ? 'Style 1' : 'Style 2';
+        console.log(`Looking for rail style: ${railStyleValue}`);
 
-        let hookCountSelected = false;
-        hookCountInputs.forEach((input, idx) => {
-          console.log(`  Hook option[${idx}]: value="${input.value}"`);
-          if (input.value == hookState.hookCount) {
-            // Simulate an actual click on the radio button
+        let railStyleSelected = false;
+        railStyleInputs.forEach((input, idx) => {
+          console.log(`  Rail Style option[${idx}]: value="${input.value}"`);
+          if (input.value === railStyleValue) {
             input.click();
-            console.log('✓ Clicked hook count:', hookState.hookCount);
-            hookCountSelected = true;
+            console.log('✓ Clicked rail style:', railStyleValue);
+            railStyleSelected = true;
           }
         });
 
-        if (!hookCountSelected) {
-          console.warn('⚠ Could not select hook count');
+        if (!railStyleSelected) {
+          console.warn('⚠ Could not select rail style');
         }
 
         // Small delay to let the first option update
+        setTimeout(() => {
+          // Update Hook Count (radio buttons with name="option-Number of Hooks")
+          const hookCountInputs = form.querySelectorAll('[name="option-Number of Hooks"]');
+          console.log(`Looking for hook count: ${hookState.hookCount}`);
+
+          let hookCountSelected = false;
+          hookCountInputs.forEach((input, idx) => {
+            console.log(`  Hook option[${idx}]: value="${input.value}"`);
+            if (input.value == hookState.hookCount) {
+              // Simulate an actual click on the radio button
+              input.click();
+              console.log('✓ Clicked hook count:', hookState.hookCount);
+              hookCountSelected = true;
+            }
+          });
+
+          if (!hookCountSelected) {
+            console.warn('⚠ Could not select hook count');
+          }
+        }, 50);
+
+        // Longer delay to let the first two options update before selecting color
         setTimeout(() => {
           // Update Color (select dropdown with name="option-Color")
           const colorSelect = form.querySelector('[name="option-Color"]');
@@ -753,9 +775,8 @@
           } else {
             console.warn('⚠ Color select not found');
           }
-        }, 50);
+        }, 100);
 
-        console.log('Note: Rail style is visual-only, not a Shopify variant option');
         console.log('✓ Variant selection update complete');
 
         // Debug: Check what's currently selected after our changes
@@ -772,7 +793,7 @@
           selects.forEach((select, idx) => {
             console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
           });
-        }, 100);
+        }, 150);
       }
 
       // Handle Buy Now button click
