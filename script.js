@@ -1,0 +1,636 @@
+function scrollToProducts() {
+  console.log('Scroll to products functionality');
+}
+
+// Initialize Swiper
+document.addEventListener('DOMContentLoaded', function () {
+  const swiper = new Swiper('.reviews-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 55,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+      disabledClass: 'swiper-button-disabled-hidden',
+      hideOnClick: false,
+    },
+    breakpoints: {
+      //768: {
+      //  slidesPerView: 2,
+      //  spaceBetween: 24,
+      //},
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 55,
+      },
+    },
+    loop: true,
+    centeredSlides: false,
+    allowTouchMove: true,
+    watchOverflow: false,
+  });
+
+  // Force navigation buttons to always be enabled and visible
+  const nextButton = document.querySelector('.swiper-button-next');
+  const prevButton = document.querySelector('.swiper-button-prev');
+
+  // Remove disabled classes and ensure visibility
+  const forceEnableButtons = () => {
+    if (nextButton) {
+      nextButton.classList.remove('swiper-button-disabled');
+      nextButton.style.opacity = '1';
+      nextButton.style.pointerEvents = 'auto';
+    }
+    if (prevButton) {
+      prevButton.classList.remove('swiper-button-disabled');
+      prevButton.style.opacity = '1';
+      prevButton.style.pointerEvents = 'auto';
+    }
+  };
+
+  // Initial force enable
+  forceEnableButtons();
+
+  // Force enable on all swiper events
+  swiper.on('slideChange', forceEnableButtons);
+  swiper.on('reachEnd', forceEnableButtons);
+  swiper.on('reachBeginning', forceEnableButtons);
+  swiper.on('transitionEnd', forceEnableButtons);
+});
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function () {
+  const faqQuestions = document.querySelectorAll('.faq-question');
+
+  faqQuestions.forEach((question) => {
+    question.addEventListener('click', function () {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      const answer = this.nextElementSibling;
+
+      // Close all other FAQ items
+      faqQuestions.forEach((otherQuestion) => {
+        if (otherQuestion !== this) {
+          otherQuestion.setAttribute('aria-expanded', 'false');
+          otherQuestion.nextElementSibling.classList.remove('active');
+        }
+      });
+
+      // Toggle current FAQ item
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        answer.classList.remove('active');
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        answer.classList.add('active');
+      }
+    });
+  });
+});
+
+// ===========================================
+// HOOK CUSTOMIZER FUNCTIONALITY
+// ===========================================
+
+// Configuration - Color options and image paths
+const COLORS = [
+  { name: 'Candy Red', hex: '#ff0000' },
+  { name: 'Coral', hex: '#ff7f50' },
+  { name: 'Orange', hex: '#ff8c00' },
+  { name: 'Sunny Yellow', hex: '#ffd700' },
+  { name: 'Lime Green', hex: '#32cd32' },
+  { name: 'Forest Green', hex: '#228b22' },
+  { name: 'Teal', hex: '#008080' },
+  { name: 'Sky Blue', hex: '#87ceeb' },
+  { name: 'Navy Blue', hex: '#000080' },
+  { name: 'Royal Blue', hex: '#4169e1' },
+  { name: 'Purple', hex: '#800080' },
+  { name: 'Lavender', hex: '#b57edc' },
+  { name: 'Pink', hex: '#ff69b4' },
+  { name: 'Charcoal', hex: '#36454f' },
+  { name: 'Black', hex: '#000000' },
+  { name: 'White', hex: '#ffffff' },
+];
+
+const CONFIG = {
+  rails: {
+    style1: {
+      3: 'assets/rails/rail-style1-3.png',
+      6: 'assets/rails/rail-style1-6.png',
+      9: 'assets/rails/rail-style1-9.png',
+    },
+    style2: {
+      3: 'assets/rails/rail-style2-3.png',
+      6: 'assets/rails/rail-style2-6.png',
+      9: 'assets/rails/rail-style2-9.png',
+    },
+  },
+  hookTemplate: 'assets/hooks/hook-template.png',
+  hookRed: 'assets/hooks/hook-red.png',
+  hookWhite: 'assets/hooks/hook-white.png',
+  hookSizes: {
+    3: '14%',
+    6: '7%',
+    9: '4%',
+  },
+  hook3Positions: [
+    { left: 20, top: 48 },
+    { left: 54.5, top: 44 },
+    { left: 89, top: 40 },
+  ],
+  hook6Positions: [
+    { left: 10, top: 42 },
+    { left: 26, top: 40 },
+    { left: 42, top: 38 },
+    { left: 58, top: 36 },
+    { left: 74, top: 34 },
+    { left: 90, top: 32 },
+  ],
+  hook9Positions: [
+    { left: 7, top: 42 },
+    { left: 18, top: 40 },
+    { left: 29, top: 38 },
+    { left: 40, top: 36 },
+    { left: 51, top: 34 },
+    { left: 62, top: 32 },
+    { left: 73, top: 30 },
+    { left: 84, top: 31 },
+    { left: 95, top: 32 },
+  ],
+};
+
+// State
+let hookState = {
+  railStyle: 'style1',
+  hookCount: 3,
+  hookColor: '#ff0000',
+  hookColorName: 'Candy Red',
+};
+
+// Initialize hook customizer after Shopify components are ready
+function initializeHookCustomizer() {
+  console.log('=== HOOK CUSTOMIZER INITIALIZATION START ===');
+  console.log('Initial state:', JSON.stringify(hookState));
+
+  console.log('Step 1: Initializing color swatches...');
+  initColorSwatches();
+
+  console.log('Step 2: Initializing event listeners...');
+  initEventListeners();
+
+  console.log('Step 3: Rendering hooks...');
+  renderHooks();
+
+  console.log('=== HOOK CUSTOMIZER INITIALIZATION COMPLETE ===');
+}
+
+// Wait for Shopify Web Components to render the template content
+let initialized = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, waiting for Shopify components to render...');
+
+  // Use MutationObserver to detect when the customizer elements are added to DOM
+  const observer = new MutationObserver((mutations, obs) => {
+    const container = document.getElementById('colorSwatchesContainer');
+    const hooksContainer = document.getElementById('hooksContainer');
+
+    if (container && hooksContainer && !initialized) {
+      initialized = true;
+      console.log('✓ Customizer elements found in DOM!');
+      obs.disconnect(); // Stop observing
+      initializeHookCustomizer();
+    }
+  });
+
+  // Start observing the document for changes
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+
+  // Fallback: Try initialization after a delay if observer doesn't catch it
+  setTimeout(() => {
+    if (
+      document.getElementById('colorSwatchesContainer') &&
+      !initialized
+    ) {
+      initialized = true;
+      console.log('Fallback: Initializing via timeout');
+      observer.disconnect();
+      initializeHookCustomizer();
+    }
+  }, 1000);
+});
+
+// Generate color swatches
+function initColorSwatches() {
+  console.log('initColorSwatches() called');
+  const container = document.getElementById('colorSwatchesContainer');
+  console.log('Container found:', !!container);
+
+  if (!container) {
+    console.error('ERROR: colorSwatchesContainer not found!');
+    return;
+  }
+
+  console.log('Creating', COLORS.length, 'color swatches...');
+
+  COLORS.forEach((color, index) => {
+    const swatch = document.createElement('button');
+    swatch.type = 'button';
+    swatch.className =
+      'hook-color-swatch' + (index === 0 ? ' active' : '');
+    swatch.dataset.colorHex = color.hex;
+    swatch.dataset.colorName = color.name;
+    swatch.style.backgroundColor = color.hex;
+    swatch.setAttribute('aria-label', color.name);
+    swatch.setAttribute('title', color.name);
+
+    if (index === 0) {
+      swatch.innerHTML = `<svg class="swatch-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+    }
+
+    swatch.addEventListener('click', handleColorChange);
+    container.appendChild(swatch);
+  });
+
+  console.log(
+    '✓ Color swatches initialized:',
+    container.children.length,
+    'swatches created'
+  );
+}
+
+// Initialize event listeners
+function initEventListeners() {
+  // Rail style buttons
+  document.querySelectorAll('.rail-style-button').forEach((button) => {
+    button.addEventListener('click', handleRailStyleChange);
+  });
+
+  // Hook count buttons
+  document.querySelectorAll('.hook-count-button').forEach((button) => {
+    button.addEventListener('click', handleHookCountChange);
+  });
+
+  // Window resize handler
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      console.log('Window resized - recalculating hook positions');
+      renderHooks();
+    }, 150);
+  });
+}
+
+// Handle rail style change
+function handleRailStyleChange(event) {
+  console.log('=== RAIL STYLE CHANGE ===');
+  console.log('New rail style:', event.target.dataset.railStyle);
+
+  document.querySelectorAll('.rail-style-button').forEach((btn) => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-checked', 'false');
+  });
+  event.target.classList.add('active');
+  event.target.setAttribute('aria-checked', 'true');
+
+  hookState.railStyle = event.target.dataset.railStyle;
+  console.log('Updated state:', JSON.stringify(hookState));
+
+  updateRailImage();
+  setTimeout(() => renderHooks(), 50);
+  updateVariantSelection();
+}
+
+// Handle hook count change
+function handleHookCountChange(event) {
+  console.log('=== HOOK COUNT CHANGE ===');
+  console.log('New hook count:', event.target.dataset.hookCount);
+
+  document.querySelectorAll('.hook-count-button').forEach((btn) => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-checked', 'false');
+  });
+  event.target.classList.add('active');
+  event.target.setAttribute('aria-checked', 'true');
+
+  hookState.hookCount = parseInt(event.target.dataset.hookCount);
+  console.log('Updated state:', JSON.stringify(hookState));
+
+  updateRailImage();
+  setTimeout(() => renderHooks(), 50);
+  updateVariantSelection();
+}
+
+// Handle color change
+function handleColorChange(event) {
+  const swatch = event.currentTarget;
+  console.log('=== COLOR CHANGE ===');
+  console.log(
+    'New color:',
+    swatch.dataset.colorName,
+    swatch.dataset.colorHex
+  );
+
+  document.querySelectorAll('.hook-color-swatch').forEach((sw) => {
+    sw.classList.remove('active');
+    sw.innerHTML = '';
+  });
+
+  swatch.classList.add('active');
+  swatch.innerHTML = `<svg class="swatch-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+
+  hookState.hookColor = swatch.dataset.colorHex;
+  hookState.hookColorName = swatch.dataset.colorName;
+  console.log('Updated state:', JSON.stringify(hookState));
+
+  const nameDisplay = document.getElementById('selectedColorName');
+  if (nameDisplay) nameDisplay.textContent = hookState.hookColorName;
+
+  renderHooks();
+  updateVariantSelection();
+}
+
+// Update rail image
+function updateRailImage() {
+  const railImage = document.getElementById('railImage');
+  if (!railImage) return;
+
+  railImage.src = CONFIG.rails[hookState.railStyle][hookState.hookCount];
+  console.log(
+    'Updated rail image:',
+    hookState.railStyle,
+    hookState.hookCount,
+    railImage.src
+  );
+}
+
+// Render hooks on the canvas
+function renderHooks() {
+  console.log('renderHooks() called');
+  const container = document.getElementById('hooksContainer');
+  console.log('Hooks container found:', !!container);
+
+  if (!container) {
+    console.error('ERROR: hooksContainer not found!');
+    return;
+  }
+
+  console.log(
+    'Rendering hooks - Count:',
+    hookState.hookCount,
+    'Color:',
+    hookState.hookColorName,
+    hookState.hookColor
+  );
+  container.innerHTML = '';
+
+  let positions;
+  if (hookState.hookCount === 3) positions = CONFIG.hook3Positions;
+  else if (hookState.hookCount === 6) positions = CONFIG.hook6Positions;
+  else if (hookState.hookCount === 9) positions = CONFIG.hook9Positions;
+
+  console.log('Positions array:', positions.length, 'hooks');
+
+  const hookSize = CONFIG.hookSizes[hookState.hookCount];
+  const colorNameLower = hookState.hookColorName.toLowerCase();
+  const isRed = colorNameLower.includes('red');
+  const isWhite = colorNameLower === 'white';
+
+  let hookImage = CONFIG.hookTemplate;
+  let filter = hexToFilter(hookState.hookColor);
+
+  if (isRed && CONFIG.hookRed) {
+    hookImage = CONFIG.hookRed;
+    filter = 'none';
+    console.log('Using red hook image (special)');
+  } else if (isWhite && CONFIG.hookWhite) {
+    hookImage = CONFIG.hookWhite;
+    filter = 'none';
+    console.log('Using white hook image (special)');
+  } else {
+    console.log('Using template with color filter');
+  }
+
+  console.log('Hook image:', hookImage);
+  console.log('Hook size:', hookSize);
+  console.log('Filter:', filter);
+
+  positions.forEach((pos, index) => {
+    const hook = document.createElement('img');
+    hook.src = hookImage;
+    hook.className = 'hook-preview-canvas__hook';
+    hook.style.left = `${pos.left}%`;
+    hook.style.top = `${pos.top}%`;
+    hook.style.width = hookSize;
+    hook.style.filter = filter;
+    hook.alt = `Hook ${index + 1}`;
+    container.appendChild(hook);
+  });
+
+  console.log('✓ Rendered', container.children.length, 'hooks to canvas');
+}
+
+// Color filter calculator (converts hex to CSS filters)
+function hexToFilter(hex) {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+
+  let s = 0;
+  if (max !== min) {
+    s =
+      l > 0.5 ? (max - min) / (2 - max - min) : (max - min) / (max + min);
+  }
+
+  let h = 0;
+  if (max !== min) {
+    if (max === r) {
+      h = ((g - b) / (max - min) + (g < b ? 6 : 0)) / 6;
+    } else if (max === g) {
+      h = ((b - r) / (max - min) + 2) / 6;
+    } else {
+      h = ((r - g) / (max - min) + 4) / 6;
+    }
+  }
+
+  const hueRotate = h * 360 - 0;
+  const saturate = s * 200;
+  const brightness = l * 200;
+
+  return `hue-rotate(${hueRotate}deg) saturate(${saturate}%) brightness(${brightness}%)`;
+}
+
+// Update variant selection in Shopify variant selector
+function updateVariantSelection() {
+  console.log('=== UPDATE VARIANT SELECTION ===');
+
+  // Find the variant selector
+  const variantSelector = document.querySelector('shopify-variant-selector');
+
+  if (!variantSelector) {
+    console.warn('⚠ Variant selector not found');
+    return;
+  }
+
+  if (!variantSelector.shadowRoot) {
+    console.error('❌ No shadowRoot found on variant selector!');
+    return;
+  }
+
+  // Get the form inside the variant selector
+  const form = variantSelector.shadowRoot.querySelector('form');
+  if (!form) {
+    console.warn('⚠ Variant selector form not found in shadowRoot');
+    return;
+  }
+
+  console.log('✓ Form found, updating variant selection...');
+
+  // Update Rail Style (radio buttons with name="option-Rail Style")
+  const railStyleInputs = form.querySelectorAll('[name="option-Rail Style"]');
+  const railStyleValue = hookState.railStyle === 'style1' ? 'Style 1' : 'Style 2';
+  console.log(`Looking for rail style: ${railStyleValue}`);
+
+  let railStyleSelected = false;
+  railStyleInputs.forEach((input, idx) => {
+    console.log(`  Rail Style option[${idx}]: value="${input.value}"`);
+    if (input.value === railStyleValue) {
+      input.click();
+      console.log('✓ Clicked rail style:', railStyleValue);
+      railStyleSelected = true;
+    }
+  });
+
+  if (!railStyleSelected) {
+    console.warn('⚠ Could not select rail style');
+  }
+
+  // Small delay to let the first option update
+  setTimeout(() => {
+    // Update Hook Count (radio buttons with name="option-Number of Hooks")
+    const hookCountInputs = form.querySelectorAll('[name="option-Number of Hooks"]');
+    console.log(`Looking for hook count: ${hookState.hookCount}`);
+
+    let hookCountSelected = false;
+    hookCountInputs.forEach((input, idx) => {
+      console.log(`  Hook option[${idx}]: value="${input.value}"`);
+      if (input.value == hookState.hookCount) {
+        // Simulate an actual click on the radio button
+        input.click();
+        console.log('✓ Clicked hook count:', hookState.hookCount);
+        hookCountSelected = true;
+      }
+    });
+
+    if (!hookCountSelected) {
+      console.warn('⚠ Could not select hook count');
+    }
+  }, 50);
+
+  // Longer delay to let the first two options update before selecting color
+  setTimeout(() => {
+    // Update Color (select dropdown with name="option-Color")
+    const colorSelect = form.querySelector('[name="option-Color"]');
+
+    if (colorSelect && colorSelect.tagName === 'SELECT') {
+      console.log(`Looking for color: "${hookState.hookColorName}"`);
+      console.log('Available color options:');
+
+      // List all available options
+      const options = colorSelect.querySelectorAll('option');
+      options.forEach((opt, idx) => {
+        console.log(`  Color option[${idx}]: value="${opt.value}"`);
+      });
+
+      // Set the color value
+      const oldValue = colorSelect.value;
+      colorSelect.value = hookState.hookColorName;
+
+      // Only dispatch events if the value actually changed
+      if (oldValue !== colorSelect.value) {
+        colorSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        colorSelect.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      console.log('✓ Set color select to:', hookState.hookColorName, 'Actual value:', colorSelect.value);
+    } else {
+      console.warn('⚠ Color select not found');
+    }
+  }, 100);
+
+  console.log('✓ Variant selection update complete');
+
+  // Debug: Check what's currently selected after our changes
+  setTimeout(() => {
+    const checkedInputs = form.querySelectorAll('input:checked');
+    const selects = form.querySelectorAll('select');
+
+    console.log('=== CURRENT SELECTION ===');
+    console.log('Checked inputs:', checkedInputs.length);
+    checkedInputs.forEach((input, idx) => {
+      console.log(`  Checked[${idx}]: ${input.name} = "${input.value}"`);
+    });
+
+    selects.forEach((select, idx) => {
+      console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
+    });
+  }, 150);
+}
+
+// Handle Buy Now button click
+async function handleBuyNow(event) {
+  console.log('=== BUY NOW CLICKED ===');
+  console.log('Current state:', JSON.stringify(hookState));
+
+  // First, ensure variant selection is up to date
+  updateVariantSelection();
+
+  // Wait a bit for the Shopify context to update
+  await new Promise(resolve => setTimeout(resolve, 300));
+
+  // Get the product context to check what variant is selected
+  const context = document.querySelector('shopify-context[type="product"]');
+  if (context) {
+    console.log('Product context found:', context);
+
+    // Try to access the context data
+    try {
+      // Get the variant selector to see what's selected
+      const variantSelector = document.querySelector('shopify-variant-selector');
+      if (variantSelector && variantSelector.shadowRoot) {
+        const form = variantSelector.shadowRoot.querySelector('form');
+        const checkedInputs = form.querySelectorAll('input:checked');
+        const selects = form.querySelectorAll('select');
+
+        console.log('=== FINAL SELECTION BEFORE CHECKOUT ===');
+        checkedInputs.forEach((input, idx) => {
+          console.log(`  Checked[${idx}]: ${input.name} = "${input.value}"`);
+        });
+        selects.forEach((select, idx) => {
+          console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
+        });
+      }
+    } catch (e) {
+      console.error('Error checking variant:', e);
+    }
+  }
+
+  // Call the Shopify buyNow function
+  const store = document.querySelector('shopify-store');
+  if (store) {
+    console.log('Calling buyNow on shopify-store...');
+    store.buyNow(event);
+  } else {
+    console.error('❌ shopify-store not found!');
+  }
+}
