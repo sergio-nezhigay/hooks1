@@ -9,7 +9,10 @@
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_evaluate",
       "Read(//c/Users/user/Downloads/**)",
-      "Bash(start index.html)"
+      "Bash(start index.html)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "ask": []

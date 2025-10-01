@@ -219,6 +219,210 @@
         letter-spacing: 0;
       }
 
+      /* ====================
+         PRODUCTS SECTION
+         ==================== */
+      .products-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .product-layout {
+        display: flex;
+      }
+
+      .product-card {
+        width: 100%;
+        max-width: 56rem;
+        min-width: 320px;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        overflow: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-card__container {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 2rem;
+        box-sizing: border-box;
+      }
+
+      .product-card__media {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .product-card__main-image shopify-media img {
+        border-radius: 4px;
+      }
+
+      .product-card__images {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .product-card__image-small {
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+
+      .product-card__image-small img:hover {
+        opacity: 0.8;
+      }
+
+      .product-card__image-small img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+
+      .product-card__images .product-card__image-large {
+        display: block !important;
+        position: absolute;
+        transition: 200ms opacity ease-in;
+        opacity: 0;
+        top: -432px;
+        left: 0;
+        z-index: 1;
+      }
+
+      .product-card__image:hover .product-card__image-large {
+        opacity: 1;
+      }
+
+      .product-card__images .product-card__image-large img {
+        width: 100%;
+        border-radius: 4px;
+      }
+
+      .product-card__details {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+      }
+
+      .product-card__info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .product-card__vendor {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .product-card__vendor-text {
+        opacity: 0.5;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+      }
+
+      .product-card__title {
+        font-family: 'McLaren', cursive;
+        font-size: 2.25rem;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .product-card__price {
+        display: flex;
+        gap: 0.5rem;
+        font-weight: 500;
+        font-size: 1.25rem;
+      }
+
+      .product-card__compare-price {
+        text-decoration: line-through;
+        opacity: 0.5;
+      }
+
+      .product-card__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .product-card__buttons button {
+        font-size: 0.875rem;
+        font-weight: 800;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border: 2px solid #000;
+      }
+
+      .product-card__buttons button:hover {
+        background: #fff;
+        color: #000;
+        border: 2px solid #000;
+      }
+
+      .product-card__buy-button {
+        background-color: #fff;
+        color: #000;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        font-size: 18px;
+        font-weight: 500;
+        width: 100%;
+      }
+
+      .product-card__buttons button.product-card__buy-button:hover {
+        opacity: 0.5;
+      }
+
+      .product-card__buy-button:disabled {
+        opacity: 0.5;
+      }
+
+      .product-card__buy-button[disabled]:hover {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: #fff;
+        color: #000;
+      }
+
+      .product-card__description {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1.5rem;
+        border-top-color: rgb(229 231 235);
+        opacity: 1;
+        border-top-width: 1px;
+        border-top-style: solid;
+      }
+
+      .product-card__description-text {
+        font-weight: 400;
+        color: #717171;
+        letter-spacing: 0.02em;
+        font-size: 0.875rem;
+      }
+
+      .product-card__description-text p {
+        margin: 0;
+      }
+
       .hero-brand {
         padding-top: 16px;
         padding-left: 20px;
@@ -821,11 +1025,15 @@
       }
 
       @media (min-width: 768px) {
+        .product-card__container {
+          flex-direction: row;
+        }
+
         /* Hero Section Desktop */
         .hero {
           height: 820px;
           background-color: #fffcf1 !important;
-          background: url('hero-desktop.png');
+          background: url('assets/hero-desktop.png');
           background-size: cover;
           background-repeat: no-repeat;
           background-position: bottom;
@@ -913,6 +1121,20 @@
           transform: scale(1.6) translateX(-5px);
         }
 
+        /* Products Section Desktop */
+        .products-grid {
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .product-card__images {
+          width: 420px;
+          max-width: none;
+        }
+
+        .product-card__title {
+          font-size: 2.25rem;
+        }
+
         /* Shipping Banner Desktop */
         .shipping-banner {
           padding: 15px 20px;
@@ -928,6 +1150,16 @@
       }
 
       @media (min-width: 1024px) {
+        .product-card__container {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+
+        .product-card__media {
+          aspect-ratio: 4/5;
+          width: 50%;
+        }
+
         .benefits-grid {
           grid-template-columns: repeat(4, 1fr);
           gap: 24px;
@@ -962,10 +1194,75 @@
           left: 0;
           width: 100%;
           height: calc(100% - 206px);
-          background-image: url('hero-mobile.png');
+          background-image: url('assets/hero-mobile.png');
           background-size: 100% auto;
           background-repeat: no-repeat;
           background-position: center center;
+        }
+
+        .product-card {
+          min-width: auto;
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .product-card__container {
+          padding: 1rem;
+          gap: 1rem;
+        }
+
+        .product-card__main-image shopify-media {
+          width: 100% !important;
+          max-width: 280px !important;
+        }
+
+        .product-card__main-image shopify-media img {
+          width: 100% !important;
+          max-width: 280px !important;
+          height: auto !important;
+        }
+
+        .product-card__images {
+          width: 100% !important;
+          max-width: 280px !important;
+          gap: 6px;
+        }
+
+        .product-card__image-large shopify-media {
+          width: 100% !important;
+          max-width: 280px !important;
+        }
+
+        .product-card__image-large shopify-media img {
+          width: 100% !important;
+          max-width: 280px !important;
+          height: auto !important;
+        }
+
+        .product-card__image-small img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .product-card__title {
+          font-size: 1.5rem;
+          line-height: 1.3;
+        }
+
+        .product-card__price {
+          font-size: 1rem;
+        }
+
+        .product-card__info {
+          gap: 0.5rem;
+        }
+
+        .product-card__description {
+          padding-top: 1rem;
+        }
+
+        .product-card__description-text {
+          font-size: 0.8rem;
         }
 
         /* Override skeleton placeholder widths for mobile */
@@ -1271,7 +1568,7 @@
       <div class="hero-overlay">
         <div class="container">
           <div class="hero-brand">
-            <img src="hook-logo.png" alt="Toughook" class="hero-logo" />
+            <img src="assets/hook-logo.png" alt="Toughook" class="hero-logo" />
           </div>
           <div class="hero-content">
             <h1>Hanging Hooks That Are Strong, Safe, And Stylish</h1>
@@ -1295,7 +1592,7 @@
         <div class="benefits-grid">
           <div class="benefit-card">
             <img
-              src="benefit-1.png"
+              src="assets/benefit-1.png"
               alt="Superior Design"
               class="benefit-icon first"
             />
@@ -1307,7 +1604,7 @@
           </div>
           <div class="benefit-card">
             <img
-              src="benefit-2.png"
+              src="assets/benefit-2.png"
               alt="Lifelong Durability"
               class="benefit-icon"
             />
@@ -1319,7 +1616,7 @@
           </div>
           <div class="benefit-card">
             <img
-              src="./benefit-3.png"
+              src="assets/benefit-3.png"
               alt="5-in-1 Functionality"
               class="benefit-icon"
             />
@@ -1331,7 +1628,7 @@
           </div>
           <div class="benefit-card">
             <img
-              src="benefit-4.png"
+              src="assets/benefit-4.png"
               alt="Deluxe Hangers Included"
               class="benefit-icon zoomed"
             />
@@ -1340,6 +1637,108 @@
               Our best selling racks make for easy installation of multiple
               hooks, bringing extra (and eye-catching) hang space.
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Provide the token and set the market context -->
+    <shopify-store
+      store-domain="c2da09-15.myshopify.com"
+      country="US"
+      language="en"
+    ></shopify-store>
+
+    <div class="container">
+      <div class="products-grid">
+        <div class="product-layout">
+          <div class="product-card">
+            <!-- Set product you want to display -->
+            <shopify-context
+              type="product"
+              handle="mishka-logitech-signature-m650-l-wireless-rose-910-006237"
+            >
+              <template>
+                <div class="product-card__container">
+                  <div class="product-card__media">
+                    <div class="product-card__main-image">
+                      <shopify-media
+                        layout="responsive"
+                        width="420"
+                        height="420"
+                        query="product.selectedOrFirstAvailableVariant.image"
+                      ></shopify-media>
+                    </div>
+
+                    <div class="product-card__images">
+                      <shopify-list-context
+                        type="image"
+                        query="product.selectedOrFirstAvailableVariant.product.images"
+                        first="3"
+                      >
+                        <template>
+                          <div class="product-card__image">
+                            <shopify-media
+                              class="product-card__image-large"
+                              width="420"
+                              height="420"
+                              query="image"
+                            ></shopify-media>
+                            <shopify-media
+                              class="product-card__image-small"
+                              width="130"
+                              height="150"
+                              query="image"
+                            ></shopify-media>
+                          </div>
+                        </template>
+                      </shopify-list-context>
+                    </div>
+                  </div>
+                  <div class="product-card__details">
+                    <div class="product-card__info">
+                      <div class="product-card__vendor">
+                        <span class="product-card__vendor-text">
+                          <shopify-data query="product.vendor"></shopify-data>
+                        </span>
+                      </div>
+                      <h1 class="product-card__title">
+                        <shopify-data query="product.title"></shopify-data>
+                      </h1>
+                      <div class="product-card__price">
+                        <shopify-money
+                          query="product.selectedOrFirstAvailableVariant.price"
+                        ></shopify-money>
+                        <shopify-money
+                          class="product-card__compare-price"
+                          query="product.selectedOrFirstAvailableVariant.compareAtPrice"
+                        ></shopify-money>
+                      </div>
+                    </div>
+                    <shopify-variant-selector></shopify-variant-selector>
+
+                    <div class="product-card__buttons">
+                      <!-- Add buy button -->
+                      <button
+                        class="product-card__buy-button"
+                        onclick="document.querySelector('shopify-store').buyNow(event)"
+                        shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                      >
+                        Buy now
+                      </button>
+                    </div>
+
+                    <div class="product-card__description">
+                      <span class="product-card__description-text">
+                        <shopify-data
+                          query="product.description"
+                        ></shopify-data>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </shopify-context>
           </div>
         </div>
       </div>
@@ -1355,7 +1754,7 @@
               <div class="review-card">
                 <div class="review-header">
                   <img
-                    src="review1.png"
+                    src="assets/review1.png"
                     alt="Clayton G."
                     class="review-avatar"
                   />
@@ -1464,7 +1863,7 @@
             <div class="swiper-slide">
               <div class="review-card">
                 <div class="review-header">
-                  <img src="review2.png" alt="Emma S." class="review-avatar" />
+                  <img src="assets/review2.png" alt="Emma S." class="review-avatar" />
                   <div class="review-info">
                     <div class="review-stars">
                       <svg
@@ -1572,7 +1971,7 @@
             <div class="swiper-slide">
               <div class="review-card">
                 <div class="review-header">
-                  <img src="review3.png" alt="Jim C." class="review-avatar" />
+                  <img src="assets/review3.png" alt="Jim C." class="review-avatar" />
                   <div class="review-info">
                     <div class="review-stars">
                       <svg
@@ -1865,7 +2264,7 @@
         <div class="sample-image">
           <button class="sample-cta">Request A Sample</button>
           <img
-            src="hooks.png"
+            src="assets/hooks.png"
             alt="Colorful hooks display"
             class="hooks-image"
           />
@@ -1878,7 +2277,7 @@
       <div class="footer-container">
         <div class="footer-left">
           <div class="footer-logo-section">
-            <img src="hook-logo.png" alt="Toughook" class="footer-logo" />
+            <img src="assets/hook-logo.png" alt="Toughook" class="footer-logo" />
           </div>
           <p class="footer-description">
             The world's best-selling unbreakable hooks. Available to order as
@@ -1886,7 +2285,7 @@
           </p>
           <div class="footer-reviews">
             <img
-              src="stars-and-google.svg"
+              src="assets/stars-and-google.svg"
               alt="5 stars Google reviews"
               class="footer-reviews-image"
             />
