@@ -14,7 +14,11 @@
       "Bash(mv:*)",
       "Bash(git log:*)",
       "Bash(cat:*)",
-      "WebFetch(domain:webcomponents.shopify.dev)"
+      "WebFetch(domain:webcomponents.shopify.dev)",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_close"
     ],
     "deny": [],
     "ask": []
