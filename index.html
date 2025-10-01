@@ -175,7 +175,8 @@
                           <div class="product-card__buttons">
                             <button
                               class="product-card__buy-button"
-                              onclick="document.querySelector('shopify-store').buyNow(event)"
+                              id="buyNowButton"
+                              onclick="handleBuyNow(event)"
                               shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                             >
                               Buy Now -
@@ -716,9 +717,9 @@
         hookCountInputs.forEach((input, idx) => {
           console.log(`  Hook option[${idx}]: value="${input.value}"`);
           if (input.value == hookState.hookCount) {
-            input.checked = true;
-            input.dispatchEvent(new Event('change', { bubbles: true }));
-            console.log('✓ Selected hook count:', hookState.hookCount);
+            // Simulate an actual click on the radio button
+            input.click();
+            console.log('✓ Clicked hook count:', hookState.hookCount);
             hookCountSelected = true;
           }
         });
@@ -727,31 +728,38 @@
           console.warn('⚠ Could not select hook count');
         }
 
-        // Update Color (select dropdown with name="option-Color")
-        const colorSelect = form.querySelector('[name="option-Color"]');
+        // Small delay to let the first option update
+        setTimeout(() => {
+          // Update Color (select dropdown with name="option-Color")
+          const colorSelect = form.querySelector('[name="option-Color"]');
 
-        if (colorSelect && colorSelect.tagName === 'SELECT') {
-          console.log(`Looking for color: "${hookState.hookColorName}"`);
-          console.log('Available color options:');
+          if (colorSelect && colorSelect.tagName === 'SELECT') {
+            console.log(`Looking for color: "${hookState.hookColorName}"`);
+            console.log('Available color options:');
 
-          // List all available options
-          const options = colorSelect.querySelectorAll('option');
-          options.forEach((opt, idx) => {
-            console.log(`  Color option[${idx}]: value="${opt.value}"`);
-          });
+            // List all available options
+            const options = colorSelect.querySelectorAll('option');
+            options.forEach((opt, idx) => {
+              console.log(`  Color option[${idx}]: value="${opt.value}"`);
+            });
 
-          // Set the color value
-          colorSelect.value = hookState.hookColorName;
-          colorSelect.dispatchEvent(new Event('change', { bubbles: true }));
-          console.log('✓ Set color select to:', hookState.hookColorName, 'Actual value:', colorSelect.value);
-        } else {
-          console.warn('⚠ Color select not found');
-        }
+            // Set the color value
+            const oldValue = colorSelect.value;
+            colorSelect.value = hookState.hookColorName;
 
-        // Note: It seems your product doesn't have a "Style" option in Shopify
-        // The rail style is visual only and doesn't affect the variant
+            // Only dispatch events if the value actually changed
+            if (oldValue !== colorSelect.value) {
+              colorSelect.dispatchEvent(new Event('change', { bubbles: true }));
+              colorSelect.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+
+            console.log('✓ Set color select to:', hookState.hookColorName, 'Actual value:', colorSelect.value);
+          } else {
+            console.warn('⚠ Color select not found');
+          }
+        }, 50);
+
         console.log('Note: Rail style is visual-only, not a Shopify variant option');
-
         console.log('✓ Variant selection update complete');
 
         // Debug: Check what's currently selected after our changes
@@ -769,6 +777,54 @@
             console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
           });
         }, 100);
+      }
+
+      // Handle Buy Now button click
+      async function handleBuyNow(event) {
+        console.log('=== BUY NOW CLICKED ===');
+        console.log('Current state:', JSON.stringify(hookState));
+
+        // First, ensure variant selection is up to date
+        updateVariantSelection();
+
+        // Wait a bit for the Shopify context to update
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // Get the product context to check what variant is selected
+        const context = document.querySelector('shopify-context[type="product"]');
+        if (context) {
+          console.log('Product context found:', context);
+
+          // Try to access the context data
+          try {
+            // Get the variant selector to see what's selected
+            const variantSelector = document.querySelector('shopify-variant-selector');
+            if (variantSelector && variantSelector.shadowRoot) {
+              const form = variantSelector.shadowRoot.querySelector('form');
+              const checkedInputs = form.querySelectorAll('input:checked');
+              const selects = form.querySelectorAll('select');
+
+              console.log('=== FINAL SELECTION BEFORE CHECKOUT ===');
+              checkedInputs.forEach((input, idx) => {
+                console.log(`  Checked[${idx}]: ${input.name} = "${input.value}"`);
+              });
+              selects.forEach((select, idx) => {
+                console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
+              });
+            }
+          } catch (e) {
+            console.error('Error checking variant:', e);
+          }
+        }
+
+        // Call the Shopify buyNow function
+        const store = document.querySelector('shopify-store');
+        if (store) {
+          console.log('Calling buyNow on shopify-store...');
+          store.buyNow(event);
+        } else {
+          console.error('❌ shopify-store not found!');
+        }
       }
     </script>
   </body>
