@@ -1551,7 +1551,9 @@
 
       @media (min-width: 1440px) {
         .hero::after {
-          height: calc(100% - clamp(57px, calc(57px + (100vw - 1440px) * 0.0278), 100%));
+          height: calc(
+            100% - clamp(57px, calc(57px + (100vw - 1440px) * 0.0278), 100%)
+          );
         }
       }
     </style>
@@ -1644,9 +1646,10 @@
 
     <!-- Provide the token and set the market context -->
     <shopify-store
-      store-domain="c2da09-15.myshopify.com"
+      store-domain="https://evhenii-test-store.myshopify.com"
       country="US"
       language="en"
+      public-access-token="ad1f1878e0ae8e7d89be668e1eceb438"
     ></shopify-store>
 
     <div class="container">
@@ -1654,10 +1657,7 @@
         <div class="product-layout">
           <div class="product-card">
             <!-- Set product you want to display -->
-            <shopify-context
-              type="product"
-              handle="mishka-logitech-signature-m650-l-wireless-rose-910-006237"
-            >
+            <shopify-context type="product" handle="custom-wall-hook-rack">
               <template>
                 <div class="product-card__container">
                   <div class="product-card__media">
@@ -1724,7 +1724,7 @@
                         onclick="document.querySelector('shopify-store').buyNow(event)"
                         shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                       >
-                        Buy now
+                        Buy now1
                       </button>
                     </div>
 
@@ -1863,7 +1863,11 @@
             <div class="swiper-slide">
               <div class="review-card">
                 <div class="review-header">
-                  <img src="assets/review2.png" alt="Emma S." class="review-avatar" />
+                  <img
+                    src="assets/review2.png"
+                    alt="Emma S."
+                    class="review-avatar"
+                  />
                   <div class="review-info">
                     <div class="review-stars">
                       <svg
@@ -1971,7 +1975,11 @@
             <div class="swiper-slide">
               <div class="review-card">
                 <div class="review-header">
-                  <img src="assets/review3.png" alt="Jim C." class="review-avatar" />
+                  <img
+                    src="assets/review3.png"
+                    alt="Jim C."
+                    class="review-avatar"
+                  />
                   <div class="review-info">
                     <div class="review-stars">
                       <svg
@@ -2277,7 +2285,11 @@
       <div class="footer-container">
         <div class="footer-left">
           <div class="footer-logo-section">
-            <img src="assets/hook-logo.png" alt="Toughook" class="footer-logo" />
+            <img
+              src="assets/hook-logo.png"
+              alt="Toughook"
+              class="footer-logo"
+            />
           </div>
           <p class="footer-description">
             The world's best-selling unbreakable hooks. Available to order as

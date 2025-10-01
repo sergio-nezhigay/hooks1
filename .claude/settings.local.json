@@ -12,7 +12,9 @@
       "Bash(start index.html)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:webcomponents.shopify.dev)"
     ],
     "deny": [],
     "ask": []
