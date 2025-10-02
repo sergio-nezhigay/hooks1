@@ -689,50 +689,67 @@ function updateVariantSelection() {
   }, 100);
 }
 
-// Handle Buy Now button click
-async function handleBuyNow(event) {
-  console.log('=== BUY NOW CLICKED ===');
+// Handle custom Buy Now with line item properties using cart permalink
+async function handleCustomBuyNow(event) {
+  console.log('=== CUSTOM BUY NOW CLICKED ===');
   console.log('Current state:', JSON.stringify(hookState));
 
-  // First, ensure variant selection is up to date
+  // Ensure variant selection is updated
   updateVariantSelection();
 
-  // Wait a bit for the Shopify context to update
-  await new Promise(resolve => setTimeout(resolve, 300));
+  // Wait for variant selection to complete
+  await new Promise(resolve => setTimeout(resolve, 250));
 
-  // Get the product context to check what variant is selected
-  const context = document.querySelector('shopify-context[type="product"]');
-  if (context) {
-    console.log('Product context found:', context);
+  // Get variant ID from the shopify-data element
+  const variantIdElement = document.getElementById('currentVariantId');
+  let variantId = variantIdElement ? variantIdElement.textContent.trim() : null;
 
-    // Try to access the context data
-    try {
-      // Get the variant selector to see what's selected
-      const variantSelector = document.querySelector('shopify-variant-selector');
-      if (variantSelector && variantSelector.shadowRoot) {
-        const form = variantSelector.shadowRoot.querySelector('form');
-        const checkedInputs = form.querySelectorAll('input:checked');
-        const selects = form.querySelectorAll('select');
+  console.log('Variant ID from shopify-data:', variantId);
 
-        console.log('=== FINAL SELECTION BEFORE CHECKOUT ===');
-        checkedInputs.forEach((input, idx) => {
-          console.log(`  Checked[${idx}]: ${input.name} = "${input.value}"`);
-        });
-        selects.forEach((select, idx) => {
-          console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
-        });
-      }
-    } catch (e) {
-      console.error('Error checking variant:', e);
-    }
+  if (!variantId) {
+    console.error('❌ Could not find variant ID');
+    alert('Could not determine product variant. Please refresh the page and try again.');
+    return;
   }
 
-  // Call the Shopify buyNow function
-  const store = document.querySelector('shopify-store');
-  if (store) {
-    console.log('Calling buyNow on shopify-store...');
-    store.buyNow(event);
-  } else {
-    console.error('❌ shopify-store not found!');
+  // Extract numeric ID from GID format (gid://shopify/ProductVariant/12345 -> 12345)
+  const numericVariantId = variantId.split('/').pop();
+  console.log('Numeric variant ID:', numericVariantId);
+
+  // Build line item properties as Base64 encoded JSON
+  const properties = {};
+  for (let i = 0; i < hookState.hookCount; i++) {
+    properties[`Hook ${i + 1} Color`] = hookState.hookColorNames[i];
   }
+
+  console.log('✓ Line item properties:', properties);
+
+  // Get store domain
+  const storeElement = document.querySelector('shopify-store');
+  const storeDomain = storeElement ? storeElement.getAttribute('store-domain') : null;
+
+  if (!storeDomain) {
+    console.error('❌ Store domain not found');
+    alert('Store configuration error. Please refresh the page.');
+    return;
+  }
+
+  // Encode properties as Base64 URL-safe JSON
+  const propertiesJson = JSON.stringify(properties);
+  const propertiesBase64 = btoa(propertiesJson)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+
+  console.log('Properties JSON:', propertiesJson);
+  console.log('Properties Base64:', propertiesBase64);
+
+  // Build cart permalink with properties
+  // Format: /cart/{variantId}:1?properties={base64EncodedJSON}
+  const cartPermalink = `${storeDomain}/cart/${numericVariantId}:1?properties=${propertiesBase64}`;
+
+  console.log('✓ Cart permalink:', cartPermalink);
+
+  // Redirect to cart permalink (which will add item and redirect to checkout)
+  window.location.href = cartPermalink;
 }

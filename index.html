@@ -265,11 +265,20 @@
                           style="display: none"
                         ></shopify-variant-selector>
 
+                        <!-- Hidden variant ID for cart -->
+                        <div style="display: none;">
+                          <shopify-data
+                            id="currentVariantId"
+                            query="product.selectedOrFirstAvailableVariant.id"
+                          ></shopify-data>
+                        </div>
+
                         <!-- Buy Now Button -->
                         <div class="product-card__buttons">
                           <button
+                            id="buyNowButton"
                             class="product-card__buy-button"
-                            onclick="document.querySelector('shopify-store').buyNow(event)"
+                            onclick="handleCustomBuyNow(event)"
                             shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                           >
                             Buy Now -
