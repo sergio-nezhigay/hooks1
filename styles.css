@@ -210,8 +210,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding: 83px 0;
-  background: #fffcf1;
+  padding: 112px 0;
+  background: white;
 }
 
 .products-title {
@@ -232,27 +232,9 @@ p {
   padding: 0 20px;
 }
 
-.product-card {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 56rem;
-  min-width: 320px;
-  background-color: transparent;
-  border-radius: 0;
-  overflow: auto;
-  box-shadow: none;
-  transition: none;
-}
-
-.product-card:hover {
-  transform: none;
-  box-shadow: none;
-}
-
 .product-card__container {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   gap: 2rem;
   box-sizing: border-box;
 }
@@ -449,11 +431,55 @@ shopify-variant-selector::part(radio) {
 }
 
 /* Preview Canvas */
+.hook-customizer__preview {
+  width: 100%;
+  background: #f3f4f6;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 479px;
+  padding: 10px;
+  gap: 20px;
+  position: relative;
+}
+
+.preview-labels {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  /*justify-content: center;*/
+  width: 100%;
+}
+
+.preview-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #e2725b;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.preview-label-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
 .hook-preview-canvas {
   position: relative;
   width: 100%;
-  background: #f8f8f8;
-  border-radius: 8px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -574,13 +600,6 @@ shopify-variant-selector::part(radio) {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
-@media (max-width: 768px) {
-  .hook-preview-canvas {
-    min-height: 300px;
-    padding: 1.5rem;
-    max-width: 100%;
-  }
-}
 .reviews-section {
   background: #fffcf1;
   padding: 83px 0;
@@ -1301,14 +1320,18 @@ shopify-variant-selector::part(radio) {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .product-card__container {
-    padding-left: 40px;
-    padding-right: 40px;
+    gap: 48px;
   }
 
-  .product-card__media {
-    aspect-ratio: 4/5;
+  .hook-customizer__preview {
+    width: 50%;
+    height: 500px;
+    min-height: 500px;
+  }
+
+  .product-card__details {
     width: 50%;
   }
 
@@ -1368,12 +1391,6 @@ shopify-variant-selector::part(radio) {
     width: 100%;
     max-width: 100%;
   }
-
-  .product-card__container {
-    padding: 1rem;
-    gap: 1rem;
-  }
-
   .product-card__main-image shopify-media {
     width: 100% !important;
     max-width: 280px !important;
