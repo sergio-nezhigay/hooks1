@@ -684,12 +684,17 @@ shopify-variant-selector::part(radio) {
 .hook-count-image {
   width: 81px;
   height: 81px;
-  background: white;
+  min-width: 81px;
+  min-height: 81px;
+  max-width: 81px;
+  max-height: 81px;
+  background: transparent;
   display: flex;
   border-radius: 10px;
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .hook-count-image img {
