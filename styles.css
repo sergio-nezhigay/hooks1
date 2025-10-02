@@ -551,15 +551,47 @@ shopify-variant-selector::part(radio) {
   gap: 1rem;
 }
 
+.hook-option__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .hook-option__label {
   font-weight: 600;
   font-size: 1rem;
   color: #333;
 }
 
+.hook-option__description {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  margin-top: -0.5rem;
+}
+
 .hook-option__selected-name {
   font-weight: 400;
   color: #666;
+}
+
+.clear-color-selection {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  color: #666;
+}
+
+.clear-color-selection:hover {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
 }
 
 /* Hook Count Buttons */
@@ -594,13 +626,14 @@ shopify-variant-selector::part(radio) {
 .hook-option__swatches {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 10px;
+  max-width: 458px;
 }
 
 .hook-color-swatch {
   width: var(--swatch-size);
   height: var(--swatch-size);
-  border: 2px solid #ddd;
+  border: 1px solid transparent;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;

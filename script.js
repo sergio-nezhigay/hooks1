@@ -164,6 +164,7 @@ let hookState = {
   hookColors: ['#ff0000', '#ff0000', '#ff0000'], // Array of colors, one per hook position
   hookColorNames: ['Candy Red', 'Candy Red', 'Candy Red'], // Array of color names
   selectedHookPosition: 0, // Currently selected hook position (0-indexed)
+  selectedInlineColor: null, // Currently selected color from inline selector {hex: '', name: ''}
 };
 
 // Initialize hook customizer after Shopify components are ready
@@ -171,16 +172,19 @@ function initializeHookCustomizer() {
   console.log('=== HOOK CUSTOMIZER INITIALIZATION START ===');
   console.log('Initial state:', JSON.stringify(hookState));
 
-  console.log('Step 1: Initializing color swatches...');
+  console.log('Step 1: Initializing modal color swatches...');
   initColorSwatches();
 
-  console.log('Step 2: Initializing event listeners...');
+  console.log('Step 2: Initializing inline color swatches...');
+  initInlineColorSwatches();
+
+  console.log('Step 3: Initializing event listeners...');
   initEventListeners();
 
-  console.log('Step 3: Initializing line item properties...');
+  console.log('Step 4: Initializing line item properties...');
   updateLineItemProperties();
 
-  console.log('Step 4: Rendering hooks...');
+  console.log('Step 5: Rendering hooks...');
   renderHooks();
 
   console.log('=== HOOK CUSTOMIZER INITIALIZATION COMPLETE ===');
@@ -198,8 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'modalColorSwatchesContainer'
     );
     const hooksContainer = document.getElementById('hooksContainer');
+    const inlineContainer = document.getElementById('inlineColorSwatches');
 
-    if (modalContainer && hooksContainer && !initialized) {
+    if (modalContainer && hooksContainer && inlineContainer && !initialized) {
       initialized = true;
       console.log('✓ Customizer elements found in DOM!');
       obs.disconnect(); // Stop observing
@@ -217,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     if (
       document.getElementById('modalColorSwatchesContainer') &&
+      document.getElementById('inlineColorSwatches') &&
       !initialized
     ) {
       initialized = true;
@@ -285,6 +291,173 @@ function initColorSwatches() {
     container.children.length - 1, // Subtract the hidden input
     'swatches created (including custom color)'
   );
+}
+
+// Generate color swatches in inline selector
+function initInlineColorSwatches() {
+  console.log('initInlineColorSwatches() called');
+  const container = document.getElementById('inlineColorSwatches');
+  console.log('Inline swatches container found:', !!container);
+
+  if (!container) {
+    console.error('ERROR: inlineColorSwatches container not found!');
+    return;
+  }
+
+  console.log('Creating', COLORS.length, 'color swatches in inline selector...');
+
+  COLORS.forEach((color, index) => {
+    const swatch = document.createElement('button');
+    swatch.type = 'button';
+    swatch.className = 'hook-color-swatch';
+    swatch.dataset.colorHex = color.hex;
+    swatch.dataset.colorName = color.name;
+    swatch.style.backgroundColor = color.hex;
+    swatch.setAttribute('aria-label', color.name);
+    swatch.setAttribute('title', color.name);
+
+    swatch.addEventListener('click', handleInlineColorClick);
+    container.appendChild(swatch);
+  });
+
+  // Add custom color picker swatch
+  const customSwatch = document.createElement('button');
+  customSwatch.type = 'button';
+  customSwatch.className = 'hook-color-swatch hook-color-swatch-custom';
+  customSwatch.setAttribute('aria-label', 'Custom Color');
+  customSwatch.setAttribute('title', 'Custom Color');
+  customSwatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M7 1v12M1 7h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>`;
+  customSwatch.addEventListener('click', openInlineCustomColorPicker);
+  container.appendChild(customSwatch);
+
+  // Create hidden color input element for inline selector
+  const colorInput = document.createElement('input');
+  colorInput.type = 'color';
+  colorInput.id = 'inlineCustomColorInput';
+  colorInput.style.display = 'none';
+  colorInput.addEventListener('change', handleInlineCustomColorChange);
+  container.appendChild(colorInput);
+
+  console.log(
+    '✓ Inline color swatches initialized:',
+    container.children.length - 1, // Subtract the hidden input
+    'swatches created (including custom color)'
+  );
+}
+
+// Handle inline color swatch click
+function handleInlineColorClick(event) {
+  const swatch = event.currentTarget;
+  console.log('=== INLINE COLOR SELECTED ===');
+  console.log('Selected color:', swatch.dataset.colorName, swatch.dataset.colorHex);
+
+  // Update state
+  hookState.selectedInlineColor = {
+    hex: swatch.dataset.colorHex,
+    name: swatch.dataset.colorName,
+  };
+
+  // Update visual state of all inline swatches
+  document.querySelectorAll('#inlineColorSwatches .hook-color-swatch').forEach((sw) => {
+    sw.classList.remove('active');
+    sw.innerHTML = '';
+  });
+
+  swatch.classList.add('active');
+  swatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
+    <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+
+  // Show clear button
+  const clearBtn = document.getElementById('clearColorBtn');
+  if (clearBtn) {
+    clearBtn.style.display = 'block';
+  }
+
+  console.log('Updated state:', JSON.stringify(hookState));
+}
+
+// Open custom color picker for inline selector
+function openInlineCustomColorPicker(event) {
+  console.log('=== OPENING INLINE CUSTOM COLOR PICKER ===');
+  event.stopPropagation();
+
+  const colorInput = document.getElementById('inlineCustomColorInput');
+  if (!colorInput) {
+    console.error('Inline custom color input not found!');
+    return;
+  }
+
+  // Set current selected color as the default in the picker
+  const currentColor = hookState.selectedInlineColor?.hex || '#ff0000';
+  colorInput.value = currentColor;
+
+  console.log('Opening native color picker with current color:', currentColor);
+
+  // Trigger the native color picker
+  colorInput.click();
+}
+
+// Handle inline custom color selection from native color picker
+function handleInlineCustomColorChange(event) {
+  const selectedColor = event.target.value;
+  console.log('=== INLINE CUSTOM COLOR SELECTED ===');
+  console.log('Selected color:', selectedColor);
+
+  // Generate a name for the custom color
+  const colorName = `Custom ${selectedColor.toUpperCase()}`;
+
+  // Update state
+  hookState.selectedInlineColor = {
+    hex: selectedColor,
+    name: colorName,
+  };
+
+  // Update visual state - mark custom swatch as active
+  document.querySelectorAll('#inlineColorSwatches .hook-color-swatch').forEach((sw) => {
+    sw.classList.remove('active');
+    sw.innerHTML = '';
+  });
+
+  const customSwatch = document.querySelector('#inlineColorSwatches .hook-color-swatch-custom');
+  if (customSwatch) {
+    customSwatch.classList.add('active');
+    customSwatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
+      <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+  }
+
+  // Show clear button
+  const clearBtn = document.getElementById('clearColorBtn');
+  if (clearBtn) {
+    clearBtn.style.display = 'block';
+  }
+
+  console.log('Updated state:', JSON.stringify(hookState));
+}
+
+// Clear inline color selection
+function clearInlineColorSelection() {
+  console.log('=== CLEARING INLINE COLOR SELECTION ===');
+
+  // Clear state
+  hookState.selectedInlineColor = null;
+
+  // Clear visual state of all inline swatches
+  document.querySelectorAll('#inlineColorSwatches .hook-color-swatch').forEach((sw) => {
+    sw.classList.remove('active');
+    sw.innerHTML = '';
+  });
+
+  // Hide clear button
+  const clearBtn = document.getElementById('clearColorBtn');
+  if (clearBtn) {
+    clearBtn.style.display = 'none';
+  }
+
+  console.log('Inline color selection cleared');
 }
 
 // Initialize event listeners
@@ -639,11 +812,28 @@ function renderHooks() {
       badge.classList.add('active');
     }
 
-    // Click handler to open color picker modal
+    // Click handler - supports both inline color application and modal workflow
     badge.addEventListener('click', (e) => {
       console.log('BADGE CLICKED! Position:', index);
       e.stopPropagation();
-      openColorPickerModal(index);
+
+      // Check if inline color is selected
+      if (hookState.selectedInlineColor) {
+        console.log('Applying inline color:', hookState.selectedInlineColor.name);
+        // Apply the selected inline color to this hook
+        hookState.hookColors[index] = hookState.selectedInlineColor.hex;
+        hookState.hookColorNames[index] = hookState.selectedInlineColor.name;
+
+        // Update line item properties
+        updateLineItemProperties();
+
+        // Re-render hooks
+        renderHooks();
+      } else {
+        // No inline color selected - open modal picker
+        console.log('Opening modal for position:', index);
+        openColorPickerModal(index);
+      }
     });
 
     container.appendChild(badge);
