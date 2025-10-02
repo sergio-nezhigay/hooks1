@@ -376,6 +376,9 @@ function handleInlineColorClick(event) {
     clearBtn.style.display = 'block';
   }
 
+  // Show apply-all container and update text
+  updateApplyAllUI();
+
   console.log('Updated state:', JSON.stringify(hookState));
 }
 
@@ -435,6 +438,9 @@ function handleInlineCustomColorChange(event) {
     clearBtn.style.display = 'block';
   }
 
+  // Show apply-all container and update text
+  updateApplyAllUI();
+
   console.log('Updated state:', JSON.stringify(hookState));
 }
 
@@ -457,7 +463,76 @@ function clearInlineColorSelection() {
     clearBtn.style.display = 'none';
   }
 
+  // Hide apply-all container and uncheck checkbox
+  const applyAllContainer = document.getElementById('applyAllContainer');
+  const applyAllCheckbox = document.getElementById('applyAllCheckbox');
+  if (applyAllContainer) {
+    applyAllContainer.style.display = 'none';
+  }
+  if (applyAllCheckbox) {
+    applyAllCheckbox.checked = false;
+  }
+
   console.log('Inline color selection cleared');
+}
+
+// Update apply-all UI (show/hide and update text)
+function updateApplyAllUI() {
+  const applyAllContainer = document.getElementById('applyAllContainer');
+  const applyAllText = document.getElementById('applyAllText');
+  const applyAllCheckbox = document.getElementById('applyAllCheckbox');
+
+  if (!applyAllContainer || !applyAllText) {
+    console.error('Apply-all UI elements not found');
+    return;
+  }
+
+  if (hookState.selectedInlineColor) {
+    // Show the apply-all container
+    applyAllContainer.style.display = 'block';
+
+    // Update text with selected color name
+    applyAllText.textContent = `Apply ${hookState.selectedInlineColor.name} to all hooks`;
+
+    // Uncheck the checkbox when color changes
+    if (applyAllCheckbox) {
+      applyAllCheckbox.checked = false;
+    }
+
+    console.log('Apply-all UI updated for color:', hookState.selectedInlineColor.name);
+  } else {
+    // Hide the apply-all container
+    applyAllContainer.style.display = 'none';
+  }
+}
+
+// Handle apply-all checkbox change
+function handleApplyAllChange() {
+  const applyAllCheckbox = document.getElementById('applyAllCheckbox');
+
+  if (!applyAllCheckbox) {
+    console.error('Apply-all checkbox not found');
+    return;
+  }
+
+  if (applyAllCheckbox.checked && hookState.selectedInlineColor) {
+    console.log('=== APPLYING COLOR TO ALL HOOKS ===');
+    console.log('Color:', hookState.selectedInlineColor.name);
+
+    // Apply selected color to all hooks
+    for (let i = 0; i < hookState.hookCount; i++) {
+      hookState.hookColors[i] = hookState.selectedInlineColor.hex;
+      hookState.hookColorNames[i] = hookState.selectedInlineColor.name;
+    }
+
+    console.log('All hooks updated to:', hookState.selectedInlineColor.name);
+
+    // Update line item properties
+    updateLineItemProperties();
+
+    // Re-render hooks
+    renderHooks();
+  }
 }
 
 // Initialize event listeners
