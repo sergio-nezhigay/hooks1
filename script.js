@@ -561,16 +561,19 @@ function initEventListeners() {
 // Handle rail style change
 function handleRailStyleChange(event) {
   console.log('=== RAIL STYLE CHANGE ===');
-  console.log('New rail style:', event.target.dataset.railStyle);
+
+  // Get the button element (in case event.target is a child element like img or span)
+  const button = event.currentTarget;
+  console.log('New rail style:', button.dataset.railStyle);
 
   document.querySelectorAll('.rail-style-button').forEach((btn) => {
     btn.classList.remove('active');
     btn.setAttribute('aria-checked', 'false');
   });
-  event.target.classList.add('active');
-  event.target.setAttribute('aria-checked', 'true');
+  button.classList.add('active');
+  button.setAttribute('aria-checked', 'true');
 
-  hookState.railStyle = event.target.dataset.railStyle;
+  hookState.railStyle = button.dataset.railStyle;
   console.log('Updated state:', JSON.stringify(hookState));
 
   updateRailImage();

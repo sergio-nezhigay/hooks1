@@ -211,27 +211,33 @@
                     <div class="hook-customizer__wrapper">
                       <!-- Customization Options -->
                       <div class="hook-customizer__options">
-                        <!-- Rail Style Selector -->
+                        <!-- Choose Your Finish -->
                         <div class="hook-option">
-                          <label class="hook-option__label">Rail Style</label>
-                          <div class="hook-option__buttons" role="radiogroup">
+                          <label class="hook-option__label">Choose Your Finish:</label>
+                          <div class="hook-count-buttons" role="radiogroup">
                             <button
                               type="button"
-                              class="hook-option__button rail-style-button active"
+                              class="hook-count-card rail-style-button active"
                               data-rail-style="style1"
                               role="radio"
                               aria-checked="true"
                             >
-                              Style 1
+                              <div class="hook-count-image" style="background: white;">
+                                <!-- White finish - just white background -->
+                              </div>
+                              <span class="hook-count-label">White</span>
                             </button>
                             <button
                               type="button"
-                              class="hook-option__button rail-style-button"
+                              class="hook-count-card rail-style-button"
                               data-rail-style="style2"
                               role="radio"
                               aria-checked="false"
                             >
-                              Style 2
+                              <div class="hook-count-image">
+                                <img src="assets/oak.webp" alt="Oak" />
+                              </div>
+                              <span class="hook-count-label">Oak</span>
                             </button>
                           </div>
                         </div>
