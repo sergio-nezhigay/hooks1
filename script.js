@@ -1042,6 +1042,29 @@ function updateVariantSelection() {
   }, 100);
 }
 
+// Quantity selector functions
+function incrementQuantity() {
+  const input = document.getElementById('quantityInput');
+  const currentValue = parseInt(input.value);
+  const maxValue = parseInt(input.max);
+
+  if (currentValue < maxValue) {
+    input.value = currentValue + 1;
+    console.log('Quantity increased to:', input.value);
+  }
+}
+
+function decrementQuantity() {
+  const input = document.getElementById('quantityInput');
+  const currentValue = parseInt(input.value);
+  const minValue = parseInt(input.min);
+
+  if (currentValue > minValue) {
+    input.value = currentValue - 1;
+    console.log('Quantity decreased to:', input.value);
+  }
+}
+
 // Handle custom Buy Now with line item properties using cart permalink
 async function handleCustomBuyNow(event) {
   console.log('=== CUSTOM BUY NOW CLICKED ===');
@@ -1101,9 +1124,15 @@ async function handleCustomBuyNow(event) {
   console.log('Properties JSON:', propertiesJson);
   console.log('Properties Base64:', propertiesBase64);
 
+  // Get quantity from input
+  const quantityInput = document.getElementById('quantityInput');
+  const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+  console.log('✓ Quantity:', quantity);
+
   // Build cart permalink with properties
-  // Format: /cart/{variantId}:1?properties={base64EncodedJSON}
-  const cartPermalink = `${storeDomain}/cart/${numericVariantId}:1?properties=${propertiesBase64}`;
+  // Format: /cart/{variantId}:{quantity}?properties={base64EncodedJSON}
+  const cartPermalink = `${storeDomain}/cart/${numericVariantId}:${quantity}?properties=${propertiesBase64}`;
 
   console.log('✓ Cart permalink:', cartPermalink);
 

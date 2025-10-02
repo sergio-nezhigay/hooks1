@@ -354,15 +354,45 @@
                           ></shopify-data>
                         </div>
 
-                        <!-- Buy Now Button -->
-                        <div class="product-card__buttons">
+                        <!-- Quantity and Buy Now -->
+                        <div class="quantity-buy-container">
+                          <!-- Quantity Selector -->
+                          <div class="quantity-selector">
+                            <button
+                              type="button"
+                              class="quantity-btn"
+                              onclick="decrementQuantity()"
+                              aria-label="Decrease quantity"
+                            >
+                              -
+                            </button>
+                            <input
+                              type="number"
+                              id="quantityInput"
+                              class="quantity-input"
+                              value="1"
+                              min="1"
+                              max="99"
+                              readonly
+                            />
+                            <button
+                              type="button"
+                              class="quantity-btn"
+                              onclick="incrementQuantity()"
+                              aria-label="Increase quantity"
+                            >
+                              +
+                            </button>
+                          </div>
+
+                          <!-- Buy Now Button -->
                           <button
                             id="buyNowButton"
                             class="product-card__buy-button"
                             onclick="handleCustomBuyNow(event)"
                             shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                           >
-                            Buy Now
+                            BUY NOW
                           </button>
                         </div>
                       </div>
