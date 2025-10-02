@@ -626,7 +626,12 @@ function renderHooks() {
     badge.className = 'hook-position-badge';
     badge.textContent = String(index + 1).padStart(2, '0'); // Format as 01, 02, etc.
     badge.style.left = `${pos.left}%`;
-    badge.style.top = `${pos.top}%`;
+
+    // Stagger badges vertically in chess board pattern
+    // Even indices (0, 2, 4, ...) go down, odd indices (1, 3, 5, ...) go up
+    const verticalOffset = index % 2 === 0 ? 25 : -25; // Adjust this value to control spacing
+    badge.style.top = `calc(${pos.top}% + ${verticalOffset}px)`;
+
     badge.dataset.position = index;
 
     // Add active class if this is the selected position
