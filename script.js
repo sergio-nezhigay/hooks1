@@ -259,10 +259,30 @@ function initColorSwatches() {
     container.appendChild(swatch);
   });
 
+  // Add custom color picker swatch
+  const customSwatch = document.createElement('button');
+  customSwatch.type = 'button';
+  customSwatch.className = 'hook-color-swatch hook-color-swatch-custom';
+  customSwatch.setAttribute('aria-label', 'Custom Color');
+  customSwatch.setAttribute('title', 'Custom Color');
+  customSwatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M7 1v12M1 7h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>`;
+  customSwatch.addEventListener('click', openCustomColorPicker);
+  container.appendChild(customSwatch);
+
+  // Create hidden color input element
+  const colorInput = document.createElement('input');
+  colorInput.type = 'color';
+  colorInput.id = 'customColorInput';
+  colorInput.style.display = 'none';
+  colorInput.addEventListener('change', handleCustomColorChange);
+  container.appendChild(colorInput);
+
   console.log(
     '✓ Color swatches initialized in modal:',
-    container.children.length,
-    'swatches created'
+    container.children.length - 1, // Subtract the hidden input
+    'swatches created (including custom color)'
   );
 }
 
@@ -386,6 +406,50 @@ function handleColorChange(event) {
   updateLineItemProperties();
 
   renderHooks();
+}
+
+// Open custom color picker (native browser color input)
+function openCustomColorPicker(event) {
+  console.log('=== OPENING CUSTOM COLOR PICKER ===');
+  event.stopPropagation();
+
+  const colorInput = document.getElementById('customColorInput');
+  if (!colorInput) {
+    console.error('Custom color input not found!');
+    return;
+  }
+
+  // Set current color as the default in the picker
+  const currentColor = hookState.hookColors[hookState.selectedHookPosition];
+  colorInput.value = currentColor;
+
+  console.log('Opening native color picker with current color:', currentColor);
+
+  // Trigger the native color picker
+  colorInput.click();
+}
+
+// Handle custom color selection from native color picker
+function handleCustomColorChange(event) {
+  const selectedColor = event.target.value;
+  console.log('=== CUSTOM COLOR SELECTED ===');
+  console.log('Selected color:', selectedColor, 'for position:', hookState.selectedHookPosition);
+
+  // Generate a name for the custom color
+  const colorName = `Custom ${selectedColor.toUpperCase()}`;
+
+  // Update color for the currently selected hook position
+  hookState.hookColors[hookState.selectedHookPosition] = selectedColor;
+  hookState.hookColorNames[hookState.selectedHookPosition] = colorName;
+  console.log('Updated state:', JSON.stringify(hookState));
+
+  // Update line item properties for cart
+  updateLineItemProperties();
+
+  // Render hooks with new color
+  renderHooks();
+
+  // Note: Modal stays open so user can see the change
 }
 
 // Open color picker modal for a specific hook position
