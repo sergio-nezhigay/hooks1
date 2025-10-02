@@ -17,8 +17,10 @@
 
   /* Color Picker Modal Sizing - adjust to control modal size */
   --modal-width-mobile: 90%; /* Width on mobile screens */
-  --modal-width-desktop: 320px; /* Width on desktop screens */
-  --modal-max-height: 400px; /* Maximum height of modal */
+  --modal-width-desktop: 240px; /* Width on desktop screens */
+  --modal-max-height: 280px; /* Maximum height of modal */
+  --swatch-size: 24px; /* Size of color swatches */
+  --swatch-gap: 4px; /* Gap between swatches */
 }
 
 body {
@@ -585,8 +587,8 @@ shopify-variant-selector::part(radio) {
 }
 
 .hook-color-swatch {
-  width: 48px;
-  height: 48px;
+  width: var(--swatch-size);
+  height: var(--swatch-size);
   border: 2px solid #ddd;
   border-radius: 50%;
   cursor: pointer;
@@ -692,13 +694,12 @@ shopify-variant-selector::part(radio) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem;
-  border-bottom: 1px solid #eee;
+  padding: 15px 15px 0;
 }
 
 .color-picker-header h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #333;
 }
@@ -706,13 +707,13 @@ shopify-variant-selector::part(radio) {
 .color-picker-close {
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1;
   color: #999;
   cursor: pointer;
   padding: 0;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -726,36 +727,36 @@ shopify-variant-selector::part(radio) {
 }
 
 .color-picker-body {
-  padding: 1.5rem;
+  padding: 15px;
   max-height: calc(
-    var(--modal-max-height) - 140px
+    var(--modal-max-height) - 100px
   ); /* Subtract header and footer height */
   overflow-y: auto;
 }
 
 .color-picker-swatches {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(7, var(--swatch-size));
+  gap: var(--swatch-gap);
 }
 
 .color-picker-footer {
-  padding: 1rem 1.5rem;
-  border-top: 1px solid #eee;
+  padding: 0 15px 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .color-picker-apply {
   background: #ed8177;
   color: white;
   border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 6px;
-  font-size: 1rem;
+  padding: 4px 24px;
+  border-radius: 5px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  width: 100%;
 }
 
 .color-picker-apply:hover {

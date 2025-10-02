@@ -250,7 +250,7 @@ function initColorSwatches() {
     swatch.setAttribute('title', color.name);
 
     if (index === 0) {
-      swatch.innerHTML = `<svg class="swatch-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      swatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
         <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`;
     }
@@ -373,7 +373,7 @@ function handleColorChange(event) {
   });
 
   swatch.classList.add('active');
-  swatch.innerHTML = `<svg class="swatch-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  swatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
     <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`;
 
@@ -412,7 +412,7 @@ function openColorPickerModal(position) {
     sw.innerHTML = '';
     if (sw.dataset.colorHex === selectedColor) {
       sw.classList.add('active');
-      sw.innerHTML = `<svg class="swatch-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      sw.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
         <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`;
     }
