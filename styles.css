@@ -616,7 +616,7 @@ shopify-variant-selector::part(radio) {
   accent-color: #333;
 }
 
-/* Hook Count Buttons */
+/* Generic Hook Option Buttons (for Rail Style) */
 .hook-option__buttons {
   display: flex;
   gap: 1rem;
@@ -642,6 +642,70 @@ shopify-variant-selector::part(radio) {
   border-color: #333;
   background: #333;
   color: white;
+}
+
+/* Hook Count Buttons */
+.hook-count-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.hook-count-card {
+  width: 101px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  padding-top: 10px;
+  border: 1px solid #12121240;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.hook-count-card:hover {
+  border-color: #ed8177;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(237, 129, 119, 0.2);
+}
+
+.hook-count-card.active {
+  border-color: #ed8177;
+  background: #ed8177;
+}
+
+.hook-count-card.active .hook-count-label {
+  color: white;
+}
+
+.hook-count-image {
+  width: 81px;
+  height: 81px;
+  background: white;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.hook-count-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.hook-count-label {
+  padding: 15px 0 10px;
+  font-size: 17px;
+  line-height: 9px;
+  font-weight: 700;
+  color: #1212128c;
+  text-align: center;
 }
 
 /* Color Swatches */

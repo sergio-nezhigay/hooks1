@@ -581,16 +581,19 @@ function handleRailStyleChange(event) {
 // Handle hook count change
 function handleHookCountChange(event) {
   console.log('=== HOOK COUNT CHANGE ===');
-  console.log('New hook count:', event.target.dataset.hookCount);
+
+  // Get the button element (in case event.target is a child element like img or span)
+  const button = event.currentTarget;
+  console.log('New hook count:', button.dataset.hookCount);
 
   document.querySelectorAll('.hook-count-button').forEach((btn) => {
     btn.classList.remove('active');
     btn.setAttribute('aria-checked', 'false');
   });
-  event.target.classList.add('active');
-  event.target.setAttribute('aria-checked', 'true');
+  button.classList.add('active');
+  button.setAttribute('aria-checked', 'true');
 
-  const newHookCount = parseInt(event.target.dataset.hookCount);
+  const newHookCount = parseInt(button.dataset.hookCount);
   const oldHookCount = hookState.hookCount;
 
   hookState.hookCount = newHookCount;
