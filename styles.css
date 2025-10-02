@@ -207,14 +207,29 @@ p {
          PRODUCTS SECTION
          ==================== */
 .products-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 83px 0;
+  background: #fffcf1;
+}
+
+.products-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #121212;
+  margin: 0;
+  font-family: 'McLaren';
 }
 
 .product-layout {
   display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .product-card {
@@ -222,16 +237,16 @@ p {
   width: 100%;
   max-width: 56rem;
   min-width: 320px;
-  background-color: #fff;
-  border-radius: 0.5rem;
+  background-color: transparent;
+  border-radius: 0;
   overflow: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+  transition: none;
 }
 
 .product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: none;
+  box-shadow: none;
 }
 
 .product-card__container {
@@ -1252,7 +1267,15 @@ shopify-variant-selector::part(radio) {
 
   /* Products Section Desktop */
   .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    padding: 83px 0;
+  }
+
+  .products-title {
+    font-size: 42px;
+  }
+
+  .product-layout {
+    padding: 0 64px;
   }
 
   .product-card__images {
@@ -1327,6 +1350,17 @@ shopify-variant-selector::part(radio) {
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center center;
+  }
+
+  /* Products Section Mobile */
+  .products-grid {
+    padding: 60px 0 40px;
+    gap: 45px;
+  }
+
+  .products-title {
+    font-size: 32px;
+    padding: 0 20px;
   }
 
   .product-card {
