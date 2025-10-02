@@ -677,6 +677,12 @@ shopify-variant-selector::part(radio) {
   background: #ed8177;
 }
 
+.hook-count-card:hover .hook-count-image {
+  border-color: #ed8177;
+}
+
+/*hook-count-image*/
+
 .hook-count-card.active .hook-count-label {
   color: white;
 }
@@ -690,6 +696,7 @@ shopify-variant-selector::part(radio) {
   max-height: 81px;
   background: transparent;
   display: flex;
+  border: 1px solid #dedede;
   border-radius: 10px;
   overflow: hidden;
   align-items: center;
