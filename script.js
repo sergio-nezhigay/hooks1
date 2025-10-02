@@ -177,19 +177,10 @@ function initializeHookCustomizer() {
   console.log('Step 2: Initializing event listeners...');
   initEventListeners();
 
-  console.log('Step 3: Initializing position selector UI...');
-  updatePositionSelectorUI();
-
-  console.log('Step 4: Initializing line item properties...');
+  console.log('Step 3: Initializing line item properties...');
   updateLineItemProperties();
 
-  console.log('Step 5: Setting initial color display...');
-  const nameDisplay = document.getElementById('selectedColorName');
-  if (nameDisplay) {
-    nameDisplay.textContent = `Position 1: ${hookState.hookColorNames[0]}`;
-  }
-
-  console.log('Step 6: Rendering hooks...');
+  console.log('Step 4: Rendering hooks...');
   renderHooks();
 
   console.log('=== HOOK CUSTOMIZER INITIALIZATION COMPLETE ===');
@@ -203,10 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Use MutationObserver to detect when the customizer elements are added to DOM
   const observer = new MutationObserver((mutations, obs) => {
-    const container = document.getElementById('colorSwatchesContainer');
+    const modalContainer = document.getElementById('modalColorSwatchesContainer');
     const hooksContainer = document.getElementById('hooksContainer');
 
-    if (container && hooksContainer && !initialized) {
+    if (modalContainer && hooksContainer && !initialized) {
       initialized = true;
       console.log('✓ Customizer elements found in DOM!');
       obs.disconnect(); // Stop observing
@@ -223,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fallback: Try initialization after a delay if observer doesn't catch it
   setTimeout(() => {
     if (
-      document.getElementById('colorSwatchesContainer') &&
+      document.getElementById('modalColorSwatchesContainer') &&
       !initialized
     ) {
       initialized = true;
@@ -234,18 +225,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 1000);
 });
 
-// Generate color swatches
+// Generate color swatches in modal
 function initColorSwatches() {
   console.log('initColorSwatches() called');
-  const container = document.getElementById('colorSwatchesContainer');
-  console.log('Container found:', !!container);
+  const container = document.getElementById('modalColorSwatchesContainer');
+  console.log('Modal container found:', !!container);
 
   if (!container) {
-    console.error('ERROR: colorSwatchesContainer not found!');
+    console.error('ERROR: modalColorSwatchesContainer not found!');
     return;
   }
 
-  console.log('Creating', COLORS.length, 'color swatches...');
+  console.log('Creating', COLORS.length, 'color swatches in modal...');
 
   COLORS.forEach((color, index) => {
     const swatch = document.createElement('button');
@@ -269,7 +260,7 @@ function initColorSwatches() {
   });
 
   console.log(
-    '✓ Color swatches initialized:',
+    '✓ Color swatches initialized in modal:',
     container.children.length,
     'swatches created'
   );
@@ -357,8 +348,6 @@ function handleHookCountChange(event) {
 
   console.log('Updated state:', JSON.stringify(hookState));
 
-  // Update position selector UI if it exists
-  updatePositionSelectorUI();
   updateLineItemProperties();
 
   updateRailImage();
@@ -393,30 +382,32 @@ function handleColorChange(event) {
   hookState.hookColorNames[hookState.selectedHookPosition] = swatch.dataset.colorName;
   console.log('Updated state:', JSON.stringify(hookState));
 
-  const nameDisplay = document.getElementById('selectedColorName');
-  if (nameDisplay) {
-    nameDisplay.textContent = `Position ${hookState.selectedHookPosition + 1}: ${swatch.dataset.colorName}`;
-  }
-
   // Update line item properties for cart
   updateLineItemProperties();
 
   renderHooks();
 }
 
-// Select a hook position for color editing
-function selectHookPosition(position) {
-  console.log('=== HOOK POSITION SELECTED ===');
+// Open color picker modal for a specific hook position
+function openColorPickerModal(position) {
+  console.log('=== OPENING COLOR PICKER MODAL ===');
   console.log('Position:', position);
 
   hookState.selectedHookPosition = position;
 
-  // Update color swatch display to show the selected position's color
-  const selectedColor = hookState.hookColors[position];
-  const selectedColorName = hookState.hookColorNames[position];
+  // Update modal title
+  const titleElement = document.getElementById('colorPickerTitle');
+  console.log('Title element found:', !!titleElement);
+  if (titleElement) {
+    titleElement.textContent = `Hook Position ${position + 1}:`;
+  }
 
-  // Update active swatch
-  document.querySelectorAll('.hook-color-swatch').forEach((sw) => {
+  // Update active swatch in modal to show current color
+  const selectedColor = hookState.hookColors[position];
+  const swatches = document.querySelectorAll('.hook-color-swatch');
+  console.log('Found swatches:', swatches.length);
+
+  swatches.forEach((sw) => {
     sw.classList.remove('active');
     sw.innerHTML = '';
     if (sw.dataset.colorHex === selectedColor) {
@@ -427,44 +418,34 @@ function selectHookPosition(position) {
     }
   });
 
-  // Update the label
-  const nameDisplay = document.getElementById('selectedColorName');
-  if (nameDisplay) {
-    nameDisplay.textContent = `Position ${position + 1}: ${selectedColorName}`;
+  // Show modal
+  const modal = document.getElementById('colorPickerModal');
+  console.log('Modal element found:', !!modal);
+  console.log('Modal current display:', modal ? modal.style.display : 'N/A');
+
+  if (modal) {
+    modal.style.display = 'flex';
+    console.log('Modal display set to flex');
+    console.log('Modal computed style:', window.getComputedStyle(modal).display);
+  } else {
+    console.error('Modal element not found!');
   }
 
-  // Update position selector buttons if they exist
-  updatePositionSelectorUI();
-
-  // Re-render to show selection
+  // Re-render to show active badge
   renderHooks();
 }
 
-// Update position selector UI buttons
-function updatePositionSelectorUI() {
-  const container = document.getElementById('hookPositionButtons');
-  if (!container) return;
+// Close color picker modal
+function closeColorPickerModal() {
+  console.log('=== CLOSING COLOR PICKER MODAL ===');
 
-  container.innerHTML = '';
-
-  for (let i = 0; i < hookState.hookCount; i++) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'hook-position-button';
-    button.textContent = i + 1;
-    button.dataset.position = i;
-
-    if (i === hookState.selectedHookPosition) {
-      button.classList.add('active');
-    }
-
-    // Show color indicator
-    button.style.borderBottom = `4px solid ${hookState.hookColors[i]}`;
-
-    button.addEventListener('click', () => selectHookPosition(i));
-    container.appendChild(button);
+  const modal = document.getElementById('colorPickerModal');
+  if (modal) {
+    modal.style.display = 'none';
   }
 }
+
+// Note: updatePositionSelectorUI is no longer needed as position badges are rendered directly on hooks
 
 // Update hidden line item property inputs for cart
 function updateLineItemProperties() {
@@ -548,6 +529,7 @@ function renderHooks() {
       filter = 'none';
     }
 
+    // Render hook image
     const hook = document.createElement('img');
     hook.src = hookImage;
     hook.className = 'hook-preview-canvas__hook';
@@ -557,18 +539,29 @@ function renderHooks() {
     hook.style.filter = filter;
     hook.alt = `Hook ${index + 1} - ${hookColorName}`;
     hook.dataset.position = index;
+    container.appendChild(hook);
 
-    // Add click handler to select this hook position
-    hook.style.cursor = 'pointer';
-    hook.addEventListener('click', () => selectHookPosition(index));
+    // Create position number badge overlaid on hook
+    const badge = document.createElement('div');
+    badge.className = 'hook-position-badge';
+    badge.textContent = String(index + 1).padStart(2, '0'); // Format as 01, 02, etc.
+    badge.style.left = `${pos.left}%`;
+    badge.style.top = `${pos.top}%`;
+    badge.dataset.position = index;
 
-    // Highlight selected hook
+    // Add active class if this is the selected position
     if (index === hookState.selectedHookPosition) {
-      hook.style.outline = '3px solid #000';
-      hook.style.outlineOffset = '2px';
+      badge.classList.add('active');
     }
 
-    container.appendChild(hook);
+    // Click handler to open color picker modal
+    badge.addEventListener('click', (e) => {
+      console.log('BADGE CLICKED! Position:', index);
+      e.stopPropagation();
+      openColorPickerModal(index);
+    });
+
+    container.appendChild(badge);
   });
 
   console.log('✓ Rendered', container.children.length, 'hooks to canvas');

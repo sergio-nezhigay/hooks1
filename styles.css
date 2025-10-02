@@ -495,7 +495,7 @@ shopify-variant-selector::part(radio) {
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  /* pointer-events: none; - Removed to allow badge clicks */
 }
 
 .hook-preview-canvas__hook {
@@ -503,6 +503,7 @@ shopify-variant-selector::part(radio) {
   height: auto;
   transition: filter 0.3s ease;
   transform: translate(-50%, -50%);
+  pointer-events: none; /* Prevent hook images from blocking badge clicks */
 }
 
 /* Options */
@@ -600,41 +601,159 @@ shopify-variant-selector::part(radio) {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
-/* Hook Position Selector */
-.hook-option__positions {
+/* Hook Position Number Badges (overlaid on hooks) */
+.hook-position-badge {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #333;
+  border-radius: 50%;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.hook-position-button {
-  min-width: 48px;
-  height: 48px;
-  padding: 0.5rem 1rem;
-  border: 2px solid #ddd;
-  background: white;
-  border-radius: 6px;
-  font-size: 1rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-weight: 600;
-  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  user-select: none;
+}
+
+.hook-position-badge:hover {
+  transform: scale(1.15);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: #ed8177;
+}
+
+.hook-position-badge.active {
+  background: #333;
+  color: white;
+  border-color: #ed8177;
+  box-shadow: 0 0 0 3px rgba(237, 129, 119, 0.3);
+}
+
+/* Color Picker Modal */
+.color-picker-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hook-position-button:hover {
-  border-color: #999;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.color-picker-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 }
 
-.hook-position-button.active {
-  border-color: #333;
-  background: #333;
+.color-picker-content {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.color-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.color-picker-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.color-picker-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.color-picker-close:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.color-picker-body {
+  padding: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.color-picker-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: 0.75rem;
+}
+
+.color-picker-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.color-picker-apply {
+  background: #ed8177;
   color: white;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px #333;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-picker-apply:hover {
+  background: #d96e63;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(237, 129, 119, 0.3);
 }
 
 .reviews-section {
