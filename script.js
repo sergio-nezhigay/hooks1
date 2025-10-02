@@ -161,8 +161,9 @@ const CONFIG = {
 let hookState = {
   railStyle: 'style1',
   hookCount: 3,
-  hookColor: '#ff0000',
-  hookColorName: 'Candy Red',
+  hookColors: ['#ff0000', '#ff0000', '#ff0000'], // Array of colors, one per hook position
+  hookColorNames: ['Candy Red', 'Candy Red', 'Candy Red'], // Array of color names
+  selectedHookPosition: 0, // Currently selected hook position (0-indexed)
 };
 
 // Initialize hook customizer after Shopify components are ready
@@ -176,7 +177,19 @@ function initializeHookCustomizer() {
   console.log('Step 2: Initializing event listeners...');
   initEventListeners();
 
-  console.log('Step 3: Rendering hooks...');
+  console.log('Step 3: Initializing position selector UI...');
+  updatePositionSelectorUI();
+
+  console.log('Step 4: Initializing line item properties...');
+  updateLineItemProperties();
+
+  console.log('Step 5: Setting initial color display...');
+  const nameDisplay = document.getElementById('selectedColorName');
+  if (nameDisplay) {
+    nameDisplay.textContent = `Position 1: ${hookState.hookColorNames[0]}`;
+  }
+
+  console.log('Step 6: Rendering hooks...');
   renderHooks();
 
   console.log('=== HOOK CUSTOMIZER INITIALIZATION COMPLETE ===');
@@ -317,22 +330,52 @@ function handleHookCountChange(event) {
   event.target.classList.add('active');
   event.target.setAttribute('aria-checked', 'true');
 
-  hookState.hookCount = parseInt(event.target.dataset.hookCount);
+  const newHookCount = parseInt(event.target.dataset.hookCount);
+  const oldHookCount = hookState.hookCount;
+
+  hookState.hookCount = newHookCount;
+
+  // Resize color arrays to match new hook count
+  if (newHookCount > oldHookCount) {
+    // Adding hooks - fill with the last color
+    const fillColor = hookState.hookColors[oldHookCount - 1] || '#ff0000';
+    const fillColorName = hookState.hookColorNames[oldHookCount - 1] || 'Candy Red';
+    for (let i = oldHookCount; i < newHookCount; i++) {
+      hookState.hookColors[i] = fillColor;
+      hookState.hookColorNames[i] = fillColorName;
+    }
+  } else {
+    // Removing hooks - truncate arrays
+    hookState.hookColors = hookState.hookColors.slice(0, newHookCount);
+    hookState.hookColorNames = hookState.hookColorNames.slice(0, newHookCount);
+  }
+
+  // Reset selected position if it's now out of bounds
+  if (hookState.selectedHookPosition >= newHookCount) {
+    hookState.selectedHookPosition = newHookCount - 1;
+  }
+
   console.log('Updated state:', JSON.stringify(hookState));
+
+  // Update position selector UI if it exists
+  updatePositionSelectorUI();
+  updateLineItemProperties();
 
   updateRailImage();
   setTimeout(() => renderHooks(), 50);
   updateVariantSelection();
 }
 
-// Handle color change
+// Handle color change for the currently selected hook position
 function handleColorChange(event) {
   const swatch = event.currentTarget;
   console.log('=== COLOR CHANGE ===');
   console.log(
     'New color:',
     swatch.dataset.colorName,
-    swatch.dataset.colorHex
+    swatch.dataset.colorHex,
+    'for position:',
+    hookState.selectedHookPosition
   );
 
   document.querySelectorAll('.hook-color-swatch').forEach((sw) => {
@@ -345,15 +388,104 @@ function handleColorChange(event) {
     <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`;
 
-  hookState.hookColor = swatch.dataset.colorHex;
-  hookState.hookColorName = swatch.dataset.colorName;
+  // Update color for the currently selected hook position
+  hookState.hookColors[hookState.selectedHookPosition] = swatch.dataset.colorHex;
+  hookState.hookColorNames[hookState.selectedHookPosition] = swatch.dataset.colorName;
   console.log('Updated state:', JSON.stringify(hookState));
 
   const nameDisplay = document.getElementById('selectedColorName');
-  if (nameDisplay) nameDisplay.textContent = hookState.hookColorName;
+  if (nameDisplay) {
+    nameDisplay.textContent = `Position ${hookState.selectedHookPosition + 1}: ${swatch.dataset.colorName}`;
+  }
+
+  // Update line item properties for cart
+  updateLineItemProperties();
 
   renderHooks();
-  updateVariantSelection();
+}
+
+// Select a hook position for color editing
+function selectHookPosition(position) {
+  console.log('=== HOOK POSITION SELECTED ===');
+  console.log('Position:', position);
+
+  hookState.selectedHookPosition = position;
+
+  // Update color swatch display to show the selected position's color
+  const selectedColor = hookState.hookColors[position];
+  const selectedColorName = hookState.hookColorNames[position];
+
+  // Update active swatch
+  document.querySelectorAll('.hook-color-swatch').forEach((sw) => {
+    sw.classList.remove('active');
+    sw.innerHTML = '';
+    if (sw.dataset.colorHex === selectedColor) {
+      sw.classList.add('active');
+      sw.innerHTML = `<svg class="swatch-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+    }
+  });
+
+  // Update the label
+  const nameDisplay = document.getElementById('selectedColorName');
+  if (nameDisplay) {
+    nameDisplay.textContent = `Position ${position + 1}: ${selectedColorName}`;
+  }
+
+  // Update position selector buttons if they exist
+  updatePositionSelectorUI();
+
+  // Re-render to show selection
+  renderHooks();
+}
+
+// Update position selector UI buttons
+function updatePositionSelectorUI() {
+  const container = document.getElementById('hookPositionButtons');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  for (let i = 0; i < hookState.hookCount; i++) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'hook-position-button';
+    button.textContent = i + 1;
+    button.dataset.position = i;
+
+    if (i === hookState.selectedHookPosition) {
+      button.classList.add('active');
+    }
+
+    // Show color indicator
+    button.style.borderBottom = `4px solid ${hookState.hookColors[i]}`;
+
+    button.addEventListener('click', () => selectHookPosition(i));
+    container.appendChild(button);
+  }
+}
+
+// Update hidden line item property inputs for cart
+function updateLineItemProperties() {
+  const container = document.getElementById('lineItemPropertiesContainer');
+  if (!container) {
+    console.warn('Line item properties container not found');
+    return;
+  }
+
+  container.innerHTML = '';
+
+  // Add properties for each hook position
+  for (let i = 0; i < hookState.hookCount; i++) {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = `properties[Hook_${i + 1}_Color]`;
+    input.value = hookState.hookColorNames[i];
+    container.appendChild(input);
+  }
+
+  console.log('✓ Updated line item properties for', hookState.hookCount, 'hooks');
 }
 
 // Update rail image
@@ -384,9 +516,8 @@ function renderHooks() {
   console.log(
     'Rendering hooks - Count:',
     hookState.hookCount,
-    'Color:',
-    hookState.hookColorName,
-    hookState.hookColor
+    'Colors:',
+    hookState.hookColorNames
   );
   container.innerHTML = '';
 
@@ -398,30 +529,25 @@ function renderHooks() {
   console.log('Positions array:', positions.length, 'hooks');
 
   const hookSize = CONFIG.hookSizes[hookState.hookCount];
-  const colorNameLower = hookState.hookColorName.toLowerCase();
-  const isRed = colorNameLower.includes('red');
-  const isWhite = colorNameLower === 'white';
-
-  let hookImage = CONFIG.hookTemplate;
-  let filter = hexToFilter(hookState.hookColor);
-
-  if (isRed && CONFIG.hookRed) {
-    hookImage = CONFIG.hookRed;
-    filter = 'none';
-    console.log('Using red hook image (special)');
-  } else if (isWhite && CONFIG.hookWhite) {
-    hookImage = CONFIG.hookWhite;
-    filter = 'none';
-    console.log('Using white hook image (special)');
-  } else {
-    console.log('Using template with color filter');
-  }
-
-  console.log('Hook image:', hookImage);
-  console.log('Hook size:', hookSize);
-  console.log('Filter:', filter);
 
   positions.forEach((pos, index) => {
+    const hookColor = hookState.hookColors[index];
+    const hookColorName = hookState.hookColorNames[index];
+    const colorNameLower = hookColorName.toLowerCase();
+    const isRed = colorNameLower.includes('red');
+    const isWhite = colorNameLower === 'white';
+
+    let hookImage = CONFIG.hookTemplate;
+    let filter = hexToFilter(hookColor);
+
+    if (isRed && CONFIG.hookRed) {
+      hookImage = CONFIG.hookRed;
+      filter = 'none';
+    } else if (isWhite && CONFIG.hookWhite) {
+      hookImage = CONFIG.hookWhite;
+      filter = 'none';
+    }
+
     const hook = document.createElement('img');
     hook.src = hookImage;
     hook.className = 'hook-preview-canvas__hook';
@@ -429,7 +555,19 @@ function renderHooks() {
     hook.style.top = `${pos.top}%`;
     hook.style.width = hookSize;
     hook.style.filter = filter;
-    hook.alt = `Hook ${index + 1}`;
+    hook.alt = `Hook ${index + 1} - ${hookColorName}`;
+    hook.dataset.position = index;
+
+    // Add click handler to select this hook position
+    hook.style.cursor = 'pointer';
+    hook.addEventListener('click', () => selectHookPosition(index));
+
+    // Highlight selected hook
+    if (index === hookState.selectedHookPosition) {
+      hook.style.outline = '3px solid #000';
+      hook.style.outlineOffset = '2px';
+    }
+
     container.appendChild(hook);
   });
 
@@ -470,7 +608,7 @@ function hexToFilter(hex) {
   return `hue-rotate(${hueRotate}deg) saturate(${saturate}%) brightness(${brightness}%)`;
 }
 
-// Update variant selection in Shopify variant selector
+// Update variant selection in Shopify variant selector (only rail style and hook count, no color)
 function updateVariantSelection() {
   console.log('=== UPDATE VARIANT SELECTION ===');
 
@@ -537,54 +675,18 @@ function updateVariantSelection() {
     }
   }, 50);
 
-  // Longer delay to let the first two options update before selecting color
-  setTimeout(() => {
-    // Update Color (select dropdown with name="option-Color")
-    const colorSelect = form.querySelector('[name="option-Color"]');
-
-    if (colorSelect && colorSelect.tagName === 'SELECT') {
-      console.log(`Looking for color: "${hookState.hookColorName}"`);
-      console.log('Available color options:');
-
-      // List all available options
-      const options = colorSelect.querySelectorAll('option');
-      options.forEach((opt, idx) => {
-        console.log(`  Color option[${idx}]: value="${opt.value}"`);
-      });
-
-      // Set the color value
-      const oldValue = colorSelect.value;
-      colorSelect.value = hookState.hookColorName;
-
-      // Only dispatch events if the value actually changed
-      if (oldValue !== colorSelect.value) {
-        colorSelect.dispatchEvent(new Event('change', { bubbles: true }));
-        colorSelect.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-
-      console.log('✓ Set color select to:', hookState.hookColorName, 'Actual value:', colorSelect.value);
-    } else {
-      console.warn('⚠ Color select not found');
-    }
-  }, 100);
-
-  console.log('✓ Variant selection update complete');
+  console.log('✓ Variant selection update complete (Rail Style + Hook Count only)');
 
   // Debug: Check what's currently selected after our changes
   setTimeout(() => {
     const checkedInputs = form.querySelectorAll('input:checked');
-    const selects = form.querySelectorAll('select');
 
     console.log('=== CURRENT SELECTION ===');
     console.log('Checked inputs:', checkedInputs.length);
     checkedInputs.forEach((input, idx) => {
       console.log(`  Checked[${idx}]: ${input.name} = "${input.value}"`);
     });
-
-    selects.forEach((select, idx) => {
-      console.log(`  Select[${idx}]: ${select.name} = "${select.value}"`);
-    });
-  }, 150);
+  }, 100);
 }
 
 // Handle Buy Now button click

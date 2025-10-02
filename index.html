@@ -224,6 +224,19 @@
                           </div>
                         </div>
 
+                        <!-- Hook Position Selector -->
+                        <div class="hook-option">
+                          <label class="hook-option__label">
+                            Select Hook Position to Customize
+                          </label>
+                          <div
+                            class="hook-option__positions"
+                            id="hookPositionButtons"
+                          >
+                            <!-- Position buttons will be generated dynamically -->
+                          </div>
+                        </div>
+
                         <!-- Color Selector -->
                         <div class="hook-option">
                           <label class="hook-option__label">
@@ -231,7 +244,7 @@
                             <span
                               class="hook-option__selected-name"
                               id="selectedColorName"
-                              >Candy Red</span
+                              >Position 1: Candy Red</span
                             >
                           </label>
                           <div
@@ -240,6 +253,11 @@
                           >
                             <!-- Color swatches will be generated dynamically -->
                           </div>
+                        </div>
+
+                        <!-- Hidden container for line item properties -->
+                        <div id="lineItemPropertiesContainer" style="display: none;">
+                          <!-- Hidden inputs for cart properties will be generated dynamically -->
                         </div>
 
                         <!-- Hidden Shopify Variant Selector -->
