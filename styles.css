@@ -12,8 +12,14 @@
   /* Hook Preview Canvas Positioning - adjust to move the preview image */
   --canvas-align-horizontal: center; /* left | center | right */
   --canvas-align-vertical: center; /* flex-start | center | flex-end */
-  --canvas-margin-top: 100px; /* Add top margin if needed */
+  --canvas-margin-top: 90px; /* Add top margin if needed */
   --canvas-margin-bottom: auto; /* Add bottom margin if needed */
+
+  /* Rail 3D Rotation - adjust to create perspective effect */
+  --rail-rotate-x: 15deg; /* Rotation around X-axis (tilt up/down) */
+  --rail-rotate-y: 0deg; /* Rotation around Y-axis (turn left/right) */
+  --rail-rotate-z: -11deg; /* Rotation around Z-axis (tilt clockwise/counterclockwise) */
+  --rail-scale: 1; /* Scale the rail (1 = normal size) */
 
   /* Color Picker Modal Sizing - adjust to control modal size */
   --modal-width-mobile: 90%; /* Width on mobile screens */
@@ -502,12 +508,17 @@ shopify-variant-selector::part(radio) {
   flex-direction: column;
   align-items: var(--canvas-align-horizontal);
   justify-content: var(--canvas-align-vertical);
+  perspective: 1000px; /* Add perspective for 3D effect */
 }
 
 .hook-preview-canvas__rail {
   width: 100%;
   height: auto;
   display: block;
+  transform: rotateX(var(--rail-rotate-x)) rotateY(var(--rail-rotate-y))
+    rotateZ(var(--rail-rotate-z)) scale(var(--rail-scale));
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
 }
 
 .hook-preview-canvas__hooks {
@@ -523,7 +534,7 @@ shopify-variant-selector::part(radio) {
   position: absolute;
   height: auto;
   transition: filter 0.3s ease;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotateZ(var(--rail-rotate-z));
   pointer-events: none; /* Prevent hook images from blocking badge clicks */
 }
 
@@ -624,7 +635,8 @@ shopify-variant-selector::part(radio) {
 
 /* Custom Color Swatch */
 .hook-color-swatch-custom {
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     #ff0000 0%,
     #ff8c00 14%,
     #ffd700 28%,
@@ -632,7 +644,8 @@ shopify-variant-selector::part(radio) {
     #008080 57%,
     #4169e1 71%,
     #800080 85%,
-    #ff69b4 100%) !important;
+    #ff69b4 100%
+  ) !important;
   border-color: #999 !important;
   position: relative;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;

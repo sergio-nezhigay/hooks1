@@ -132,28 +132,28 @@ const CONFIG = {
     9: '4%',
   },
   hook3Positions: [
-    { left: 20, top: 48 },
-    { left: 54.5, top: 44 },
-    { left: 89, top: 40 },
+    { left: 20, top: 58 },
+    { left: 54.5, top: 36 },
+    { left: 89, top: 18 },
   ],
   hook6Positions: [
-    { left: 10, top: 42 },
-    { left: 26, top: 40 },
-    { left: 42, top: 38 },
-    { left: 58, top: 36 },
-    { left: 74, top: 34 },
-    { left: 90, top: 32 },
+    { left: 8, top: 72 },
+    { left: 26, top: 55 },
+    { left: 42, top: 39 },
+    { left: 58, top: 22 },
+    { left: 74, top: 6 },
+    { left: 90, top: -10 },
   ],
   hook9Positions: [
-    { left: 7, top: 42 },
-    { left: 18, top: 40 },
-    { left: 29, top: 38 },
-    { left: 40, top: 36 },
-    { left: 51, top: 34 },
-    { left: 62, top: 32 },
-    { left: 73, top: 30 },
-    { left: 84, top: 31 },
-    { left: 95, top: 32 },
+    { left: 7, top: 100 },
+    { left: 18, top: 81.875 },
+    { left: 29, top: 63.75 },
+    { left: 40, top: 45.625 },
+    { left: 51, top: 27.5 },
+    { left: 62, top: 9.375 },
+    { left: 73, top: -8.75 },
+    { left: 84, top: -26.875 },
+    { left: 95, top: -45 },
   ],
 };
 
@@ -194,7 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Use MutationObserver to detect when the customizer elements are added to DOM
   const observer = new MutationObserver((mutations, obs) => {
-    const modalContainer = document.getElementById('modalColorSwatchesContainer');
+    const modalContainer = document.getElementById(
+      'modalColorSwatchesContainer'
+    );
     const hooksContainer = document.getElementById('hooksContainer');
 
     if (modalContainer && hooksContainer && !initialized) {
@@ -241,8 +243,7 @@ function initColorSwatches() {
   COLORS.forEach((color, index) => {
     const swatch = document.createElement('button');
     swatch.type = 'button';
-    swatch.className =
-      'hook-color-swatch' + (index === 0 ? ' active' : '');
+    swatch.className = 'hook-color-swatch' + (index === 0 ? ' active' : '');
     swatch.dataset.colorHex = color.hex;
     swatch.dataset.colorName = color.name;
     swatch.style.backgroundColor = color.hex;
@@ -350,7 +351,8 @@ function handleHookCountChange(event) {
   if (newHookCount > oldHookCount) {
     // Adding hooks - fill with the last color
     const fillColor = hookState.hookColors[oldHookCount - 1] || '#ff0000';
-    const fillColorName = hookState.hookColorNames[oldHookCount - 1] || 'Candy Red';
+    const fillColorName =
+      hookState.hookColorNames[oldHookCount - 1] || 'Candy Red';
     for (let i = oldHookCount; i < newHookCount; i++) {
       hookState.hookColors[i] = fillColor;
       hookState.hookColorNames[i] = fillColorName;
@@ -398,8 +400,10 @@ function handleColorChange(event) {
   </svg>`;
 
   // Update color for the currently selected hook position
-  hookState.hookColors[hookState.selectedHookPosition] = swatch.dataset.colorHex;
-  hookState.hookColorNames[hookState.selectedHookPosition] = swatch.dataset.colorName;
+  hookState.hookColors[hookState.selectedHookPosition] =
+    swatch.dataset.colorHex;
+  hookState.hookColorNames[hookState.selectedHookPosition] =
+    swatch.dataset.colorName;
   console.log('Updated state:', JSON.stringify(hookState));
 
   // Update line item properties for cart
@@ -433,7 +437,12 @@ function openCustomColorPicker(event) {
 function handleCustomColorChange(event) {
   const selectedColor = event.target.value;
   console.log('=== CUSTOM COLOR SELECTED ===');
-  console.log('Selected color:', selectedColor, 'for position:', hookState.selectedHookPosition);
+  console.log(
+    'Selected color:',
+    selectedColor,
+    'for position:',
+    hookState.selectedHookPosition
+  );
 
   // Generate a name for the custom color
   const colorName = `Custom ${selectedColor.toUpperCase()}`;
@@ -490,7 +499,10 @@ function openColorPickerModal(position) {
   if (modal) {
     modal.style.display = 'flex';
     console.log('Modal display set to flex');
-    console.log('Modal computed style:', window.getComputedStyle(modal).display);
+    console.log(
+      'Modal computed style:',
+      window.getComputedStyle(modal).display
+    );
   } else {
     console.error('Modal element not found!');
   }
@@ -530,7 +542,11 @@ function updateLineItemProperties() {
     container.appendChild(input);
   }
 
-  console.log('✓ Updated line item properties for', hookState.hookCount, 'hooks');
+  console.log(
+    '✓ Updated line item properties for',
+    hookState.hookCount,
+    'hooks'
+  );
 }
 
 // Update rail image
@@ -643,8 +659,7 @@ function hexToFilter(hex) {
 
   let s = 0;
   if (max !== min) {
-    s =
-      l > 0.5 ? (max - min) / (2 - max - min) : (max - min) / (max + min);
+    s = l > 0.5 ? (max - min) / (2 - max - min) : (max - min) / (max + min);
   }
 
   let h = 0;
@@ -693,7 +708,8 @@ function updateVariantSelection() {
 
   // Update Rail Style (radio buttons with name="option-Rail Style")
   const railStyleInputs = form.querySelectorAll('[name="option-Rail Style"]');
-  const railStyleValue = hookState.railStyle === 'style1' ? 'Style 1' : 'Style 2';
+  const railStyleValue =
+    hookState.railStyle === 'style1' ? 'Style 1' : 'Style 2';
   console.log(`Looking for rail style: ${railStyleValue}`);
 
   let railStyleSelected = false;
@@ -713,7 +729,9 @@ function updateVariantSelection() {
   // Small delay to let the first option update
   setTimeout(() => {
     // Update Hook Count (radio buttons with name="option-Number of Hooks")
-    const hookCountInputs = form.querySelectorAll('[name="option-Number of Hooks"]');
+    const hookCountInputs = form.querySelectorAll(
+      '[name="option-Number of Hooks"]'
+    );
     console.log(`Looking for hook count: ${hookState.hookCount}`);
 
     let hookCountSelected = false;
@@ -732,7 +750,9 @@ function updateVariantSelection() {
     }
   }, 50);
 
-  console.log('✓ Variant selection update complete (Rail Style + Hook Count only)');
+  console.log(
+    '✓ Variant selection update complete (Rail Style + Hook Count only)'
+  );
 
   // Debug: Check what's currently selected after our changes
   setTimeout(() => {
@@ -755,7 +775,7 @@ async function handleCustomBuyNow(event) {
   updateVariantSelection();
 
   // Wait for variant selection to complete
-  await new Promise(resolve => setTimeout(resolve, 250));
+  await new Promise((resolve) => setTimeout(resolve, 250));
 
   // Get variant ID from the shopify-data element
   const variantIdElement = document.getElementById('currentVariantId');
@@ -765,7 +785,9 @@ async function handleCustomBuyNow(event) {
 
   if (!variantId) {
     console.error('❌ Could not find variant ID');
-    alert('Could not determine product variant. Please refresh the page and try again.');
+    alert(
+      'Could not determine product variant. Please refresh the page and try again.'
+    );
     return;
   }
 
@@ -783,7 +805,9 @@ async function handleCustomBuyNow(event) {
 
   // Get store domain
   const storeElement = document.querySelector('shopify-store');
-  const storeDomain = storeElement ? storeElement.getAttribute('store-domain') : null;
+  const storeDomain = storeElement
+    ? storeElement.getAttribute('store-domain')
+    : null;
 
   if (!storeDomain) {
     console.error('❌ Store domain not found');
