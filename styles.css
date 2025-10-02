@@ -6,6 +6,21 @@
 /* ====================
            BASE STYLES
            ==================== */
+
+/* CSS CUSTOMIZATION VARIABLES */
+:root {
+  /* Hook Preview Canvas Positioning - adjust to move the preview image */
+  --canvas-align-horizontal: center; /* left | center | right */
+  --canvas-align-vertical: center; /* flex-start | center | flex-end */
+  --canvas-margin-top: 100px; /* Add top margin if needed */
+  --canvas-margin-bottom: auto; /* Add bottom margin if needed */
+
+  /* Color Picker Modal Sizing - adjust to control modal size */
+  --modal-width-mobile: 90%; /* Width on mobile screens */
+  --modal-width-desktop: 320px; /* Width on desktop screens */
+  --modal-max-height: 400px; /* Maximum height of modal */
+}
+
 body {
   font-family: 'Zain', sans-serif;
   font-weight: 400;
@@ -432,6 +447,7 @@ shopify-variant-selector::part(radio) {
 
 /* Preview Canvas */
 .hook-customizer__preview {
+  position: relative; /* Required for modal positioning */
   width: 100%;
   background: #f3f4f6;
   border-radius: 10px;
@@ -442,7 +458,6 @@ shopify-variant-selector::part(radio) {
   min-height: 479px;
   padding: 10px;
   gap: 20px;
-  position: relative;
 }
 
 .preview-labels {
@@ -480,7 +495,11 @@ shopify-variant-selector::part(radio) {
   position: relative;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: var(--canvas-margin-top) auto var(--canvas-margin-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items: var(--canvas-align-horizontal);
+  justify-content: var(--canvas-align-vertical);
 }
 
 .hook-preview-canvas__rail {
@@ -638,25 +657,13 @@ shopify-variant-selector::part(radio) {
 
 /* Color Picker Modal */
 .color-picker-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.color-picker-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  /* Mobile: bottom-center */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .color-picker-content {
@@ -664,9 +671,8 @@ shopify-variant-selector::part(radio) {
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  max-width: 450px;
-  width: 90%;
-  max-height: 80vh;
+  width: var(--modal-width-mobile);
+  max-height: var(--modal-max-height);
   overflow: hidden;
   animation: modalSlideIn 0.3s ease;
 }
@@ -721,7 +727,9 @@ shopify-variant-selector::part(radio) {
 
 .color-picker-body {
   padding: 1.5rem;
-  max-height: 400px;
+  max-height: calc(
+    var(--modal-max-height) - 140px
+  ); /* Subtract header and footer height */
   overflow-y: auto;
 }
 
@@ -1500,6 +1508,17 @@ shopify-variant-selector::part(radio) {
     border-right: 1px solid #e6ddba;
     padding-right: 47px;
     max-width: 376px;
+  }
+
+  /* Desktop: Color picker positioned bottom-right */
+  .color-picker-modal {
+    left: auto;
+    right: 10px;
+    transform: none;
+  }
+
+  .color-picker-content {
+    width: var(--modal-width-desktop);
   }
 }
 

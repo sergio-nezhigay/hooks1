@@ -136,6 +136,24 @@
                       id="hooksContainer"
                     ></div>
                   </div>
+
+                  <!-- Color Picker Modal (positioned inside hook-customizer__preview) -->
+                  <div id="colorPickerModal" class="color-picker-modal" style="display: none;">
+                    <div class="color-picker-content">
+                      <div class="color-picker-header">
+                        <h3 id="colorPickerTitle">Hook Position 1:</h3>
+                        <button class="color-picker-close" onclick="closeColorPickerModal()" aria-label="Close">&times;</button>
+                      </div>
+                      <div class="color-picker-body">
+                        <div class="color-picker-swatches" id="modalColorSwatchesContainer">
+                          <!-- Color swatches will be generated dynamically -->
+                        </div>
+                      </div>
+                      <div class="color-picker-footer">
+                        <button class="color-picker-apply" onclick="closeColorPickerModal()">Apply</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="product-card__details">
                   <div class="product-card__info">
@@ -926,25 +944,6 @@
     ></shopify-store>
 
     <shopify-cart id="cart"></shopify-cart>
-
-    <!-- Color Picker Modal -->
-    <div id="colorPickerModal" class="color-picker-modal" style="display: none;">
-      <div class="color-picker-overlay" onclick="closeColorPickerModal()"></div>
-      <div class="color-picker-content">
-        <div class="color-picker-header">
-          <h3 id="colorPickerTitle">Hook Position 1:</h3>
-          <button class="color-picker-close" onclick="closeColorPickerModal()" aria-label="Close">&times;</button>
-        </div>
-        <div class="color-picker-body">
-          <div class="color-picker-swatches" id="modalColorSwatchesContainer">
-            <!-- Color swatches will be generated dynamically -->
-          </div>
-        </div>
-        <div class="color-picker-footer">
-          <button class="color-picker-apply" onclick="closeColorPickerModal()">Apply</button>
-        </div>
-      </div>
-    </div>
 
     <script src="script.js"></script>
   </body>
