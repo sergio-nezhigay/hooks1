@@ -329,19 +329,6 @@ p {
   gap: 0.25rem;
 }
 
-.product-card__vendor {
-  display: flex;
-  justify-content: space-between;
-}
-
-.product-card__vendor-text {
-  opacity: 0.5;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
 .product-card__title {
   font-family: 'McLaren', cursive;
   font-size: 2.25rem;
@@ -364,6 +351,17 @@ p {
 .product-rating__text {
   font-size: 0.875rem;
   color: #666;
+}
+
+.product-badge {
+  background-color: #ff8a80;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0.75rem 0;
 }
 
 .product-card__price {

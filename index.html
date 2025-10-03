@@ -187,11 +187,6 @@
                 </div>
                 <div class="product-card__details">
                   <div class="product-card__info">
-                    <div class="product-card__vendor">
-                      <span class="product-card__vendor-text">
-                        <shopify-data query="product.vendor"></shopify-data>
-                      </span>
-                    </div>
                     <div class="product-rating">
                       <div
                         class="review-stars"
@@ -200,8 +195,11 @@
                       ></div>
                       <span class="product-rating__text">12 reviews</span>
                     </div>
+                    <div class="product-badge">
+                      Over 100,000 hooks installed over the last year!
+                    </div>
                     <h1 class="product-card__title">
-                      <shopify-data query="product.title"></shopify-data>
+                      <shopify-data query="product.title"></shopify-data> - <span id="railFinishText">White Finish</span>
                     </h1>
 
                     <div class="product-card__price">

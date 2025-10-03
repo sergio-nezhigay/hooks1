@@ -827,6 +827,12 @@ function handleRailStyleChange(event) {
   hookState.railStyle = button.dataset.railStyle;
   console.log('Updated state:', JSON.stringify(hookState));
 
+  // Update finish text in title
+  const finishText = document.getElementById('railFinishText');
+  if (finishText) {
+    finishText.textContent = button.dataset.railStyle === 'style1' ? 'White Finish' : 'Oak Finish';
+  }
+
   updateRailImage();
   setTimeout(() => renderHooks(), 50);
   updateVariantSelection();
