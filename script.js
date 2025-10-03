@@ -88,7 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Product Info Accordion functionality
 function initProductInfoAccordion() {
-  const productInfoQuestions = document.querySelectorAll('.product-info-question');
+  const productInfoQuestions = document.querySelectorAll(
+    '.product-info-question'
+  );
 
   if (productInfoQuestions.length === 0) {
     console.log('Product info accordion buttons not found yet, will retry...');
@@ -124,7 +126,11 @@ function initProductInfoAccordion() {
     });
   });
 
-  console.log('Product info accordion initialized with', productInfoQuestions.length, 'items');
+  console.log(
+    'Product info accordion initialized with',
+    productInfoQuestions.length,
+    'items'
+  );
   return true;
 }
 
@@ -132,8 +138,10 @@ function initProductInfoAccordion() {
 function handleMetafieldFallbacks() {
   const metafieldContents = document.querySelectorAll('[data-metafield]');
 
-  metafieldContents.forEach(container => {
-    const shopifyData = container.querySelector('shopify-data.metafield-content');
+  metafieldContents.forEach((container) => {
+    const shopifyData = container.querySelector(
+      'shopify-data.metafield-content'
+    );
     const fallbackSpan = container.querySelector('.fallback-content');
 
     if (!shopifyData || !fallbackSpan) return;
@@ -146,7 +154,12 @@ function handleMetafieldFallbacks() {
         // Metafield has data - show it, hide fallback
         shopifyData.style.display = 'block';
         fallbackSpan.style.display = 'none';
-        console.log('Using metafield data for:', container.dataset.metafield, '-', metafieldText);
+        console.log(
+          'Using metafield data for:',
+          container.dataset.metafield,
+          '-',
+          metafieldText
+        );
       } else {
         // No metafield data - show fallback
         shopifyData.style.display = 'none';
@@ -220,8 +233,31 @@ const CONFIG = {
     },
   },
   hookTemplate: 'assets/hooks/hook-template.png',
-  hookRed: 'assets/hooks/hook-red.png',
-  hookWhite: 'assets/hooks/hook-white.png',
+  // Pre-rendered hook images for accurate colors
+  // Map color names (lowercase) to image paths
+  hookImages: {
+    black: 'assets/hooks/hook-black.webp',
+    'dark gray': 'assets/hooks/hook-dark-gray.webp',
+    gray: 'assets/hooks/hook-gray.webp',
+    silver: 'assets/hooks/hook-silver.webp',
+    'light gray': 'assets/hooks/hook-light-gray.webp',
+    platinum: 'assets/hooks/hook-platinum.webp',
+    'antique white': 'assets/hooks/hook-antique-white.webp',
+    white: 'assets/hooks/hook-white.webp',
+    'terra cotta': 'assets/hooks/hook-terra-cotta.webp',
+    red: 'assets/hooks/hook-red.webp',
+    'hot pink': 'assets/hooks/hook-hot-pink.webp',
+    'deep purple': 'assets/hooks/hook-deep-purple.webp',
+    orange: 'assets/hooks/hook-orange.webp',
+    yellow: 'assets/hooks/hook-yellow.webp',
+    'dark green': 'assets/hooks/hook-dark-green.webp',
+    'light green': 'assets/hooks/hook-light-green.webp',
+    green: 'assets/hooks/hook-green.webp',
+    lime: 'assets/hooks/hook-lime.webp',
+    navy: 'assets/hooks/hook-navy.webp',
+    'sky blue': 'assets/hooks/hook-sky-blue.webp',
+    'powder blue': 'assets/hooks/hook-powder-blue.webp',
+  },
   hookSizes: {
     3: '14%',
     6: '7%',
@@ -368,17 +404,27 @@ function logProductMetafield() {
           console.log(metafieldContent);
           console.log('Content length:', metafieldContent.length, 'characters');
         } else {
-          console.log('⚠ Metafield specifications.dimensions is empty or not found');
+          console.log(
+            '⚠ Metafield specifications.dimensions is empty or not found'
+          );
           console.log('Make sure:');
-          console.log('  1. The metafield exists with namespace "specifications" and key "dimensions"');
-          console.log('  2. You have a public-access-token in the shopify-store component');
-          console.log('  3. The metafield is exposed to Storefront API (PUBLIC_READ access)');
+          console.log(
+            '  1. The metafield exists with namespace "specifications" and key "dimensions"'
+          );
+          console.log(
+            '  2. You have a public-access-token in the shopify-store component'
+          );
+          console.log(
+            '  3. The metafield is exposed to Storefront API (PUBLIC_READ access)'
+          );
         }
 
         // Clean up
         loggerContext.remove();
       } else {
-        console.log('⚠ Metafield output element not found - component may not have rendered');
+        console.log(
+          '⚠ Metafield output element not found - component may not have rendered'
+        );
       }
     }, 2000);
   }, 500);
@@ -455,7 +501,11 @@ function initInlineColorSwatches() {
     return;
   }
 
-  console.log('Creating', COLORS.length, 'color swatches in inline selector...');
+  console.log(
+    'Creating',
+    COLORS.length,
+    'color swatches in inline selector...'
+  );
 
   COLORS.forEach((color, index) => {
     const swatch = document.createElement('button');
@@ -502,7 +552,11 @@ function initInlineColorSwatches() {
 function handleInlineColorClick(event) {
   const swatch = event.currentTarget;
   console.log('=== INLINE COLOR SELECTED ===');
-  console.log('Selected color:', swatch.dataset.colorName, swatch.dataset.colorHex);
+  console.log(
+    'Selected color:',
+    swatch.dataset.colorName,
+    swatch.dataset.colorHex
+  );
 
   // Update state
   hookState.selectedInlineColor = {
@@ -511,10 +565,12 @@ function handleInlineColorClick(event) {
   };
 
   // Update visual state of all inline swatches
-  document.querySelectorAll('#inlineColorSwatches .hook-color-swatch').forEach((sw) => {
-    sw.classList.remove('active');
-    sw.innerHTML = '';
-  });
+  document
+    .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
+    .forEach((sw) => {
+      sw.classList.remove('active');
+      sw.innerHTML = '';
+    });
 
   swatch.classList.add('active');
   swatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
@@ -570,12 +626,16 @@ function handleInlineCustomColorChange(event) {
   };
 
   // Update visual state - mark custom swatch as active
-  document.querySelectorAll('#inlineColorSwatches .hook-color-swatch').forEach((sw) => {
-    sw.classList.remove('active');
-    sw.innerHTML = '';
-  });
+  document
+    .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
+    .forEach((sw) => {
+      sw.classList.remove('active');
+      sw.innerHTML = '';
+    });
 
-  const customSwatch = document.querySelector('#inlineColorSwatches .hook-color-swatch-custom');
+  const customSwatch = document.querySelector(
+    '#inlineColorSwatches .hook-color-swatch-custom'
+  );
   if (customSwatch) {
     customSwatch.classList.add('active');
     customSwatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
@@ -603,10 +663,12 @@ function clearInlineColorSelection() {
   hookState.selectedInlineColor = null;
 
   // Clear visual state of all inline swatches
-  document.querySelectorAll('#inlineColorSwatches .hook-color-swatch').forEach((sw) => {
-    sw.classList.remove('active');
-    sw.innerHTML = '';
-  });
+  document
+    .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
+    .forEach((sw) => {
+      sw.classList.remove('active');
+      sw.innerHTML = '';
+    });
 
   // Hide clear button
   const clearBtn = document.getElementById('clearColorBtn');
@@ -650,7 +712,10 @@ function updateApplyAllUI() {
       applyAllCheckbox.checked = false;
     }
 
-    console.log('Apply-all UI updated for color:', hookState.selectedInlineColor.name);
+    console.log(
+      'Apply-all UI updated for color:',
+      hookState.selectedInlineColor.name
+    );
   } else {
     // Hide the apply-all container
     applyAllContainer.style.display = 'none';
@@ -756,8 +821,7 @@ function handleHookCountChange(event) {
   if (newHookCount > oldHookCount) {
     // Adding hooks - fill with the last color
     const fillColor = hookState.hookColors[oldHookCount - 1] || '#FF0800';
-    const fillColorName =
-      hookState.hookColorNames[oldHookCount - 1] || 'Red';
+    const fillColorName = hookState.hookColorNames[oldHookCount - 1] || 'Red';
     for (let i = oldHookCount; i < newHookCount; i++) {
       hookState.hookColors[i] = fillColor;
       hookState.hookColorNames[i] = fillColorName;
@@ -1000,18 +1064,20 @@ function renderHooks() {
     const hookColor = hookState.hookColors[index];
     const hookColorName = hookState.hookColorNames[index];
     const colorNameLower = hookColorName.toLowerCase();
-    const isRed = colorNameLower.includes('red');
-    const isWhite = colorNameLower === 'white';
 
     let hookImage = CONFIG.hookTemplate;
     let filter = hexToFilter(hookColor);
 
-    if (isRed && CONFIG.hookRed) {
-      hookImage = CONFIG.hookRed;
+    // Check if we have a pre-rendered image for this color
+    if (CONFIG.hookImages[colorNameLower]) {
+      hookImage = CONFIG.hookImages[colorNameLower];
       filter = 'none';
-    } else if (isWhite && CONFIG.hookWhite) {
-      hookImage = CONFIG.hookWhite;
-      filter = 'none';
+      console.log(
+        `Using pre-rendered image for ${hookColorName}: ${hookImage}`
+      );
+    } else {
+      // Fallback: use template with CSS filter for custom colors
+      console.log(`Using CSS filter for ${hookColorName} (${hookColor})`);
     }
 
     // Render hook image
@@ -1051,7 +1117,10 @@ function renderHooks() {
 
       // Check if inline color is selected
       if (hookState.selectedInlineColor) {
-        console.log('Applying inline color:', hookState.selectedInlineColor.name);
+        console.log(
+          'Applying inline color:',
+          hookState.selectedInlineColor.name
+        );
         // Apply the selected inline color to this hook
         hookState.hookColors[index] = hookState.selectedInlineColor.hex;
         hookState.hookColorNames[index] = hookState.selectedInlineColor.name;
