@@ -184,22 +184,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Configuration - Color options and image paths
 const COLORS = [
-  { name: 'Candy Red', hex: '#ff0000' },
-  { name: 'Coral', hex: '#ff7f50' },
-  { name: 'Orange', hex: '#ff8c00' },
-  { name: 'Sunny Yellow', hex: '#ffd700' },
-  { name: 'Lime Green', hex: '#32cd32' },
-  { name: 'Forest Green', hex: '#228b22' },
-  { name: 'Teal', hex: '#008080' },
-  { name: 'Sky Blue', hex: '#87ceeb' },
-  { name: 'Navy Blue', hex: '#000080' },
-  { name: 'Royal Blue', hex: '#4169e1' },
-  { name: 'Purple', hex: '#800080' },
-  { name: 'Lavender', hex: '#b57edc' },
-  { name: 'Pink', hex: '#ff69b4' },
-  { name: 'Charcoal', hex: '#36454f' },
-  { name: 'Black', hex: '#000000' },
-  { name: 'White', hex: '#ffffff' },
+  { name: 'Black', hex: '#121212' },
+  { name: 'Dark Gray', hex: '#4B4B4B' },
+  { name: 'Gray', hex: '#A9A9A9' },
+  { name: 'Silver', hex: '#C0C0C0' },
+  { name: 'Light Gray', hex: '#D3D3D3' },
+  { name: 'Platinum', hex: '#E8E8E8' },
+  { name: 'Antique White', hex: '#FAEBD7' },
+  { name: 'Terra Cotta', hex: '#E2725B' },
+  { name: 'Red', hex: '#FF0800' },
+  { name: 'Hot Pink', hex: '#FF69B4' },
+  { name: 'Deep Purple', hex: '#673AB7' },
+  { name: 'Orange', hex: '#FFA500' },
+  { name: 'Yellow', hex: '#FFFF00' },
+  { name: 'Dark Green', hex: '#0F4813' },
+  { name: 'Light Green', hex: '#A7D3A0' },
+  { name: 'Green', hex: '#14771F' },
+  { name: 'Lime', hex: '#16B210' },
+  { name: 'Navy', hex: '#000080' },
+  { name: 'Sky Blue', hex: '#87CEEB' },
+  { name: 'Powder Blue', hex: '#B0E0E6' },
 ];
 
 const CONFIG = {
@@ -253,8 +257,8 @@ const CONFIG = {
 let hookState = {
   railStyle: 'style1',
   hookCount: 3,
-  hookColors: ['#ff0000', '#ff0000', '#ff0000'], // Array of colors, one per hook position
-  hookColorNames: ['Candy Red', 'Candy Red', 'Candy Red'], // Array of color names
+  hookColors: ['#FF0800', '#FF0800', '#FF0800'], // Array of colors, one per hook position
+  hookColorNames: ['Red', 'Red', 'Red'], // Array of color names
   selectedHookPosition: 0, // Currently selected hook position (0-indexed)
   selectedInlineColor: null, // Currently selected color from inline selector {hex: '', name: ''}
 };
@@ -541,7 +545,7 @@ function openInlineCustomColorPicker(event) {
   }
 
   // Set current selected color as the default in the picker
-  const currentColor = hookState.selectedInlineColor?.hex || '#ff0000';
+  const currentColor = hookState.selectedInlineColor?.hex || '#FF0800';
   colorInput.value = currentColor;
 
   console.log('Opening native color picker with current color:', currentColor);
@@ -751,9 +755,9 @@ function handleHookCountChange(event) {
   // Resize color arrays to match new hook count
   if (newHookCount > oldHookCount) {
     // Adding hooks - fill with the last color
-    const fillColor = hookState.hookColors[oldHookCount - 1] || '#ff0000';
+    const fillColor = hookState.hookColors[oldHookCount - 1] || '#FF0800';
     const fillColorName =
-      hookState.hookColorNames[oldHookCount - 1] || 'Candy Red';
+      hookState.hookColorNames[oldHookCount - 1] || 'Red';
     for (let i = oldHookCount; i < newHookCount; i++) {
       hookState.hookColors[i] = fillColor;
       hookState.hookColorNames[i] = fillColorName;
