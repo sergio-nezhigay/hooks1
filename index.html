@@ -395,14 +395,94 @@
                             BUY NOW
                           </button>
                         </div>
+
+                        <!-- Product Info Accordion -->
+                        <div class="product-info-accordion">
+                          <!-- Description -->
+                          <div class="product-info-item">
+                            <button class="product-info-question" aria-expanded="false">
+                              <span>Description</span>
+                              <span class="product-info-icon">
+                                <svg
+                                  width="13"
+                                  height="8"
+                                  viewBox="0 0 13 8"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                                    fill="#121212"
+                                  />
+                                </svg>
+                              </span>
+                            </button>
+                            <div class="product-info-answer">
+                              <div class="product-info-content">
+                                <shopify-data query="product.description"></shopify-data>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Dimensions -->
+                          <div class="product-info-item">
+                            <button class="product-info-question" aria-expanded="false">
+                              <span>Dimensions</span>
+                              <span class="product-info-icon">
+                                <svg
+                                  width="13"
+                                  height="8"
+                                  viewBox="0 0 13 8"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                                    fill="#121212"
+                                  />
+                                </svg>
+                              </span>
+                            </button>
+                            <div class="product-info-answer">
+                              <div class="product-info-content">
+                                <strong>3 Hooks:</strong> 12" W × 4" H × 2" D (1.5 lbs)<br>
+                                <strong>6 Hooks:</strong> 24" W × 4" H × 2" D (3 lbs)<br>
+                                <strong>9 Hooks:</strong> 36" W × 4" H × 2" D (4.5 lbs)
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Material -->
+                          <div class="product-info-item">
+                            <button class="product-info-question" aria-expanded="false">
+                              <span>Material</span>
+                              <span class="product-info-icon">
+                                <svg
+                                  width="13"
+                                  height="8"
+                                  viewBox="0 0 13 8"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                                    fill="#121212"
+                                  />
+                                </svg>
+                              </span>
+                            </button>
+                            <div class="product-info-answer">
+                              <div class="product-info-content">
+                                <strong>Rail:</strong> Premium powder-coated steel (White) or solid oak wood (Oak finish)<br>
+                                <strong>Hooks:</strong> Unbreakable nylon composite<br>
+                                <strong>Hardware:</strong> Stainless steel mounting screws included<br>
+                                <strong>Finish:</strong> UV-resistant, scratch-resistant coating
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="product-card__description">
-                    <span class="product-card__description-text">
-                      <shopify-data query="product.description"></shopify-data>
-                    </span>
                   </div>
                 </div>
               </div>

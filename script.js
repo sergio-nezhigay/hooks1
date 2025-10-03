@@ -86,6 +86,98 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// Product Info Accordion functionality
+function initProductInfoAccordion() {
+  const productInfoQuestions = document.querySelectorAll('.product-info-question');
+
+  if (productInfoQuestions.length === 0) {
+    console.log('Product info accordion buttons not found yet, will retry...');
+    return false;
+  }
+
+  productInfoQuestions.forEach((question) => {
+    // Remove existing listeners to avoid duplicates
+    const newQuestion = question.cloneNode(true);
+    question.parentNode.replaceChild(newQuestion, question);
+
+    newQuestion.addEventListener('click', function () {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      const answer = this.nextElementSibling;
+      const allQuestions = document.querySelectorAll('.product-info-question');
+
+      // Close all other product info items
+      allQuestions.forEach((otherQuestion) => {
+        if (otherQuestion !== this) {
+          otherQuestion.setAttribute('aria-expanded', 'false');
+          otherQuestion.nextElementSibling.classList.remove('active');
+        }
+      });
+
+      // Toggle current product info item
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        answer.classList.remove('active');
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        answer.classList.add('active');
+      }
+    });
+  });
+
+  console.log('Product info accordion initialized with', productInfoQuestions.length, 'items');
+  return true;
+}
+
+// Handle metafield fallback logic
+function handleMetafieldFallbacks() {
+  const metafieldContents = document.querySelectorAll('[data-metafield]');
+
+  metafieldContents.forEach(container => {
+    const shopifyData = container.querySelector('shopify-data.metafield-content');
+    const fallbackSpan = container.querySelector('.fallback-content');
+
+    if (!shopifyData || !fallbackSpan) return;
+
+    // Wait a bit for Shopify components to populate
+    setTimeout(() => {
+      const metafieldText = shopifyData.textContent?.trim();
+
+      if (metafieldText && metafieldText.length > 0) {
+        // Metafield has data - show it, hide fallback
+        shopifyData.style.display = 'block';
+        fallbackSpan.style.display = 'none';
+        console.log('Using metafield data for:', container.dataset.metafield, '-', metafieldText);
+      } else {
+        // No metafield data - show fallback
+        shopifyData.style.display = 'none';
+        fallbackSpan.style.display = 'block';
+        console.log('Using fallback data for:', container.dataset.metafield);
+      }
+    }, 500);
+  });
+}
+
+// Try to initialize accordion after DOM loads
+document.addEventListener('DOMContentLoaded', function () {
+  // Try immediately
+  if (!initProductInfoAccordion()) {
+    // If not found, wait for Shopify components to render
+    setTimeout(() => {
+      if (!initProductInfoAccordion()) {
+        // Try one more time after a longer delay
+        setTimeout(() => {
+          initProductInfoAccordion();
+          handleMetafieldFallbacks();
+        }, 1000);
+      } else {
+        handleMetafieldFallbacks();
+      }
+    }, 500);
+  } else {
+    handleMetafieldFallbacks();
+  }
+});
+
 // ===========================================
 // HOOK CUSTOMIZER FUNCTIONALITY
 // ===========================================
@@ -209,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('✓ Customizer elements found in DOM!');
       obs.disconnect(); // Stop observing
       initializeHookCustomizer();
+      logProductMetafield();
     }
   });
 
@@ -229,9 +322,63 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Fallback: Initializing via timeout');
       observer.disconnect();
       initializeHookCustomizer();
+      logProductMetafield();
     }
   }, 1000);
 });
+
+// Log product metafield content
+function logProductMetafield() {
+  console.log('=== LOGGING PRODUCT METAFIELD ===');
+
+  // Wait for DOM to be ready, then add a hidden metafield logger to the page
+  setTimeout(() => {
+    // Create a new product context just for logging metafields
+    const loggerContext = document.createElement('shopify-context');
+    loggerContext.setAttribute('type', 'product');
+    loggerContext.setAttribute('handle', 'toughook-coat-rack');
+    loggerContext.style.display = 'none';
+
+    const loggerTemplate = document.createElement('template');
+    loggerTemplate.innerHTML = `
+      <shopify-context type="metafield" query="product.metafield" namespace="specifications" key="dimensions">
+        <template>
+          <div id="metafield-logger-output">
+            <shopify-data query="metafield.value"></shopify-data>
+          </div>
+        </template>
+      </shopify-context>
+    `;
+
+    loggerContext.appendChild(loggerTemplate);
+    document.body.appendChild(loggerContext);
+
+    // Wait for Shopify to render the metafield
+    setTimeout(() => {
+      const output = document.getElementById('metafield-logger-output');
+      if (output) {
+        const metafieldContent = output.textContent?.trim();
+
+        if (metafieldContent && metafieldContent.length > 0) {
+          console.log('✓ Metafield specifications.dimensions content:');
+          console.log(metafieldContent);
+          console.log('Content length:', metafieldContent.length, 'characters');
+        } else {
+          console.log('⚠ Metafield specifications.dimensions is empty or not found');
+          console.log('Make sure:');
+          console.log('  1. The metafield exists with namespace "specifications" and key "dimensions"');
+          console.log('  2. You have a public-access-token in the shopify-store component');
+          console.log('  3. The metafield is exposed to Storefront API (PUBLIC_READ access)');
+        }
+
+        // Clean up
+        loggerContext.remove();
+      } else {
+        console.log('⚠ Metafield output element not found - component may not have rendered');
+      }
+    }, 2000);
+  }, 500);
+}
 
 // Generate color swatches in modal
 function initColorSwatches() {
