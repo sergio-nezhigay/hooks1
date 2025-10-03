@@ -202,7 +202,7 @@ const COLORS = [
   { name: 'Gray', hex: '#A9A9A9' },
   { name: 'Silver', hex: '#C0C0C0' },
   { name: 'Light Gray', hex: '#D3D3D3' },
-  { name: 'Platinum', hex: '#E8E8E8' },
+  { name: 'White', hex: '#ffffff' },
   { name: 'Antique White', hex: '#FAEBD7' },
   { name: 'Terra Cotta', hex: '#E2725B' },
   { name: 'Red', hex: '#FF0800' },
@@ -241,7 +241,7 @@ const CONFIG = {
     gray: 'assets/hooks/hook-gray.webp',
     silver: 'assets/hooks/hook-silver.webp',
     'light gray': 'assets/hooks/hook-light-gray.webp',
-    platinum: 'assets/hooks/hook-platinum.webp',
+
     'antique white': 'assets/hooks/hook-antique-white.webp',
     white: 'assets/hooks/hook-white.webp',
     'terra cotta': 'assets/hooks/hook-terra-cotta.webp',
