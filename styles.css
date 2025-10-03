@@ -2202,7 +2202,6 @@ shopify-variant-selector::part(radio) {
   font-size: 16px;
   line-height: 1.6;
   color: #333;
-  white-space: pre-line;
 }
 
 .product-info-content strong {
@@ -2224,8 +2223,8 @@ shopify-data.metafield-content:empty {
 
 @media (max-width: 768px) {
   .product-info-question {
-    font-size: 16px;
-    padding: 16px 16px;
+    font-size: 22px;
+    padding: 18px 15px;
   }
 
   .product-info-content {
