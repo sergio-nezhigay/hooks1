@@ -258,7 +258,7 @@ p {
 .product-card__container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 48px;
   box-sizing: border-box;
 }
 
@@ -319,14 +319,13 @@ p {
 .product-card__details {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 24px;
   width: 100%;
 }
 
 .product-card__info {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 }
 
 .product-card__title {
@@ -339,8 +338,8 @@ p {
 .product-rating {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .product-rating .review-stars {
@@ -349,8 +348,8 @@ p {
 }
 
 .product-rating__text {
-  font-size: 0.875rem;
-  color: #666;
+  font-size: 16px;
+  color: #202223;
 }
 
 .product-badge {
@@ -362,16 +361,18 @@ p {
   font-weight: 700;
   line-height: 9px;
   display: inline-block;
-  margin: 14px 0;
   max-width: 319px;
   text-align: center;
+  margin-bottom: 14px;
 }
 
 .product-card__price {
   display: flex;
   gap: 0.5rem;
-  font-weight: 500;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 1.05px;
+  color: #121212;
 }
 
 .product-card__compare-price {
@@ -528,9 +529,6 @@ shopify-variant-selector::part(radio) {
 /* ====================
            HOOK CUSTOMIZER
            ==================== */
-.hook-customizer {
-  margin: 2rem 0;
-}
 
 .hook-customizer__wrapper {
   display: grid;
@@ -644,9 +642,11 @@ shopify-variant-selector::part(radio) {
 }
 
 .hook-option__label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #333;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.31;
+  color: #121212bf;
+  letter-spacing: 0.6px;
 }
 
 .hook-option__description {
@@ -961,9 +961,10 @@ shopify-variant-selector::part(radio) {
 
 .color-picker-header h3 {
   margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #121212bf;
 }
 
 .color-picker-close {
@@ -1079,7 +1080,6 @@ shopify-variant-selector::part(radio) {
 .review-stars {
   display: flex;
   gap: 2px;
-  margin-bottom: 9px;
 }
 
 .review-meta {
@@ -1729,10 +1729,6 @@ shopify-variant-selector::part(radio) {
     max-width: none;
   }
 
-  .product-card__title {
-    font-size: 2.25rem;
-  }
-
   /* Shipping Banner Desktop */
   .shipping-banner {
     padding: 15px 20px;
@@ -1863,16 +1859,16 @@ shopify-variant-selector::part(radio) {
   }
 
   .product-card__title {
-    font-size: 1.5rem;
-    line-height: 1.3;
+    font-family: 'McLaren';
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: 0.6px;
+    color: #121212;
+    margin-bottom: 25px;
   }
 
   .product-card__price {
-    font-size: 1rem;
-  }
-
-  .product-card__info {
-    gap: 0.5rem;
+    font-size: 28px;
   }
 
   .product-card__description {

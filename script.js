@@ -295,7 +295,7 @@ const CONFIG = {
   },
   hookSizes: {
     3: '14%',
-    6: '12%',
+    6: '11%',
     9: '4%',
   },
   hook3Positions: [
@@ -366,13 +366,21 @@ function loadStateFromLocalStorage() {
     console.log('Loaded state from localStorage:', parsed);
 
     // Validate the loaded state
-    if (!parsed.railStyle || !parsed.hookCount || !Array.isArray(parsed.hookColors) || !Array.isArray(parsed.hookColorNames)) {
+    if (
+      !parsed.railStyle ||
+      !parsed.hookCount ||
+      !Array.isArray(parsed.hookColors) ||
+      !Array.isArray(parsed.hookColorNames)
+    ) {
       console.warn('Invalid saved state, using defaults');
       return false;
     }
 
     // Validate arrays match hook count
-    if (parsed.hookColors.length !== parsed.hookCount || parsed.hookColorNames.length !== parsed.hookCount) {
+    if (
+      parsed.hookColors.length !== parsed.hookCount ||
+      parsed.hookColorNames.length !== parsed.hookCount
+    ) {
       console.warn('Saved state array lengths mismatch, using defaults');
       return false;
     }
@@ -441,7 +449,8 @@ function updateUIFromState() {
   // Update finish text
   const finishText = document.getElementById('railFinishText');
   if (finishText) {
-    finishText.textContent = hookState.railStyle === 'style1' ? 'White Finish' : 'Oak Finish';
+    finishText.textContent =
+      hookState.railStyle === 'style1' ? 'White Finish' : 'Oak Finish';
   }
 
   // Update rail image
