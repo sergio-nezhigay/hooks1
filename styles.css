@@ -885,36 +885,37 @@ shopify-variant-selector::part(radio) {
 /* Hook Position Number Badges (overlaid on hooks) */
 .hook-position-badge {
   position: absolute;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid #333;
+  width: 45px;
+  height: 45px;
+  background: #000;
+  border: 5px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(25px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
-  color: #333;
+  color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   z-index: 10;
   user-select: none;
+  transform: translate(-50%, -50%);
+  transform-style: flat;
 }
 
 .hook-position-badge:hover {
-  transform: scale(1.15);
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-color: #ed8177;
+  transform: translate(-50%, -50%) scale(1.15);
+  background: #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-color: #ff0800;
 }
 
 .hook-position-badge.active {
-  background: #333;
-  color: white;
-  border-color: #ed8177;
-  box-shadow: 0 0 0 3px rgba(237, 129, 119, 0.3);
+  background: #ff0800;
+  color: #fff;
 }
 
 /* Color Picker Modal */

@@ -68,7 +68,7 @@ function createStarRating(rating = 5, size = 16) {
 
 // Initialize star ratings
 function initializeStarRatings() {
-  document.querySelectorAll('.review-stars').forEach(container => {
+  document.querySelectorAll('.review-stars').forEach((container) => {
     if (!container.innerHTML.trim()) {
       const size = container.dataset.starSize || 16;
       container.innerHTML = createStarRating(5, parseInt(size));
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 });
 
@@ -830,7 +830,8 @@ function handleRailStyleChange(event) {
   // Update finish text in title
   const finishText = document.getElementById('railFinishText');
   if (finishText) {
-    finishText.textContent = button.dataset.railStyle === 'style1' ? 'White Finish' : 'Oak Finish';
+    finishText.textContent =
+      button.dataset.railStyle === 'style1' ? 'White Finish' : 'Oak Finish';
   }
 
   updateRailImage();
