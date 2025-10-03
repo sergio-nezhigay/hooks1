@@ -12,7 +12,7 @@
   /* Hook Preview Canvas Positioning - adjust to move the preview image */
   --canvas-align-horizontal: center; /* left | center | right */
   --canvas-align-vertical: center; /* flex-start | center | flex-end */
-  --canvas-margin-top: 90px; /* Add top margin if needed */
+  --canvas-margin-top: 127px; /* Add top margin if needed */
   --canvas-margin-bottom: auto; /* Add bottom margin if needed */
 
   /* Rail 3D Rotation - adjust to create perspective effect */
@@ -160,7 +160,7 @@ p {
 .benefits-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 70px;
 }
 
 .benefits-title {
@@ -354,14 +354,17 @@ p {
 }
 
 .product-badge {
-  background-color: #ff8a80;
+  background-color: #ed8177;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 9px;
   display: inline-block;
-  margin: 0.75rem 0;
+  margin: 14px 0;
+  max-width: 319px;
+  text-align: center;
 }
 
 .product-card__price {
@@ -1683,7 +1686,7 @@ shopify-variant-selector::part(radio) {
   }
 
   .benefits-container {
-    padding: 0 64px;
+    padding: 0 64px 50px;
   }
 
   .benefits-title {
