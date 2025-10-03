@@ -334,27 +334,123 @@ let hookState = {
   selectedInlineColor: null, // Currently selected color from inline selector {hex: '', name: ''}
 };
 
+// localStorage key for persisting state
+const STORAGE_KEY = 'toughook-customizer-state';
+
+// Save state to localStorage
+function saveStateToLocalStorage() {
+  try {
+    const stateToSave = {
+      railStyle: hookState.railStyle,
+      hookCount: hookState.hookCount,
+      hookColors: hookState.hookColors,
+      hookColorNames: hookState.hookColorNames,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+    console.log('✓ State saved to localStorage:', stateToSave);
+  } catch (error) {
+    console.error('Failed to save state to localStorage:', error);
+  }
+}
+
+// Load state from localStorage
+function loadStateFromLocalStorage() {
+  try {
+    const savedState = localStorage.getItem(STORAGE_KEY);
+    if (!savedState) {
+      console.log('No saved state found in localStorage');
+      return false;
+    }
+
+    const parsed = JSON.parse(savedState);
+    console.log('Loaded state from localStorage:', parsed);
+
+    // Validate the loaded state
+    if (!parsed.railStyle || !parsed.hookCount || !Array.isArray(parsed.hookColors) || !Array.isArray(parsed.hookColorNames)) {
+      console.warn('Invalid saved state, using defaults');
+      return false;
+    }
+
+    // Validate arrays match hook count
+    if (parsed.hookColors.length !== parsed.hookCount || parsed.hookColorNames.length !== parsed.hookCount) {
+      console.warn('Saved state array lengths mismatch, using defaults');
+      return false;
+    }
+
+    // Apply the loaded state
+    hookState.railStyle = parsed.railStyle;
+    hookState.hookCount = parsed.hookCount;
+    hookState.hookColors = parsed.hookColors;
+    hookState.hookColorNames = parsed.hookColorNames;
+
+    console.log('✓ State restored from localStorage');
+    return true;
+  } catch (error) {
+    console.error('Failed to load state from localStorage:', error);
+    return false;
+  }
+}
+
 // Initialize hook customizer after Shopify components are ready
 function initializeHookCustomizer() {
   console.log('=== HOOK CUSTOMIZER INITIALIZATION START ===');
   console.log('Initial state:', JSON.stringify(hookState));
 
-  console.log('Step 1: Initializing modal color swatches...');
+  console.log('Step 1: Loading saved state from localStorage...');
+  const stateLoaded = loadStateFromLocalStorage();
+
+  console.log('Step 2: Initializing modal color swatches...');
   initColorSwatches();
 
-  console.log('Step 2: Initializing inline color swatches...');
+  console.log('Step 3: Initializing inline color swatches...');
   initInlineColorSwatches();
 
-  console.log('Step 3: Initializing event listeners...');
+  console.log('Step 4: Initializing event listeners...');
   initEventListeners();
 
-  console.log('Step 4: Initializing line item properties...');
+  if (stateLoaded) {
+    console.log('Step 5: Updating UI to match loaded state...');
+    updateUIFromState();
+  }
+
+  console.log('Step 6: Initializing line item properties...');
   updateLineItemProperties();
 
-  console.log('Step 5: Rendering hooks...');
+  console.log('Step 7: Rendering hooks...');
   renderHooks();
 
   console.log('=== HOOK CUSTOMIZER INITIALIZATION COMPLETE ===');
+}
+
+// Update UI elements to match current state
+function updateUIFromState() {
+  // Update rail style buttons
+  document.querySelectorAll('.rail-style-button').forEach((btn) => {
+    const isActive = btn.dataset.railStyle === hookState.railStyle;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+  });
+
+  // Update hook count buttons
+  document.querySelectorAll('.hook-count-button').forEach((btn) => {
+    const isActive = parseInt(btn.dataset.hookCount) === hookState.hookCount;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+  });
+
+  // Update finish text
+  const finishText = document.getElementById('railFinishText');
+  if (finishText) {
+    finishText.textContent = hookState.railStyle === 'style1' ? 'White Finish' : 'Oak Finish';
+  }
+
+  // Update rail image
+  updateRailImage();
+
+  // Update variant selection
+  updateVariantSelection();
+
+  console.log('✓ UI updated to match loaded state');
 }
 
 // Wait for Shopify Web Components to render the template content
@@ -783,6 +879,7 @@ function handleApplyAllChange() {
 
     // Re-render hooks
     renderHooks();
+    saveStateToLocalStorage();
   }
 }
 
@@ -837,6 +934,7 @@ function handleRailStyleChange(event) {
   updateRailImage();
   setTimeout(() => renderHooks(), 50);
   updateVariantSelection();
+  saveStateToLocalStorage();
 }
 
 // Handle hook count change
@@ -886,6 +984,7 @@ function handleHookCountChange(event) {
   updateRailImage();
   setTimeout(() => renderHooks(), 50);
   updateVariantSelection();
+  saveStateToLocalStorage();
 }
 
 // Handle color change for the currently selected hook position
@@ -921,6 +1020,7 @@ function handleColorChange(event) {
   updateLineItemProperties();
 
   renderHooks();
+  saveStateToLocalStorage();
 }
 
 // Open custom color picker (native browser color input)
@@ -968,6 +1068,7 @@ function handleCustomColorChange(event) {
 
   // Render hooks with new color
   renderHooks();
+  saveStateToLocalStorage();
 
   // Note: Modal stays open so user can see the change
 }
@@ -1172,6 +1273,7 @@ function renderHooks() {
 
         // Re-render hooks
         renderHooks();
+        saveStateToLocalStorage();
       } else {
         // No inline color selected - open modal picker
         console.log('Opening modal for position:', index);
