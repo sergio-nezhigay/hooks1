@@ -319,7 +319,7 @@ p {
 .product-card__details {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 19px;
   width: 100%;
 }
 
@@ -626,13 +626,13 @@ shopify-variant-selector::part(radio) {
 .hook-customizer__options {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 24px;
 }
 
 .hook-option {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 6px;
 }
 
 .hook-option__header {
@@ -1864,7 +1864,7 @@ shopify-variant-selector::part(radio) {
     line-height: 1.2;
     letter-spacing: 0.6px;
     color: #121212;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
   }
 
   .product-card__price {
