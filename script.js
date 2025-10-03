@@ -295,7 +295,7 @@ const CONFIG = {
   },
   hookSizes: {
     3: '14%',
-    6: '7%',
+    6: '12%',
     9: '4%',
   },
   hook3Positions: [

@@ -885,10 +885,10 @@ shopify-variant-selector::part(radio) {
 /* Hook Position Number Badges (overlaid on hooks) */
 .hook-position-badge {
   position: absolute;
-  width: 45px;
-  height: 45px;
+  width: 34px;
+  height: 34px;
   background: #000;
-  border: 5px solid rgba(255, 255, 255, 0.7);
+  outline: 6px solid rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(25px);
   border-radius: 50%;
   display: flex;
@@ -910,7 +910,7 @@ shopify-variant-selector::part(radio) {
   transform: translate(-50%, -50%) scale(1.15);
   background: #000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  border-color: #ff0800;
+  outline-color: #ff0800;
 }
 
 .hook-position-badge.active {
