@@ -444,10 +444,13 @@
                               </span>
                             </button>
                             <div class="product-info-answer">
-                              <div class="product-info-content">
-                                <strong>3 Hooks:</strong> 12" W × 4" H × 2" D (1.5 lbs)<br>
-                                <strong>6 Hooks:</strong> 24" W × 4" H × 2" D (3 lbs)<br>
-                                <strong>9 Hooks:</strong> 36" W × 4" H × 2" D (4.5 lbs)
+                              <div class="product-info-content" data-metafield="dimensions">
+                                <shopify-context type="metafield" query="product.metafield" namespace="specifications" key="dimensions">
+                                  <template>
+                                    <shopify-data class="metafield-content" query="metafield.value"></shopify-data>
+                                  </template>
+                                </shopify-context>
+                                <span class="fallback-content" style="display: none;"><strong>3 Hooks:</strong> 12" W × 4" H × 2" D (1.5 lbs)<br><strong>6 Hooks:</strong> 24" W × 4" H × 2" D (3 lbs)<br><strong>9 Hooks:</strong> 36" W × 4" H × 2" D (4.5 lbs)</span>
                               </div>
                             </div>
                           </div>
@@ -472,11 +475,13 @@
                               </span>
                             </button>
                             <div class="product-info-answer">
-                              <div class="product-info-content">
-                                <strong>Rail:</strong> Premium powder-coated steel (White) or solid oak wood (Oak finish)<br>
-                                <strong>Hooks:</strong> Unbreakable nylon composite<br>
-                                <strong>Hardware:</strong> Stainless steel mounting screws included<br>
-                                <strong>Finish:</strong> UV-resistant, scratch-resistant coating
+                              <div class="product-info-content" data-metafield="material">
+                                <shopify-context type="metafield" query="product.metafield" namespace="specifications" key="material">
+                                  <template>
+                                    <shopify-data class="metafield-content" query="metafield.value"></shopify-data>
+                                  </template>
+                                </shopify-context>
+                                <span class="fallback-content" style="display: none;"><strong>Rail:</strong> Premium powder-coated steel (White) or solid oak wood (Oak finish)<br><strong>Hooks:</strong> Unbreakable nylon composite<br><strong>Hardware:</strong> Stainless steel mounting screws included<br><strong>Finish:</strong> UV-resistant, scratch-resistant coating</span>
                               </div>
                             </div>
                           </div>
