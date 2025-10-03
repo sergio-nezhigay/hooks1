@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
       hideOnClick: false,
     },
     breakpoints: {
-      //768: {
-      //  slidesPerView: 2,
-      //  spaceBetween: 24,
-      //},
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
       1024: {
         slidesPerView: 3,
         spaceBetween: 55,
