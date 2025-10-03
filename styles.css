@@ -349,6 +349,23 @@ p {
   margin: 0;
 }
 
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.product-rating .review-stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.product-rating__text {
+  font-size: 0.875rem;
+  color: #666;
+}
+
 .product-card__price {
   display: flex;
   gap: 0.5rem;

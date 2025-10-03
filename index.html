@@ -192,9 +192,18 @@
                         <shopify-data query="product.vendor"></shopify-data>
                       </span>
                     </div>
+                    <div class="product-rating">
+                      <div
+                        class="review-stars"
+                        data-star-size="20"
+                        aria-label="5 out of 5 stars"
+                      ></div>
+                      <span class="product-rating__text">12 reviews</span>
+                    </div>
                     <h1 class="product-card__title">
                       <shopify-data query="product.title"></shopify-data>
                     </h1>
+
                     <div class="product-card__price">
                       <shopify-money
                         query="product.selectedOrFirstAvailableVariant.price"
@@ -213,7 +222,9 @@
                       <div class="hook-customizer__options">
                         <!-- Choose Your Finish -->
                         <div class="hook-option">
-                          <label class="hook-option__label">Choose Your Finish:</label>
+                          <label class="hook-option__label"
+                            >Choose Your Finish:</label
+                          >
                           <div class="hook-count-buttons" role="radiogroup">
                             <button
                               type="button"
@@ -222,7 +233,10 @@
                               role="radio"
                               aria-checked="true"
                             >
-                              <div class="hook-count-image" style="background: white;">
+                              <div
+                                class="hook-count-image"
+                                style="background: white"
+                              >
                                 <!-- White finish - just white background -->
                               </div>
                               <span class="hook-count-label">White</span>
@@ -400,7 +414,10 @@
                         <div class="product-info-accordion">
                           <!-- Description -->
                           <div class="product-info-item">
-                            <button class="product-info-question" aria-expanded="false">
+                            <button
+                              class="product-info-question"
+                              aria-expanded="false"
+                            >
                               <span>Description</span>
                               <span class="product-info-icon">
                                 <svg
@@ -419,14 +436,19 @@
                             </button>
                             <div class="product-info-answer">
                               <div class="product-info-content">
-                                <shopify-data query="product.description"></shopify-data>
+                                <shopify-data
+                                  query="product.description"
+                                ></shopify-data>
                               </div>
                             </div>
                           </div>
 
                           <!-- Dimensions -->
                           <div class="product-info-item">
-                            <button class="product-info-question" aria-expanded="false">
+                            <button
+                              class="product-info-question"
+                              aria-expanded="false"
+                            >
                               <span>Dimensions</span>
                               <span class="product-info-icon">
                                 <svg
@@ -444,20 +466,43 @@
                               </span>
                             </button>
                             <div class="product-info-answer">
-                              <div class="product-info-content" data-metafield="dimensions">
-                                <shopify-context type="metafield" query="product.metafield" namespace="specifications" key="dimensions">
+                              <div
+                                class="product-info-content"
+                                data-metafield="dimensions"
+                              >
+                                <shopify-context
+                                  type="metafield"
+                                  query="product.metafield"
+                                  namespace="specifications"
+                                  key="dimensions"
+                                >
                                   <template>
-                                    <shopify-data class="metafield-content" query="metafield.value"></shopify-data>
+                                    <shopify-data
+                                      class="metafield-content"
+                                      query="metafield.value"
+                                    ></shopify-data>
                                   </template>
                                 </shopify-context>
-                                <span class="fallback-content" style="display: none;"><strong>3 Hooks:</strong> 12" W × 4" H × 2" D (1.5 lbs)<br><strong>6 Hooks:</strong> 24" W × 4" H × 2" D (3 lbs)<br><strong>9 Hooks:</strong> 36" W × 4" H × 2" D (4.5 lbs)</span>
+                                <span
+                                  class="fallback-content"
+                                  style="display: none"
+                                  ><strong>3 Hooks:</strong> 12" W × 4" H × 2" D
+                                  (1.5 lbs)<br /><strong>6 Hooks:</strong> 24" W
+                                  × 4" H × 2" D (3 lbs)<br /><strong
+                                    >9 Hooks:</strong
+                                  >
+                                  36" W × 4" H × 2" D (4.5 lbs)</span
+                                >
                               </div>
                             </div>
                           </div>
 
                           <!-- Material -->
                           <div class="product-info-item">
-                            <button class="product-info-question" aria-expanded="false">
+                            <button
+                              class="product-info-question"
+                              aria-expanded="false"
+                            >
                               <span>Material</span>
                               <span class="product-info-icon">
                                 <svg
@@ -475,13 +520,37 @@
                               </span>
                             </button>
                             <div class="product-info-answer">
-                              <div class="product-info-content" data-metafield="material">
-                                <shopify-context type="metafield" query="product.metafield" namespace="specifications" key="material">
+                              <div
+                                class="product-info-content"
+                                data-metafield="material"
+                              >
+                                <shopify-context
+                                  type="metafield"
+                                  query="product.metafield"
+                                  namespace="specifications"
+                                  key="material"
+                                >
                                   <template>
-                                    <shopify-data class="metafield-content" query="metafield.value"></shopify-data>
+                                    <shopify-data
+                                      class="metafield-content"
+                                      query="metafield.value"
+                                    ></shopify-data>
                                   </template>
                                 </shopify-context>
-                                <span class="fallback-content" style="display: none;"><strong>Rail:</strong> Premium powder-coated steel (White) or solid oak wood (Oak finish)<br><strong>Hooks:</strong> Unbreakable nylon composite<br><strong>Hardware:</strong> Stainless steel mounting screws included<br><strong>Finish:</strong> UV-resistant, scratch-resistant coating</span>
+                                <span
+                                  class="fallback-content"
+                                  style="display: none"
+                                  ><strong>Rail:</strong> Premium powder-coated
+                                  steel (White) or solid oak wood (Oak
+                                  finish)<br /><strong>Hooks:</strong>
+                                  Unbreakable nylon composite<br /><strong
+                                    >Hardware:</strong
+                                  >
+                                  Stainless steel mounting screws included<br /><strong
+                                    >Finish:</strong
+                                  >
+                                  UV-resistant, scratch-resistant coating</span
+                                >
                               </div>
                             </div>
                           </div>
@@ -512,68 +581,10 @@
                     class="review-avatar"
                   />
                   <div class="review-info">
-                    <div class="review-stars" aria-label="5 out of 5 stars">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                    </div>
+                    <div
+                      class="review-stars"
+                      aria-label="5 out of 5 stars"
+                    ></div>
                     <div class="review-meta">
                       <span class="review-name">Clayton G.</span>
                       <div class="review-verified">
@@ -602,7 +613,9 @@
                       </div>
                     </div>
                   </div>
-                  <time class="review-date" datetime="2025-09-28">4 days ago</time>
+                  <time class="review-date" datetime="2025-09-28"
+                    >4 days ago</time
+                  >
                 </div>
                 <h3 class="review-title">Would highly recommend!</h3>
                 <p class="review-content">
@@ -622,68 +635,10 @@
                     class="review-avatar"
                   />
                   <div class="review-info">
-                    <div class="review-stars" aria-label="5 out of 5 stars">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                    </div>
+                    <div
+                      class="review-stars"
+                      aria-label="5 out of 5 stars"
+                    ></div>
                     <div class="review-meta">
                       <span class="review-name">Emma S.</span>
                       <div class="review-verified">
@@ -712,7 +667,9 @@
                       </div>
                     </div>
                   </div>
-                  <time class="review-date" datetime="2025-09-28">4 days ago</time>
+                  <time class="review-date" datetime="2025-09-28"
+                    >4 days ago</time
+                  >
                 </div>
                 <h3 class="review-title">They look fantastic</h3>
                 <p class="review-content">
@@ -734,68 +691,10 @@
                     class="review-avatar"
                   />
                   <div class="review-info">
-                    <div class="review-stars" aria-label="5 out of 5 stars">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.61212 15.443C3.22612 15.641 2.78812 15.294 2.86612 14.851L3.69612 10.121L0.173118 6.76501C-0.155882 6.45101 0.0151183 5.87701 0.456118 5.81501L5.35412 5.11901L7.53812 0.792012C7.73512 0.402012 8.26812 0.402012 8.46512 0.792012L10.6491 5.11901L15.5471 5.81501C15.9881 5.87701 16.1591 6.45101 15.8291 6.76501L12.3071 10.121L13.1371 14.851C13.2151 15.294 12.7771 15.641 12.3911 15.443L8.00012 13.187L3.61212 15.443Z"
-                          fill="#F8BE00"
-                        />
-                      </svg>
-                    </div>
+                    <div
+                      class="review-stars"
+                      aria-label="5 out of 5 stars"
+                    ></div>
                     <div class="review-meta">
                       <span class="review-name">Jim C.</span>
                       <div class="review-verified">
@@ -824,7 +723,9 @@
                       </div>
                     </div>
                   </div>
-                  <time class="review-date" datetime="2025-09-28">4 days ago</time>
+                  <time class="review-date" datetime="2025-09-28"
+                    >4 days ago</time
+                  >
                 </div>
                 <h3 class="review-title">
                   A great addition to our children's entryway
