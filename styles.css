@@ -22,7 +22,7 @@
   --rail-scale: 1; /* Scale the rail (1 = normal size) */
 
   /* Color Picker Modal Sizing - adjust to control modal size */
-  --modal-width-mobile: 90%; /* Width on mobile screens */
+  --modal-width-mobile: 229px; /* Width on mobile screens */
   --modal-width-desktop: 240px; /* Width on desktop screens */
   --modal-max-height: 280px; /* Maximum height of modal */
   --swatch-size: 24px; /* Size of color swatches */
@@ -881,6 +881,7 @@ shopify-variant-selector::part(radio) {
   right: 10px;
   z-index: 100;
   /* Mobile: bottom-center */
+  width: fit-content;
   left: 50%;
   transform: translateX(-50%);
 }
