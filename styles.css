@@ -329,8 +329,8 @@ p {
 }
 
 .product-card__title {
-  font-family: 'McLaren', cursive;
-  font-size: 2.25rem;
+  font-family: 'McLaren';
+  font-size: 30px;
   font-weight: 400;
   margin: 0;
 }
@@ -383,7 +383,7 @@ p {
 /* Quantity and Buy Container */
 .quantity-buy-container {
   display: flex;
-  gap: 0.75rem;
+  gap: 17px;
   align-items: stretch;
 }
 
@@ -479,6 +479,7 @@ p {
   color: #121212bf;
   line-height: 1.4;
   max-width: 90%;
+  margin-left: auto;
 }
 
 .schools-link {
@@ -546,7 +547,6 @@ shopify-variant-selector::part(radio) {
   align-items: center;
   justify-content: center;
   min-height: 479px;
-  padding: 10px;
   gap: 20px;
 }
 
@@ -1752,13 +1752,13 @@ shopify-variant-selector::part(radio) {
   }
 
   .hook-customizer__preview {
-    width: 50%;
+    width: 49%;
     height: 500px;
     min-height: 500px;
   }
 
   .product-card__details {
-    width: 50%;
+    width: 51%;
   }
 
   .benefits-grid {
@@ -1995,6 +1995,10 @@ shopify-variant-selector::part(radio) {
   /* FAQ Mobile */
   .faq-section {
     padding: 60px 0 70px;
+  }
+
+  .schools-message {
+    margin-right: auto;
   }
 
   .faq-container {
