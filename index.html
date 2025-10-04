@@ -398,20 +398,22 @@
                             </button>
                           </div>
 
-                          <!-- Buy Now Button -->
-                          <button
-                            id="buyNowButton"
-                            class="product-card__buy-button"
-                            onclick="handleCustomBuyNow(event)"
-                            shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-                          >
-                            BUY NOW
-                          </button>
-                        </div>
+                          <!-- Buy Now Button Wrapper -->
+                          <div class="buy-now-wrapper">
+                            <button
+                              id="buyNowButton"
+                              class="product-card__buy-button"
+                              onclick="handleCustomBuyNow(event)"
+                              shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                            >
+                              BUY NOW
+                            </button>
 
-                        <!-- For Schools Message -->
-                        <div class="schools-message">
-                          For schools who qualify for tax exemption, please <a href="#" class="schools-link">click here</a>.
+                            <!-- For Schools Message -->
+                            <div class="schools-message">
+                              For schools who qualify for tax exemption, please <a href="#" class="schools-link">click here</a>.
+                            </div>
+                          </div>
                         </div>
 
                         <!-- Product Info Accordion -->
