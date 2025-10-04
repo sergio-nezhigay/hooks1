@@ -25,8 +25,8 @@
   --modal-width-mobile: 229px; /* Width on mobile screens */
   --modal-width-desktop: 240px; /* Width on desktop screens */
   --modal-max-height: 280px; /* Maximum height of modal */
-  --swatch-size: 24px; /* Size of color swatches */
-  --swatch-gap: 4px; /* Gap between swatches */
+  --swatch-size: 30px; /* Size of color swatches */
+  --swatch-gap: 10px; /* Gap between swatches */
 }
 
 body {
@@ -632,7 +632,7 @@ shopify-variant-selector::part(radio) {
 .hook-option {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .hook-option__header {
@@ -650,11 +650,12 @@ shopify-variant-selector::part(radio) {
 }
 
 .hook-option__description {
-  font-size: 0.875rem;
-  color: #666;
-  margin-bottom: 0.5rem;
+  font-size: 16px;
+  color: #12121280;
+  margin-bottom: 10px;
   font-weight: 400;
-  margin-top: -0.5rem;
+  margin-top: 0;
+  letter-spacing: 0.6px;
 }
 
 .hook-option__selected-name {
