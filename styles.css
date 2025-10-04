@@ -832,8 +832,8 @@ shopify-variant-selector::part(radio) {
 }
 
 .hook-color-swatch {
-  width: var(--swatch-size);
-  height: var(--swatch-size);
+  width: 30px;
+  height: 30px;
   border: 1px solid transparent;
   border-radius: 50%;
   cursor: pointer;
@@ -844,6 +844,12 @@ shopify-variant-selector::part(radio) {
   justify-content: center;
   padding: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Swatches in modal (color-picker-content) */
+.color-picker-content .hook-color-swatch {
+  width: 24px;
+  height: 24px;
 }
 
 .hook-color-swatch:hover {
@@ -1012,8 +1018,8 @@ shopify-variant-selector::part(radio) {
 
 .color-picker-swatches {
   display: grid;
-  grid-template-columns: repeat(7, var(--swatch-size));
-  gap: var(--swatch-gap);
+  grid-template-columns: repeat(7, 24px);
+  gap: 4px;
 }
 
 .color-picker-footer {
