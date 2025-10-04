@@ -844,8 +844,8 @@ function updateApplyAllUI() {
     // Show the apply-all container
     applyAllContainer.style.display = 'block';
 
-    // Update text with selected color name
-    applyAllText.textContent = `Apply ${hookState.selectedInlineColor.name} to all hooks`;
+    // Update text with selected color name (bold the color name only)
+    applyAllText.innerHTML = `Apply <strong>${hookState.selectedInlineColor.name}</strong> to all hooks`;
 
     // Uncheck the checkbox when color changes
     if (applyAllCheckbox) {
