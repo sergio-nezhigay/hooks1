@@ -424,7 +424,7 @@ p {
   height: 56px;
   border: none;
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   color: #121212;
   background: white;
 }
@@ -445,9 +445,9 @@ p {
   background-color: #ed8177;
   color: white;
   border: 2px solid #ed8177;
-  border-radius: 12px;
-  padding: 1rem;
-  font-size: 18px;
+  border-radius: 5px;
+  padding: 11px;
+  font-size: 22px;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
@@ -472,19 +472,17 @@ p {
 /* Schools Message */
 .schools-message {
   text-align: center;
-  margin-top: 12px;
-  padding: 12px 16px;
+  margin-top: -20px;
   background-color: #fff;
-  border: 1.5px solid #ed8177;
-  border-radius: 8px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
-  color: #333;
-  line-height: 1.5;
+  color: #121212bf;
+  line-height: 1.4;
+  max-width: 90%;
 }
 
 .schools-link {
-  color: #333;
+  color: #0077cc;
   text-decoration: underline;
   font-weight: 700;
   transition: color 0.2s ease;
@@ -1816,7 +1814,7 @@ shopify-variant-selector::part(radio) {
 
   /* Products Section Mobile */
   .products-grid {
-    padding: 60px 0 40px;
+    padding: 60px 0 60px;
     gap: 45px;
   }
 
@@ -1897,6 +1895,21 @@ shopify-variant-selector::part(radio) {
   .skeleton-box[style*='130px'] {
     width: 80px !important;
     height: 80px !important;
+  }
+
+  .quantity-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .quantity-buy-container {
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .quantity-btn {
+    height: 57px;
+    width: 90px;
   }
 
   /* Customer Reviews Mobile */
@@ -2180,7 +2193,6 @@ shopify-variant-selector::part(radio) {
          PRODUCT INFO ACCORDION
          ==================== */
 .product-info-accordion {
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -2270,7 +2282,7 @@ shopify-data.metafield-content:empty {
 @media (max-width: 768px) {
   .product-info-question {
     font-size: 22px;
-    padding: 18px 15px;
+    padding: 14px 15px;
   }
 
   .product-info-content {
