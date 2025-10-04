@@ -304,12 +304,12 @@ const CONFIG = {
     { left: 89, top: 18 },
   ],
   hook6Positions: [
-    { left: 8, top: 72 },
-    { left: 26, top: 55 },
-    { left: 42, top: 39 },
-    { left: 58, top: 22 },
-    { left: 74, top: 6 },
-    { left: 90, top: -10 },
+    { left: 8, top: 52 },
+    { left: 26, top: 37.6 },
+    { left: 42, top: 23.2 },
+    { left: 58, top: 8.8 },
+    { left: 74, top: -5.6 },
+    { left: 90, top: -20 },
   ],
   hook9Positions: [
     { left: 7, top: 100 },
