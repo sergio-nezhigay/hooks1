@@ -28,7 +28,7 @@
   --rail-rotate-x: 15deg; /* Rotation around X-axis (tilt up/down) */
   --rail-rotate-y: 0deg; /* Rotation around Y-axis (turn left/right) */
   --rail-rotate-z: -11deg; /* Rotation around Z-axis (tilt clockwise/counterclockwise) */
-  --rail-scale: 1; /* Scale the rail (1 = normal size) */
+  --rail-scale: 0.94; /* Scale the rail (1 = normal size) */
 
   /* Color Picker Modal Sizing - adjust to control modal size */
   --modal-width-mobile: 229px; /* Width on mobile screens */
@@ -328,7 +328,7 @@ p {
 .product-card__details {
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: 30px;
   width: 100%;
 }
 
@@ -345,6 +345,7 @@ p {
   line-height: 1.2;
   color: #121212;
   letter-spacing: 0.6px;
+  margin-bottom: 25px;
 }
 
 .product-rating {
@@ -352,6 +353,12 @@ p {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.product-rating:hover {
+  opacity: 0.7;
 }
 
 .product-rating .review-stars {
@@ -386,6 +393,7 @@ p {
   font-size: 28px;
   letter-spacing: 1.05px;
   color: #121212;
+  line-height: 18px;
 }
 
 .product-card__compare-price {
@@ -1901,7 +1909,6 @@ shopify-variant-selector::part(radio) {
   .product-card__title {
     font-family: 'McLaren';
     font-size: 28px;
-
     margin-bottom: 16px;
   }
 

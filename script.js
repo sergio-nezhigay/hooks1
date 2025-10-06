@@ -2,6 +2,14 @@ function scrollToProducts() {
   console.log('Scroll to products functionality');
 }
 
+function scrollToReviews() {
+  const reviewsSection = document.querySelector('.reviews-section');
+  if (reviewsSection) {
+    reviewsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    console.log('Scrolling to reviews section');
+  }
+}
+
 // Initialize Swiper
 document.addEventListener('DOMContentLoaded', function () {
   const swiper = new Swiper('.reviews-swiper', {
@@ -90,6 +98,41 @@ document.addEventListener('DOMContentLoaded', () => {
     childList: true,
     subtree: true,
   });
+});
+
+// Add click listener to product rating to scroll to reviews
+document.addEventListener('DOMContentLoaded', function () {
+  function addProductRatingListener() {
+    const productRating = document.querySelector('.product-rating');
+    if (productRating && !productRating.dataset.listenerAdded) {
+      productRating.addEventListener('click', scrollToReviews);
+      productRating.dataset.listenerAdded = 'true';
+      console.log('Product rating click listener added');
+      return true;
+    }
+    return false;
+  }
+
+  // Try immediately
+  if (!addProductRatingListener()) {
+    // If not found, watch for it to be added by Shopify components
+    const observer = new MutationObserver(() => {
+      if (addProductRatingListener()) {
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Fallback timeout
+    setTimeout(() => {
+      addProductRatingListener();
+      observer.disconnect();
+    }, 2000);
+  }
 });
 
 // FAQ Accordion functionality
