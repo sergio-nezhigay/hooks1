@@ -1723,11 +1723,11 @@ shopify-variant-selector::part(radio) {
 
   /* Benefits Section Desktop */
   .benefits-section {
-    padding: 83px 0;
+    padding: 83px 0 100px;
   }
 
   .benefits-container {
-    padding: 0 64px 50px;
+    padding: 0 64px 0px;
   }
 
   .benefits-title {
