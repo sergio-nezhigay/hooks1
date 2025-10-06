@@ -1490,7 +1490,7 @@ shopify-variant-selector::part(radio) {
 .footer-phone-link,
 .footer-email-link {
   color: #e5e7eb;
-  text-decoration: none;
+  text-decoration: underline;
   transition: color 0.3s ease;
 }
 
