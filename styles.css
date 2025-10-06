@@ -1,7 +1,7 @@
 /* ====================
            FONTS & IMPORTS
            ==================== */
-@import url('https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&family=McLaren&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&family=McLaren:wght@400&display=swap');
 
 /* ====================
            BASE STYLES
@@ -1657,9 +1657,9 @@ shopify-variant-selector::part(radio) {
     width: 100%;
     height: calc(100% - 57px);
     background: linear-gradient(
-      135deg,
-      rgba(61, 105, 143, 0.5) 0%,
-      rgba(61, 105, 143, 0) 100%
+      289.33deg,
+      rgba(61, 106, 143, 0) 52.53%,
+      rgba(61, 106, 143, 0.8) 100%
     );
     pointer-events: none;
     z-index: 1;
