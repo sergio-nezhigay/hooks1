@@ -1,5 +1,9 @@
 function scrollToProducts() {
-  console.log('Scroll to products functionality');
+  const productsSection = document.querySelector('.products-grid');
+  if (productsSection) {
+    productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    console.log('Scrolling to products section');
+  }
 }
 
 function scrollToReviews() {
