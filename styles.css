@@ -47,6 +47,10 @@ body {
   background-color: #f8f9fa;
   color: #333;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  text-rendering: optimizeLegibility;
 }
 
 * {
@@ -223,7 +227,7 @@ p {
   font-weight: 400;
   text-transform: uppercase;
   color: #121212;
-  margin-bottom: 25px;
+  margin-bottom: 14px;
   line-height: 1.2;
 }
 
@@ -232,7 +236,7 @@ p {
   line-height: 1.2;
   color: #121212;
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: 0.1px;
 }
 
 /* ====================
@@ -1772,10 +1776,9 @@ shopify-variant-selector::part(radio) {
 
   /* Shipping Banner Desktop */
   .shipping-banner {
-    padding: 15px 20px;
     font-size: 14px;
     line-height: 1.2;
-    padding: 15px 15px;
+    padding: 11px 15px;
     font-weight: 700;
     letter-spacing: 0.01em;
   }
