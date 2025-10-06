@@ -21,7 +21,7 @@
   /* Hook Preview Canvas Positioning - adjust to move the preview image */
   --canvas-align-horizontal: center; /* left | center | right */
   --canvas-align-vertical: center; /* flex-start | center | flex-end */
-  --canvas-margin-top: 127px; /* Add top margin if needed */
+  --canvas-margin-top: 164px; /* Add top margin if needed */
   --canvas-margin-bottom: auto; /* Add bottom margin if needed */
 
   /* Rail 3D Rotation - adjust to create perspective effect */
@@ -1798,8 +1798,8 @@ shopify-variant-selector::part(radio) {
 
   .hook-customizer__preview {
     width: 49%;
-    height: 500px;
-    min-height: 500px;
+    height: 510px;
+    min-height: 510px;
   }
 
   .product-card__details {
