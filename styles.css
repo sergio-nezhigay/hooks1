@@ -1287,21 +1287,19 @@ shopify-variant-selector::part(radio) {
   border: 2px solid #e7e9ed;
   border-radius: 5px;
   overflow: hidden;
-  min-height: 65px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .faq-question {
   width: 100%;
-  padding: 0 20px;
+  padding: 18px 20px;
   background: white;
   border: none;
   text-align: left;
   font-family: 'Zain', sans-serif;
-  letter-spacing: 0.03em;
-  font-size: 18px;
+  letter-spacing: 0.06em;
+  font-size: 22px;
   font-weight: 400;
   color: #121212;
   cursor: pointer;
@@ -1312,12 +1310,8 @@ shopify-variant-selector::part(radio) {
   transition: background-color 0.3s ease;
 }
 
-.faq-question span {
-  font-size: 22px;
-}
-
 .faq-question:hover {
-  background: #f8f9fa;
+  background: #e8edf2;
 }
 
 .faq-icon {
@@ -1349,12 +1343,11 @@ shopify-variant-selector::part(radio) {
 }
 
 .faq-answer p {
-  padding: 0 24px 24px;
+  padding: 16px 24px 24px;
   margin: 0;
   font-size: 20px;
-  opacity: 0.85;
   line-height: 1.5;
-  color: #121212;
+  color: #4a5568;
 }
 
 /* ====================
@@ -2060,11 +2053,8 @@ shopify-variant-selector::part(radio) {
   }
 
   .faq-question {
-    padding: 0 20px;
+    padding: 14px 20px;
     font-size: 22px;
-  }
-  .faq-question span {
-    max-width: 209px;
   }
 
   .faq-icon svg {
@@ -2205,9 +2195,6 @@ shopify-variant-selector::part(radio) {
   .footer-email {
     font-size: 19px;
   }
-  .faq-item {
-    min-height: 90px;
-  }
 
   .product-info-accordion {
     margin-top: 56px;
@@ -2258,20 +2245,20 @@ shopify-variant-selector::part(radio) {
 
 .product-info-question {
   width: 100%;
-  padding: 18px 20px;
+  padding: 16px 20px;
   background: white;
   border: none;
   text-align: left;
   font-family: 'Zain', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 400;
   color: #121212;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.3s ease;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
 }
 
 .product-info-question:hover {
