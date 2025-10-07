@@ -1669,7 +1669,7 @@ shopify-variant-selector::part(radio) {
   .hero {
     height: 820px;
     background-color: #fffcf1 !important;
-    background: url('assets/hero-desktop.png');
+    background: url('assets/hero-desktop.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -1848,7 +1848,7 @@ shopify-variant-selector::part(radio) {
     left: 0;
     width: 100%;
     height: calc(100% - 206px);
-    background-image: url('assets/hero-mobile.png');
+    background-image: url('assets/hero-mobile.webp');
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center center;
