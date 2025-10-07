@@ -146,13 +146,21 @@ document.addEventListener('DOMContentLoaded', function () {
   faqQuestions.forEach((question) => {
     question.addEventListener('click', function () {
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
-      const answer = this.nextElementSibling;
+      // Support semantic <dt>/<dd> structure: if button is in <dt>, answer is dt's next sibling
+      const answer = this.parentElement.classList.contains('faq-question')
+        ? this.nextElementSibling
+        : this.parentElement.nextElementSibling;
 
       // Close all other FAQ items
       faqQuestions.forEach((otherQuestion) => {
         if (otherQuestion !== this) {
           otherQuestion.setAttribute('aria-expanded', 'false');
-          otherQuestion.nextElementSibling.classList.remove('active');
+          const otherAnswer = otherQuestion.parentElement.classList.contains('faq-question')
+            ? otherQuestion.nextElementSibling
+            : otherQuestion.parentElement.nextElementSibling;
+          if (otherAnswer) {
+            otherAnswer.classList.remove('active');
+          }
         }
       });
 
@@ -186,14 +194,22 @@ function initProductInfoAccordion() {
 
     newQuestion.addEventListener('click', function () {
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
-      const answer = this.nextElementSibling;
+      // Support semantic <dt>/<dd> structure: if button is in <dt>, answer is dt's next sibling
+      const answer = this.parentElement.classList.contains('product-info-question')
+        ? this.nextElementSibling
+        : this.parentElement.nextElementSibling;
       const allQuestions = document.querySelectorAll('.product-info-question');
 
       // Close all other product info items
       allQuestions.forEach((otherQuestion) => {
         if (otherQuestion !== this) {
           otherQuestion.setAttribute('aria-expanded', 'false');
-          otherQuestion.nextElementSibling.classList.remove('active');
+          const otherAnswer = otherQuestion.parentElement.classList.contains('product-info-question')
+            ? otherQuestion.nextElementSibling
+            : otherQuestion.parentElement.nextElementSibling;
+          if (otherAnswer) {
+            otherAnswer.classList.remove('active');
+          }
         }
       });
 

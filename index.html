@@ -521,13 +521,14 @@
                           </div>
 
                           <!-- Product Info Accordion -->
-                          <div class="product-info-accordion">
+                          <dl class="product-info-accordion">
                             <!-- Description -->
                             <div class="product-info-item">
-                              <button
-                                class="product-info-question"
-                                aria-expanded="false"
-                              >
+                              <dt>
+                                <button
+                                  class="product-info-question"
+                                  aria-expanded="false"
+                                >
                                 <span>Description</span>
                                 <span class="product-info-icon">
                                   <svg
@@ -543,22 +544,24 @@
                                     />
                                   </svg>
                                 </span>
-                              </button>
-                              <div class="product-info-answer">
+                                </button>
+                              </dt>
+                              <dd class="product-info-answer">
                                 <div class="product-info-content">
                                   <shopify-data
                                     query="product.description"
                                   ></shopify-data>
                                 </div>
-                              </div>
+                              </dd>
                             </div>
 
                             <!-- Dimensions -->
                             <div class="product-info-item">
-                              <button
-                                class="product-info-question"
-                                aria-expanded="false"
-                              >
+                              <dt>
+                                <button
+                                  class="product-info-question"
+                                  aria-expanded="false"
+                                >
                                 <span>Dimensions</span>
                                 <span class="product-info-icon">
                                   <svg
@@ -574,8 +577,9 @@
                                     />
                                   </svg>
                                 </span>
-                              </button>
-                              <div class="product-info-answer">
+                                </button>
+                              </dt>
+                              <dd class="product-info-answer">
                                 <div
                                   class="product-info-content"
                                   data-metafield="dimensions"
@@ -604,15 +608,16 @@
                                     36" W × 4" H × 2" D (4.5 lbs)</span
                                   >
                                 </div>
-                              </div>
+                              </dd>
                             </div>
 
                             <!-- Material -->
                             <div class="product-info-item">
-                              <button
-                                class="product-info-question"
-                                aria-expanded="false"
-                              >
+                              <dt>
+                                <button
+                                  class="product-info-question"
+                                  aria-expanded="false"
+                                >
                                 <span>Material</span>
                                 <span class="product-info-icon">
                                   <svg
@@ -628,8 +633,9 @@
                                     />
                                   </svg>
                                 </span>
-                              </button>
-                              <div class="product-info-answer">
+                                </button>
+                              </dt>
+                              <dd class="product-info-answer">
                                 <div
                                   class="product-info-content"
                                   data-metafield="material"
@@ -665,9 +671,9 @@
                                     coating</span
                                   >
                                 </div>
-                              </div>
+                              </dd>
                             </div>
-                          </div>
+                          </dl>
                         </div>
                       </div>
                     </div>
@@ -938,163 +944,175 @@
           <div class="faq-left">
             <h2 class="faq-title">Have Questions?<br />We Have Answers</h2>
           </div>
-          <div class="faq-right">
+          <dl class="faq-right">
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                <span>What is the maximum weight capacity?</span>
-                <span class="faq-icon">
-                  <svg
-                    width="13"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer">
+              <dt>
+                <button class="faq-question" aria-expanded="false">
+                  <span>What is the maximum weight capacity?</span>
+                  <span class="faq-icon">
+                    <svg
+                      width="13"
+                      height="8"
+                      viewBox="0 0 13 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd class="faq-answer">
                 <p>
                   Our hooks can safely hold up to 88 pounds each, making them
                   perfect for heavy coats, backpacks, and bags.
                 </p>
-              </div>
+              </dd>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                <span>Can I choose the number of hooks?</span>
-                <span class="faq-icon">
-                  <svg
-                    width="13"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer">
+              <dt>
+                <button class="faq-question" aria-expanded="false">
+                  <span>Can I choose the number of hooks?</span>
+                  <span class="faq-icon">
+                    <svg
+                      width="13"
+                      height="8"
+                      viewBox="0 0 13 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd class="faq-answer">
                 <p>
                   Yes! We offer various configurations from single hooks to
                   multi-hook rails with up to 9 hooks per rail.
                 </p>
-              </div>
+              </dd>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                <span>Are different colors and finishes available?</span>
-                <span class="faq-icon">
-                  <svg
-                    width="13"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer">
+              <dt>
+                <button class="faq-question" aria-expanded="false">
+                  <span>Are different colors and finishes available?</span>
+                  <span class="faq-icon">
+                    <svg
+                      width="13"
+                      height="8"
+                      viewBox="0 0 13 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd class="faq-answer">
                 <p>
                   We offer a variety of colors and finishes to match your space,
                   including classic black, white, and colorful options.
                 </p>
-              </div>
+              </dd>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                <span>How easy is it to install?</span>
-                <span class="faq-icon">
-                  <svg
-                    width="13"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer">
+              <dt>
+                <button class="faq-question" aria-expanded="false">
+                  <span>How easy is it to install?</span>
+                  <span class="faq-icon">
+                    <svg
+                      width="13"
+                      height="8"
+                      viewBox="0 0 13 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd class="faq-answer">
                 <p>
                   Installation is simple and requires no special tools. Each
                   hook comes with clear instructions and all necessary hardware.
                 </p>
-              </div>
+              </dd>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                <span>What are the shipping and return policies?</span>
-                <span class="faq-icon">
-                  <svg
-                    width="13"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer">
+              <dt>
+                <button class="faq-question" aria-expanded="false">
+                  <span>What are the shipping and return policies?</span>
+                  <span class="faq-icon">
+                    <svg
+                      width="13"
+                      height="8"
+                      viewBox="0 0 13 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd class="faq-answer">
                 <p>
                   We offer free shipping on orders over $50. Returns are
                   accepted within 30 days for a full refund.
                 </p>
-              </div>
+              </dd>
             </div>
 
             <div class="faq-item">
-              <button class="faq-question" aria-expanded="false">
-                <span>Where is this product made?</span>
-                <span class="faq-icon">
-                  <svg
-                    width="13"
-                    height="8"
-                    viewBox="0 0 13 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
-                      fill="#121212"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer">
+              <dt>
+                <button class="faq-question" aria-expanded="false">
+                  <span>Where is this product made?</span>
+                  <span class="faq-icon">
+                    <svg
+                      width="13"
+                      height="8"
+                      viewBox="0 0 13 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.91846 7.44531L0.586426 2.14062C0.340332 1.86719 0.340332 1.45703 0.586426 1.21094L1.21533 0.582031C1.46143 0.335938 1.87158 0.335938 2.14502 0.582031L6.3833 4.79297L10.5942 0.582031C10.8677 0.335938 11.2778 0.335938 11.5239 0.582031L12.1528 1.21094C12.3989 1.45703 12.3989 1.86719 12.1528 2.14062L6.8208 7.44531C6.57471 7.69141 6.16455 7.69141 5.91846 7.44531Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd class="faq-answer">
                 <p>
                   Our hooks are proudly manufactured in the USA using
                   high-quality, durable materials with strict quality control.
                 </p>
-              </div>
+              </dd>
             </div>
-          </div>
+          </dl>
         </div>
       </section>
 
