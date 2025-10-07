@@ -1724,7 +1724,7 @@ shopify-variant-selector::part(radio) {
     flex-direction: row;
   }
 
-  /*Hero Section Desktop*/
+  /*Hero Section Desktop */
   .hero {
     height: 820px;
     background-color: #fffcf1 !important;
