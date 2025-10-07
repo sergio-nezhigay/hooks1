@@ -1198,6 +1198,13 @@ shopify-variant-selector::part(radio) {
   opacity: 1 !important;
   pointer-events: auto !important;
   cursor: pointer !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #ed8177;
+  transform: scale(1.2);
 }
 
 .swiper-button-prev.swiper-button-disabled,
@@ -1438,6 +1445,12 @@ shopify-variant-selector::part(radio) {
   line-height: 1.29;
   text-transform: uppercase;
   margin-bottom: 26px;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.footer-section-title:hover {
+  color: #ed8177;
 }
 
 .footer-link-list {
@@ -1455,11 +1468,20 @@ shopify-variant-selector::part(radio) {
   font-size: 19px;
   line-height: 1.8;
   letter-spacing: 0.6px;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
 .footer-link:hover {
-  color: white;
+  color: #ed8177;
+  transform: translateX(4px);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid #ed8177;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 .footer-contact {
@@ -1496,12 +1518,23 @@ shopify-variant-selector::part(radio) {
 .footer-email-link {
   color: #e5e7eb;
   text-decoration: underline;
-  transition: color 0.3s ease;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: all 0.3s ease;
 }
 
 .footer-phone-link:hover,
 .footer-email-link:hover {
-  color: white;
+  color: #ed8177;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.footer-phone-link:focus-visible,
+.footer-email-link:focus-visible {
+  outline: 2px solid #ed8177;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 .footer-social {
@@ -1512,14 +1545,34 @@ shopify-variant-selector::part(radio) {
 
 .footer-social-link {
   color: #e5e7eb;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  position: relative;
 }
 
 .footer-social-link:hover {
-  color: white;
+  background: rgba(237, 129, 119, 0.2);
+  transform: translateY(-3px) scale(1.1);
+}
+
+.footer-social-link img {
+  transition: all 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.footer-social-link:hover img {
+  filter: brightness(1.2);
+}
+
+.footer-social-link:focus-visible {
+  outline: 2px solid #ed8177;
+  outline-offset: 2px;
 }
 
 .footer-social-link svg {
@@ -2008,6 +2061,13 @@ shopify-variant-selector::part(radio) {
     opacity: 1 !important;
     pointer-events: auto !important;
     cursor: pointer !important;
+    transition: all 0.3s ease;
+  }
+
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    color: #ed8177;
+    transform: scale(1.2);
   }
 
   .swiper-button-prev.swiper-button-disabled,
