@@ -155,7 +155,9 @@ document.addEventListener('DOMContentLoaded', function () {
       faqQuestions.forEach((otherQuestion) => {
         if (otherQuestion !== this) {
           otherQuestion.setAttribute('aria-expanded', 'false');
-          const otherAnswer = otherQuestion.parentElement.classList.contains('faq-question')
+          const otherAnswer = otherQuestion.parentElement.classList.contains(
+            'faq-question'
+          )
             ? otherQuestion.nextElementSibling
             : otherQuestion.parentElement.nextElementSibling;
           if (otherAnswer) {
@@ -195,7 +197,9 @@ function initProductInfoAccordion() {
     newQuestion.addEventListener('click', function () {
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
       // Support semantic <dt>/<dd> structure: if button is in <dt>, answer is dt's next sibling
-      const answer = this.parentElement.classList.contains('product-info-question')
+      const answer = this.parentElement.classList.contains(
+        'product-info-question'
+      )
         ? this.nextElementSibling
         : this.parentElement.nextElementSibling;
       const allQuestions = document.querySelectorAll('.product-info-question');
@@ -204,7 +208,9 @@ function initProductInfoAccordion() {
       allQuestions.forEach((otherQuestion) => {
         if (otherQuestion !== this) {
           otherQuestion.setAttribute('aria-expanded', 'false');
-          const otherAnswer = otherQuestion.parentElement.classList.contains('product-info-question')
+          const otherAnswer = otherQuestion.parentElement.classList.contains(
+            'product-info-question'
+          )
             ? otherQuestion.nextElementSibling
             : otherQuestion.parentElement.nextElementSibling;
           if (otherAnswer) {
@@ -320,17 +326,17 @@ const COLORS = [
 const CONFIG = {
   rails: {
     style1: {
-      3: 'assets/rails/rail-style1-3.png',
-      6: 'assets/rails/rail-style1-6.png',
-      9: 'assets/rails/rail-style1-9.png',
+      3: 'assets/rails/rail-style1-3.webp',
+      6: 'assets/rails/rail-style1-6.webp',
+      9: 'assets/rails/rail-style1-9.webp',
     },
     style2: {
-      3: 'assets/rails/rail-style2-3.png',
-      6: 'assets/rails/rail-style2-6.png',
-      9: 'assets/rails/rail-style2-9.png',
+      3: 'assets/rails/rail-style2-3.webp',
+      6: 'assets/rails/rail-style2-6.webp',
+      9: 'assets/rails/rail-style2-9.webp',
     },
   },
-  hookTemplate: 'assets/hooks/hook-template.png',
+  hookTemplate: 'assets/hooks/hook-template.webp',
   // Pre-rendered hook images for accurate colors
   // Map color names (lowercase) to image paths
   hookImages: {
