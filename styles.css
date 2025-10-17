@@ -924,10 +924,6 @@ shopify-variant-selector::part(radio) {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
-.hook-color-swatch-custom svg {
-  /* SVG fill color is defined inline in the SVG markup */
-}
-
 /* Hook Position Number Badges (overlaid on hooks) */
 .hook-position-badge {
   position: absolute;

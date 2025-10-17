@@ -690,21 +690,13 @@ function initColorSwatches() {
 </clipPath>
 </defs>
 </svg>`;
-  customSwatch.addEventListener('click', openCustomColorPicker);
+  customSwatch.addEventListener('click', handleRandomColorInModal);
   container.appendChild(customSwatch);
-
-  // Create hidden color input element
-  const colorInput = document.createElement('input');
-  colorInput.type = 'color';
-  colorInput.id = 'customColorInput';
-  colorInput.style.display = 'none';
-  colorInput.addEventListener('change', handleCustomColorChange);
-  container.appendChild(colorInput);
 
   console.log(
     '✓ Color swatches initialized in modal:',
-    container.children.length - 1, // Subtract the hidden input
-    'swatches created (including custom color)'
+    container.children.length,
+    'swatches created (including random color button)'
   );
 }
 
@@ -757,21 +749,13 @@ function initInlineColorSwatches() {
 </clipPath>
 </defs>
 </svg>`;
-  customSwatch.addEventListener('click', openInlineCustomColorPicker);
+  customSwatch.addEventListener('click', handleRandomColorInline);
   container.appendChild(customSwatch);
-
-  // Create hidden color input element for inline selector
-  const colorInput = document.createElement('input');
-  colorInput.type = 'color';
-  colorInput.id = 'inlineCustomColorInput';
-  colorInput.style.display = 'none';
-  colorInput.addEventListener('change', handleInlineCustomColorChange);
-  container.appendChild(colorInput);
 
   console.log(
     '✓ Inline color swatches initialized:',
-    container.children.length - 1, // Subtract the hidden input
-    'swatches created (including custom color)'
+    container.children.length,
+    'swatches created (including random color button)'
   );
 }
 
@@ -819,64 +803,36 @@ function handleInlineColorClick(event) {
   console.log('Updated state:', JSON.stringify(hookState));
 }
 
-// Open custom color picker for inline selector
-function openInlineCustomColorPicker(event) {
-  console.log('=== OPENING INLINE CUSTOM COLOR PICKER ===');
+// Handle random color selection in inline selector
+function handleRandomColorInline(event) {
   event.stopPropagation();
+  console.log('=== RANDOM COLOR IN INLINE SELECTOR ===');
 
-  const colorInput = document.getElementById('inlineCustomColorInput');
-  if (!colorInput) {
-    console.error('Inline custom color input not found!');
-    return;
-  }
+  const randomColor = getRandomColor();
+  console.log('Randomly selected:', randomColor.name, randomColor.hex);
 
-  // Set current selected color as the default in the picker
-  const currentColor = hookState.selectedInlineColor?.hex || '#FF0800';
-  colorInput.value = currentColor;
-
-  console.log('Opening native color picker with current color:', currentColor);
-
-  // Trigger the native color picker
-  colorInput.click();
-}
-
-// Handle inline custom color selection from native color picker
-function handleInlineCustomColorChange(event) {
-  const selectedColor = event.target.value;
-  console.log('=== INLINE CUSTOM COLOR SELECTED ===');
-  console.log('Selected color:', selectedColor);
-
-  // Generate a name for the custom color
-  const colorName = `Custom ${selectedColor.toUpperCase()}`;
-
-  // Update state
+  // Update state - set as selected inline color
   hookState.selectedInlineColor = {
-    hex: selectedColor,
-    name: colorName,
+    hex: randomColor.hex,
+    name: randomColor.name,
   };
 
-  // Update visual state - mark custom swatch as active
+  // Update visual state - find and activate the randomly selected swatch
   document
     .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
     .forEach((sw) => {
       sw.classList.remove('active');
-      // Don't clear innerHTML of custom color swatch - it will be restored below
+      // Don't clear innerHTML of custom color swatch
       if (!sw.classList.contains('hook-color-swatch-custom')) {
         sw.innerHTML = '';
       }
+      if (sw.dataset.colorHex === randomColor.hex) {
+        sw.classList.add('active');
+        sw.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
+        <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+      }
     });
-
-  const customSwatch = document.querySelector(
-    '#inlineColorSwatches .hook-color-swatch-custom'
-  );
-  if (customSwatch) {
-    customSwatch.classList.add('active');
-    // Add checkmark overlay while preserving the shuffle icon
-    const shuffleIcon = customSwatch.innerHTML;
-    customSwatch.innerHTML = shuffleIcon + `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-      <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`;
-  }
 
   // Show clear button
   const clearBtn = document.getElementById('clearColorBtn');
@@ -925,6 +881,12 @@ function clearInlineColorSelection() {
   }
 
   console.log('Inline color selection cleared');
+}
+
+// Get random color from COLORS array
+function getRandomColor() {
+  const randomIndex = Math.floor(Math.random() * COLORS.length);
+  return COLORS[randomIndex];
 }
 
 // Update apply-all UI (show/hide and update text)
@@ -1133,54 +1095,46 @@ function handleColorChange(event) {
   saveStateToLocalStorage();
 }
 
-// Open custom color picker (native browser color input)
-function openCustomColorPicker(event) {
-  console.log('=== OPENING CUSTOM COLOR PICKER ===');
+// Handle random color selection in modal
+function handleRandomColorInModal(event) {
   event.stopPropagation();
+  console.log('=== RANDOM COLOR IN MODAL ===');
 
-  const colorInput = document.getElementById('customColorInput');
-  if (!colorInput) {
-    console.error('Custom color input not found!');
-    return;
-  }
-
-  // Set current color as the default in the picker
-  const currentColor = hookState.hookColors[hookState.selectedHookPosition];
-  colorInput.value = currentColor;
-
-  console.log('Opening native color picker with current color:', currentColor);
-
-  // Trigger the native color picker
-  colorInput.click();
-}
-
-// Handle custom color selection from native color picker
-function handleCustomColorChange(event) {
-  const selectedColor = event.target.value;
-  console.log('=== CUSTOM COLOR SELECTED ===');
+  const randomColor = getRandomColor();
   console.log(
-    'Selected color:',
-    selectedColor,
+    'Randomly selected:',
+    randomColor.name,
+    randomColor.hex,
     'for position:',
     hookState.selectedHookPosition
   );
 
-  // Generate a name for the custom color
-  const colorName = `Custom ${selectedColor.toUpperCase()}`;
-
   // Update color for the currently selected hook position
-  hookState.hookColors[hookState.selectedHookPosition] = selectedColor;
-  hookState.hookColorNames[hookState.selectedHookPosition] = colorName;
+  hookState.hookColors[hookState.selectedHookPosition] = randomColor.hex;
+  hookState.hookColorNames[hookState.selectedHookPosition] = randomColor.name;
   console.log('Updated state:', JSON.stringify(hookState));
+
+  // Update visual state - find and activate the randomly selected swatch
+  document
+    .querySelectorAll('#modalColorSwatchesContainer .hook-color-swatch')
+    .forEach((sw) => {
+      sw.classList.remove('active');
+      if (!sw.classList.contains('hook-color-swatch-custom')) {
+        sw.innerHTML = '';
+      }
+      if (sw.dataset.colorHex === randomColor.hex) {
+        sw.classList.add('active');
+        sw.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
+        <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+      }
+    });
 
   // Update line item properties for cart
   updateLineItemProperties();
 
-  // Render hooks with new color
   renderHooks();
   saveStateToLocalStorage();
-
-  // Note: Modal stays open so user can see the change
 }
 
 // Open color picker modal for a specific hook position
