@@ -1485,7 +1485,7 @@ shopify-variant-selector::part(radio) {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  margin-bottom: 32px;
+  margin-bottom: 19px;
 }
 
 .footer-company {
@@ -1532,8 +1532,8 @@ shopify-variant-selector::part(radio) {
 
 .footer-social {
   display: flex;
-  gap: 21px;
-  padding-left: 8px;
+  gap: 2px;
+  padding-left: 1px;
 }
 
 .footer-social-link {
@@ -2253,7 +2253,7 @@ shopify-variant-selector::part(radio) {
   .footer-contact-info {
     text-align: left;
     gap: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   .footer-company,
@@ -2269,8 +2269,7 @@ shopify-variant-selector::part(radio) {
 
   .footer-social {
     justify-content: flex-start;
-    padding-left: 20px;
-    gap: 20px;
+    padding-left: 3px;
   }
 
   .footer-social-link svg {
