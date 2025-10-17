@@ -1849,10 +1849,6 @@ shopify-variant-selector::part(radio) {
     width: 51%;
   }
 
-  .benefits-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
   .review-card {
     height: auto;
     border-right: 1px solid #e6ddba;
@@ -1869,6 +1865,14 @@ shopify-variant-selector::part(radio) {
 
   .color-picker-content {
     width: var(--modal-width-desktop);
+  }
+}
+
+/* Large Desktop: 4 column benefits grid */
+@media (min-width: 1200px) {
+  .benefits-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
 }
 
