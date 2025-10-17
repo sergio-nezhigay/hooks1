@@ -957,10 +957,10 @@ shopify-variant-selector::part(radio) {
 /* Hook Position Number Badges (overlaid on hooks) */
 .hook-position-badge {
   position: absolute;
-  width: 34px;
-  height: 34px;
+  width: 37px;
+  height: 37px;
   background: #000;
-  outline: 6px solid rgba(255, 255, 255, 0.7);
+  outline: 8px solid rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(25px);
   border-radius: 50%;
   display: flex;
