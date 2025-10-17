@@ -678,9 +678,18 @@ function initColorSwatches() {
   customSwatch.className = 'hook-color-swatch hook-color-swatch-custom';
   customSwatch.setAttribute('aria-label', 'Custom Color');
   customSwatch.setAttribute('title', 'Custom Color');
-  customSwatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <path d="M7 1v12M1 7h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  </svg>`;
+  customSwatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_91_681)">
+<path d="M13.4834 10.3519L10.8186 7.68579V9.80314H10.5577C9.33853 9.80314 8.5526 9.08434 7.84023 8.08002C7.64383 8.40064 7.43673 8.73399 7.2124 9.06469C8.02063 10.091 9.03943 10.9003 10.5577 10.9003H10.8185V13.0174L13.4834 10.3519Z" fill="#ffffff"/>
+<path d="M13.4812 3.76989L10.8163 1.10376V3.22113H10.5554C8.23635 3.22113 7.0825 5.10923 6.0645 6.77508C5.07125 8.40031 4.2135 9.80396 2.50973 9.80396H0.681152V10.9011H2.50973C4.8288 10.9011 5.98265 9.01301 7.00065 7.34716C7.9939 5.72189 8.85165 4.31824 10.5554 4.31824H10.8163V6.43539L13.4812 3.76989Z" fill="#ffffff"/>
+<path d="M2.50973 3.22095H0.681152V4.3181H2.50973C3.72888 4.3181 4.5148 5.0369 5.22718 6.04122C5.42358 5.7206 5.63068 5.38725 5.855 5.05655C5.04675 4.0302 4.02795 3.22095 2.50973 3.22095Z" fill="#ffffff"/>
+</g>
+<defs>
+<clipPath id="clip0_91_681">
+<rect width="12.8" height="12.8" fill="white" transform="translate(0.681152 0.6604)"/>
+</clipPath>
+</defs>
+</svg>`;
   customSwatch.addEventListener('click', openCustomColorPicker);
   container.appendChild(customSwatch);
 
@@ -736,9 +745,18 @@ function initInlineColorSwatches() {
   customSwatch.className = 'hook-color-swatch hook-color-swatch-custom';
   customSwatch.setAttribute('aria-label', 'Custom Color');
   customSwatch.setAttribute('title', 'Custom Color');
-  customSwatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <path d="M7 1v12M1 7h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  </svg>`;
+  customSwatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_91_681_inline)">
+<path d="M13.4834 10.3519L10.8186 7.68579V9.80314H10.5577C9.33853 9.80314 8.5526 9.08434 7.84023 8.08002C7.64383 8.40064 7.43673 8.73399 7.2124 9.06469C8.02063 10.091 9.03943 10.9003 10.5577 10.9003H10.8185V13.0174L13.4834 10.3519Z" fill="#ffffff"/>
+<path d="M13.4812 3.76989L10.8163 1.10376V3.22113H10.5554C8.23635 3.22113 7.0825 5.10923 6.0645 6.77508C5.07125 8.40031 4.2135 9.80396 2.50973 9.80396H0.681152V10.9011H2.50973C4.8288 10.9011 5.98265 9.01301 7.00065 7.34716C7.9939 5.72189 8.85165 4.31824 10.5554 4.31824H10.8163V6.43539L13.4812 3.76989Z" fill="#ffffff"/>
+<path d="M2.50973 3.22095H0.681152V4.3181H2.50973C3.72888 4.3181 4.5148 5.0369 5.22718 6.04122C5.42358 5.7206 5.63068 5.38725 5.855 5.05655C5.04675 4.0302 4.02795 3.22095 2.50973 3.22095Z" fill="#ffffff"/>
+</g>
+<defs>
+<clipPath id="clip0_91_681_inline">
+<rect width="12.8" height="12.8" fill="white" transform="translate(0.681152 0.6604)"/>
+</clipPath>
+</defs>
+</svg>`;
   customSwatch.addEventListener('click', openInlineCustomColorPicker);
   container.appendChild(customSwatch);
 
@@ -778,7 +796,10 @@ function handleInlineColorClick(event) {
     .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
     .forEach((sw) => {
       sw.classList.remove('active');
-      sw.innerHTML = '';
+      // Don't clear innerHTML of custom color swatch
+      if (!sw.classList.contains('hook-color-swatch-custom')) {
+        sw.innerHTML = '';
+      }
     });
 
   swatch.classList.add('active');
@@ -839,7 +860,10 @@ function handleInlineCustomColorChange(event) {
     .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
     .forEach((sw) => {
       sw.classList.remove('active');
-      sw.innerHTML = '';
+      // Don't clear innerHTML of custom color swatch - it will be restored below
+      if (!sw.classList.contains('hook-color-swatch-custom')) {
+        sw.innerHTML = '';
+      }
     });
 
   const customSwatch = document.querySelector(
@@ -847,7 +871,9 @@ function handleInlineCustomColorChange(event) {
   );
   if (customSwatch) {
     customSwatch.classList.add('active');
-    customSwatch.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
+    // Add checkmark overlay while preserving the shuffle icon
+    const shuffleIcon = customSwatch.innerHTML;
+    customSwatch.innerHTML = shuffleIcon + `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
       <path d="M13 4L6 11L3 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>`;
   }
@@ -876,7 +902,10 @@ function clearInlineColorSelection() {
     .querySelectorAll('#inlineColorSwatches .hook-color-swatch')
     .forEach((sw) => {
       sw.classList.remove('active');
-      sw.innerHTML = '';
+      // Don't clear innerHTML of custom color swatch
+      if (!sw.classList.contains('hook-color-swatch-custom')) {
+        sw.innerHTML = '';
+      }
     });
 
   // Hide clear button
@@ -1079,7 +1108,10 @@ function handleColorChange(event) {
 
   document.querySelectorAll('.hook-color-swatch').forEach((sw) => {
     sw.classList.remove('active');
-    sw.innerHTML = '';
+    // Don't clear innerHTML of custom color swatch
+    if (!sw.classList.contains('hook-color-swatch-custom')) {
+      sw.innerHTML = '';
+    }
   });
 
   swatch.classList.add('active');
@@ -1172,7 +1204,10 @@ function openColorPickerModal(position) {
 
   swatches.forEach((sw) => {
     sw.classList.remove('active');
-    sw.innerHTML = '';
+    // Don't clear innerHTML of custom color swatch
+    if (!sw.classList.contains('hook-color-swatch-custom')) {
+      sw.innerHTML = '';
+    }
     if (sw.dataset.colorHex === selectedColor) {
       sw.classList.add('active');
       sw.innerHTML = `<svg class="swatch-check" width="12" height="12" viewBox="0 0 16 16" fill="none">
