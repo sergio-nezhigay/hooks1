@@ -1,23 +1,3 @@
-/* ====================
-           FONTS & IMPORTS
-           ==================== */
-/* Google Fonts now loaded via preload in HTML for better performance */
-/*@import url('https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&family=McLaren&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&display=swap');*/
-
-/*@font-face {
-  font-family: 'McLaren';
-  font-weight: 400;
-  font-style: normal;
-  src: url('assets/McLaren-Regular.woff2') format('woff2'),
-    url('assets/McLaren-Regular.woff') format('woff');
-  font-display: swap;
-}*/
-
-/* ====================
-           BASE STYLES
-           ==================== */
-
 /* CSS CUSTOMIZATION VARIABLES */
 :root {
   /* Hook Preview Canvas Positioning - adjust to move the preview image */
@@ -70,6 +50,7 @@ h3,
 h4,
 p,
 dd,
+dl,
 dt {
   margin: 0;
 }
@@ -171,7 +152,7 @@ dt {
            ==================== */
 .benefits-section {
   background: #fffcf1;
-  padding: 0 0;
+  padding: 60px 0 0;
 }
 
 .benefits-container {
@@ -280,7 +261,7 @@ dt {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding: 112px 0;
+  padding: 60px 0;
   background: white;
 }
 
@@ -1744,7 +1725,7 @@ shopify-variant-selector::part(radio) {
   /*Hero Section Desktop */
   .hero {
     height: 820px;
-    background-color: #fffcf1 !important;
+    background-color: white !important;
     background: url('assets/hero-desktop.webp');
     background-size: cover;
     background-repeat: no-repeat;
@@ -1835,7 +1816,7 @@ shopify-variant-selector::part(radio) {
 
   /* Products Section Desktop */
   .products-grid {
-    padding: 83px 0;
+    padding: 85px 0 112px;
   }
 
   .products-title {
@@ -1914,8 +1895,8 @@ shopify-variant-selector::part(radio) {
       to bottom,
       #5c96c5 0%,
       #5c96c5 50%,
-      #fffcf1 60%,
-      #fffcf1 100%
+      #fff 60%,
+      #fff 100%
     );
     aspect-ratio: 375 / 940; /* Current mobile ratio */
     height: auto; /* Let aspect-ratio control height */
@@ -1936,7 +1917,7 @@ shopify-variant-selector::part(radio) {
 
   /* Products Section Mobile */
   .products-grid {
-    padding: 60px 0 60px;
+    padding: 38px 0 60px;
     gap: 45px;
   }
 
