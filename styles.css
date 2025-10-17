@@ -243,6 +243,36 @@ dt {
   letter-spacing: 0.1px;
 }
 
+.benefits-cta-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.benefits-cta {
+  background: #ed8177;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  min-width: 210px;
+  padding: 0 32px;
+}
+
+.benefits-cta:hover {
+  background: #e15d50;
+}
+
 /* ====================
          PRODUCTS SECTION
          ==================== */
