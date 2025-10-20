@@ -373,13 +373,14 @@ const CONFIG = {
     { left: 89, top: 10 },
   ],
   hook6Positions: [
-    { left: 11, top: 54 },
-    { left: 26.8, top: 39.6 },
-    { left: 42.6, top: 22.2 },
-    { left: 58.4, top: 10.8 },
-    { left: 74.2, top: -3.6 },
-    { left: 90, top: -18 },
+    { left: 11.0, top: 54.0 }, // #1
+    { left: 26.8, top: 39.6 }, // #2
+    { left: 42.6, top: 25.2 }, // #3
+    { left: 58.4, top: 10.8 }, // #4
+    { left: 74.2, top: -3.6 }, // #5
+    { left: 90.0, top: -18.0 }, // #6
   ],
+
   hook9Positions: [
     { left: 7, top: 100 },
     { left: 18, top: 81.875 },
