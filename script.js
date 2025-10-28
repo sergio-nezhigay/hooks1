@@ -368,17 +368,17 @@ const CONFIG = {
     9: '4%',
   },
   hook3Positions: [
-    { left: 20, top: 38 },
-    { left: 54.5, top: 24 },
-    { left: 89, top: 10 },
+    { left: 20, top: 46 },
+    { left: 54.5, top: 30 },
+    { left: 89, top: 14 },
   ],
   hook6Positions: [
-    { left: 11.0, top: 54.0 }, // #1
-    { left: 26.8, top: 39.6 }, // #2
-    { left: 42.6, top: 25.2 }, // #3
-    { left: 58.4, top: 10.8 }, // #4
-    { left: 74.2, top: -3.6 }, // #5
-    { left: 90.0, top: -18.0 }, // #6
+    { left: 11.0, top: 57.0 }, // #1
+    { left: 26.8, top: 42.4 }, // #2
+    { left: 42.6, top: 27.8 }, // #3
+    { left: 58.4, top: 13.2 }, // #4
+    { left: 74.2, top: -1.4 }, // #5
+    { left: 90.0, top: -16.0 }, // #6
   ],
 
   hook9Positions: [
