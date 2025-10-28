@@ -673,7 +673,7 @@ shopify-variant-selector::part(radio) {
   position: absolute;
   height: auto;
   transition: filter 0.3s ease;
-  transform: translate(-50%, -50%) rotateZ(var(--rail-rotate-z));
+  transform: translate(-50%, -50%) rotateZ(var(--rail-rotate-z)) rotateZ(2deg);
   pointer-events: none; /* Prevent hook images from blocking badge clicks */
 }
 

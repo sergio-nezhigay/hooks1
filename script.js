@@ -363,22 +363,29 @@ const CONFIG = {
     'powder blue': 'assets/hooks/hook-powder-blue.webp',
   },
   hookSizes: {
-    3: '14%',
-    6: '10%',
+    3: '15%',
+    6: '9.2%',
     9: '4%',
+  },
+  // Scale ratios: how much smaller the last hook should be compared to the first
+  // 0.70 = last hook is 70% of first hook size
+  hookScaleRatios: {
+    3: 0.85, // 3 hooks: last hook is 70% of first
+    6: 0.78, // 6 hooks: last hook is 80% of first
+    9: 0.9, // 9 hooks: last hook is 90% of first
   },
   hook3Positions: [
     { left: 20, top: 46 },
-    { left: 54.5, top: 30 },
-    { left: 89, top: 14 },
+    { left: 54.5, top: 31 },
+    { left: 89, top: 16 },
   ],
   hook6Positions: [
-    { left: 11.0, top: 57.0 }, // #1
-    { left: 26.8, top: 42.4 }, // #2
-    { left: 42.6, top: 27.8 }, // #3
-    { left: 58.4, top: 13.2 }, // #4
-    { left: 74.2, top: -1.4 }, // #5
-    { left: 90.0, top: -16.0 }, // #6
+    { left: 11.0, top: 62.0 }, // #1
+    { left: 26.8, top: 48.6 }, // #2
+    { left: 42.6, top: 35.2 }, // #3
+    { left: 58.4, top: 21.8 }, // #4
+    { left: 74.2, top: 8.4 }, // #5
+    { left: 90.0, top: -5.0 }, // #6
   ],
 
   hook9Positions: [
@@ -393,6 +400,31 @@ const CONFIG = {
     { left: 95, top: -45 },
   ],
 };
+
+// Helper function: Calculate proportionally sized hooks from first to last
+// Returns array of size strings (e.g., ["14%", "11.9%", "9.8%"])
+function calculateHookSizes(baseSize, hookCount, scaleRatio) {
+  // Parse the numeric value from the size string (e.g., "14%" -> 14)
+  const startSize = parseFloat(baseSize);
+  const unit = baseSize.replace(startSize.toString(), ''); // Extract unit (e.g., "%")
+
+  // Calculate end size based on ratio
+  const endSize = startSize * scaleRatio;
+
+  // Generate array of interpolated sizes
+  const sizes = [];
+  for (let i = 0; i < hookCount; i++) {
+    // Linear interpolation: start + (end - start) * (i / (count - 1))
+    // For single hook, just use startSize
+    const size =
+      hookCount === 1
+        ? startSize
+        : startSize - ((startSize - endSize) * i) / (hookCount - 1);
+    sizes.push(`${size.toFixed(1)}${unit}`);
+  }
+
+  return sizes;
+}
 
 // State
 let hookState = {
@@ -1269,7 +1301,15 @@ function renderHooks() {
 
   console.log('Positions array:', positions.length, 'hooks');
 
-  const hookSize = CONFIG.hookSizes[hookState.hookCount];
+  // Calculate proportionally sized hooks based on scale ratio
+  const baseSize = CONFIG.hookSizes[hookState.hookCount];
+  const scaleRatio = CONFIG.hookScaleRatios[hookState.hookCount];
+  const hookSizes = calculateHookSizes(
+    baseSize,
+    hookState.hookCount,
+    scaleRatio
+  );
+  console.log('Hook sizes calculated:', hookSizes);
 
   positions.forEach((pos, index) => {
     const hookColor = hookState.hookColors[index];
@@ -1297,7 +1337,7 @@ function renderHooks() {
     hook.className = 'hook-preview-canvas__hook';
     hook.style.left = `${pos.left}%`;
     hook.style.top = `${pos.top}%`;
-    hook.style.width = hookSize;
+    hook.style.width = hookSizes[index]; // Use proportional size for this hook position
     hook.style.filter = filter;
     hook.alt = `Hook ${index + 1} - ${hookColorName}`;
     hook.dataset.position = index;
